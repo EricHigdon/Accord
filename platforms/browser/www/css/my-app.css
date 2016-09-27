@@ -1,0 +1,264 @@
+.navbar, .subnavbar, .toolbar {
+    background: rgba(247, 247, 248, 0.9);
+    -webkit-backdrop-filter: blur(10px);
+}
+.page-content.love-works {
+    width: 110%;
+    padding: 5%;
+    margin-left: -5%;
+    height: 110%;
+    margin-top: -5%;
+}
+.page-content.love-works .content-block {
+    background: rgba(0, 0, 0, .7);
+    margin: 0px;
+}
+.content-block.instafeed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000 !important;
+    overflow:hidden;
+    padding:0px;
+}
+.page-content.love-works img {
+    max-width: 90%;
+    display: block;
+    margin: auto;
+}
+.page-content.love-works .instafeed img {
+    width: 50%;
+    margin-bottom: -5px;
+    display: inline-block;
+}
+.love-works .content-block.foreground-block {
+    position: absolute;
+    top: 0;
+    bottom: 44px;
+    left: 0;
+    right: 0;
+    padding-top: 30%;
+}
+.love-works .button {
+    position: absolute;
+    bottom: 85px;
+    left: 35px;
+    right: 35px;
+}
+.button.white-button {
+    padding: 10px;
+    height: auto;
+    color: #fff;
+    border: 2px solid #fff;
+    font-weight: bold;
+    font-size: 14pt;
+}
+.backdrop img {
+    width: 100%;
+    margin-top: -25px;
+}
+.backdrop i.fa.fa-times {
+    color: #fff;
+    font-size: 18pt;
+    float: right;
+    position: relative;
+    z-index: 9;
+    margin-right: 7px;
+}
+.backdrop p {
+    color: #fff;
+    margin-top: 0px;
+}
+.page-content.welcome {
+    background: #0f1229;
+}
+.date {
+    position: absolute;
+    font-size: 10pt;
+    left: 5px;
+    margin-top: 5px;
+}
+address {
+    position: absolute;
+    right: 5px;
+    line-height: 8pt;
+    font-size: 8pt;
+}
+address p {
+    margin: 5px 0px;
+    text-align: right;
+}
+.welcome .content-block-top img {
+    width: 200px;
+    display: block;
+    margin: auto;
+}
+.welcome .content-block-title {
+    color: #fff;
+    font-weight: bolder;
+    white-space: initial;
+    line-height: 14pt;
+    margin-bottom: 0px;
+}
+.welcome .content-block {
+    margin-top: 0px;
+}
+.welcome .content-block-inner {
+    background: none;
+    color: #fff;
+}
+.welcome .content-block-inner:after {
+    display: none;
+}
+.welcome .content-block-inner:before {
+    display: none;
+}
+i.icon.icon-form-addr {
+    width: 29px;
+    height: 29px;
+    background-image: url(../img/i-form-addr-ios.svg);
+}
+.submit-section {
+    margin: 30px 10px;
+    position: relative;
+    bottom: 15px;
+}
+.welcome .list-block textarea.resizable {
+    height: 80px;
+}
+form p {
+    background: #fff;
+    text-align: center;
+    padding: 10px;
+    color: #333;
+}
+.submit-section input {
+    margin-bottom: 10px;
+}
+.content-block.content-block-top {
+    margin-top: 0px;
+    background: #fff;
+}
+.content-block.content-block-top:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.tabbar [href] {
+    font-size: 10pt;
+    text-align: center;
+}
+.tabbar [href]:before {
+    font-family: fontawesome;
+    font-size: 17pt;
+    display: block;
+    text-align: center;
+    height: 25pt;
+    margin-bottom: -7px;
+}
+.tabbar [href="#home"]:before {
+    content: "\f015";
+}
+.tabbar [href="#im-new"]:before {
+    content: "\f007";
+}
+.tabbar [href="#connect"]:before {
+    content: "\f1e6";
+}
+.tabbar [href="#news"]:before {
+    content: "\f1ea";
+}
+.tabbar [href="#notes"]:before {
+    content: "\f249";
+}
+.content-block-inner {
+    overflow: hidden;
+}
+.content-block-inner img {
+    margin-left: -15px;
+    margin-top: -10px;
+    width: 111%;
+}
+[data-page="Notes"] .list-block {
+    height: 70%;
+}
+[data-page="Notes"] .list-block * {
+    height: 100% !important;
+}
+i.js-edit {
+    cursor: pointer;
+}
+
+/* iPad Styles */
+@media (min-width: 767px) {
+    
+    .page-content.love-works .instafeed img {
+        width: 33.333%;
+    }
+    .love-works .content-block.foreground-block {
+        bottom: 70px;
+    }
+    .page-content.love-works img {
+        max-width: 70%;
+        margin: auto;
+        display: block;
+    }
+    .tabbar .toolbar-inner {
+        -webkit-justify-content: space-around;
+        justify-content: space-around;
+    }
+    .navbar, .toolbar {
+        height: 70px;
+    }
+    .tabbar [href] {
+        font-size: 15pt;
+    }
+    .tabbar [href]:before {
+        font-family: fontawesome;
+        font-size: 25pt;
+        display: block;
+        text-align: center;
+        height: 35pt;
+        margin-bottom: -7px;
+    }
+    .content-block-top img {
+        width: 400px;
+        display: block;
+        margin: auto;
+    }
+    .content-block-inner img {
+        margin-left: 0px;
+        margin-top: 0px;
+        width: 35%;
+        margin-right: 15px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    .content-block-inner img + p {
+        display: inline-block;
+        width: 62%;
+        vertical-align: middle;
+    }
+    .content-block-inner img[style] + p {
+        display: block;
+        width: 100%;
+    }
+}
+
+/* Admin Styles */
+.backdrop {
+    position: absolute;
+    z-index: 10000;
+    background: rgba(0, 0, 0, .7);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 5%;
+}
+form.overlay {
+    background: #fff;
+    padding: 10px;
+}
