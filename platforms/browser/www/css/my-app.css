@@ -1,16 +1,31 @@
 html, body, .pages, .page {
     background: #0f1229;
 }
+body {
+    font-family: 'ralewayregular', sans-serif;
+    font-size: 12pt;
+}
+.accordion-item-content {
+    font-size: 12pt;
+}
 h3 {
     color: #fff;
     margin: 20px;
     font-size: 16pt;
     font-weight: normal;
+    font-family: 'ralewayextrabold', sans-serif;
+}
+.content-block-title {
+    font-family: 'ralewaybold', sans-serif;
 }
 .accordion-item h3:after {
     content: "\f105";
     font-family: FontAwesome;
     float: right;
+    transition: all, .3s, ease;
+}
+.accordion-item-expanded h3:after {
+    transform: rotate(90deg);
 }
 .navbar, .subnavbar, .toolbar {
     background: rgba(247, 247, 248, 0.9);
@@ -59,6 +74,9 @@ h3 {
     bottom: 85px;
     left: 35px;
     right: 35px;
+}
+.button {
+    font-family: 'ralewaybold', sans-serif;
 }
 .button.white-button {
     padding: 10px;
