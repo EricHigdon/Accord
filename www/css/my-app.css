@@ -1,6 +1,17 @@
 html, body, .pages, .page {
     background: #0f1229;
 }
+h3 {
+    color: #fff;
+    margin: 20px;
+    font-size: 16pt;
+    font-weight: normal;
+}
+.accordion-item h3:after {
+    content: "\f105";
+    font-family: FontAwesome;
+    float: right;
+}
 .navbar, .subnavbar, .toolbar {
     background: rgba(247, 247, 248, 0.9);
     -webkit-backdrop-filter: blur(10px);
@@ -178,10 +189,16 @@ form p {
 .content-block-inner {
     overflow: hidden;
 }
-.content-block-inner img {
-    margin-left: -15px;
-    margin-top: -10px;
-    width: 111%;
+.accordion-item img {
+    width: 100%;
+}
+.accordion-item-content {
+    background: #FFF;
+    margin-top: -5px;
+    border-bottom: 1.5px solid #0f1229;
+}
+.accordion-item-content p {
+    padding: 0px 15px;
 }
 [data-page="Notes"] .list-block {
     height: 70%;
