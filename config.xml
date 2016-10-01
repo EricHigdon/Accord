@@ -30,6 +30,7 @@
   <plugin name="org.apache.cordova.file"/>
   <plugin name="org.apache.cordova.file-transfer"/>
   <plugin name="org.apache.cordova.geolocation"/>
+  <plugin name="org.apache.cordova.globalization"/>
   <plugin name="org.apache.cordova.inappbrowser"/>
   <plugin name="org.apache.cordova.media"/>
   <plugin name="org.apache.cordova.network-information"/>
