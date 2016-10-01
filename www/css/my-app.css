@@ -1,3 +1,6 @@
+html, body, .pages, .page {
+    background: #0f1229;
+}
 .navbar, .subnavbar, .toolbar {
     background: rgba(247, 247, 248, 0.9);
     -webkit-backdrop-filter: blur(10px);
@@ -19,7 +22,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: #000 !important;
     overflow:hidden;
     padding:0px;
 }
