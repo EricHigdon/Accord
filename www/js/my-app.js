@@ -18,7 +18,7 @@ $(document).ready(function() {
                 if (index == 0) {
                     link.addClass('active')
                 }
-            }); 
+            });
             setup();
             $.ajax({
                 url: 'https://www.instagram.com/loveworks2016/media/',
@@ -60,7 +60,7 @@ function setup() {
     var mainView = myApp.addView('.view-main', {
         domCache: true //enable inline pages
     });
-    $("body").touchwipe({
+    /*$("body").touchwipe({
          wipeLeft: function() { 
             var next_page = $('.active').next('a');
             next_page.click();
@@ -76,12 +76,12 @@ function setup() {
          min_move_x: 20,
          min_move_y: 20,
          preventDefaultEvents: false
-    });
+    });*/
     $$('form.ajax-submit').on('submitted', function (e) {
       var xhr = e.detail.xhr; // actual XHR object
       var data = JSON.parse(e.detail.data); // Ajax response from action file
       if(data.success) {
-          $$('form.ajax-submit').html('<p>Thanks for contacting us!</p>')
+          $$(this).html('<p>Thanks for contacting us!</p>')
       }
     });
     //Parallax home screen
