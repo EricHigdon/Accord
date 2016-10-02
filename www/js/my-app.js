@@ -7,7 +7,7 @@ $(document).ready(function() {
         success: function(data) {
             $.each(data.pages, function(index){
                 $('div.pages').append(this.content);
-                var link = $('<a href="#'+slugify(this.title)+'">'+this.title+'</a>')
+                var link = $('<a href="#'+slugify(this.title)+'" class="no-animation">'+this.title+'</a>')
                 $('.toolbar-inner').append(link)
                 link.click(function(){
                     $('.active').removeClass('active');
@@ -26,15 +26,6 @@ $(document).ready(function() {
                         var item = this,
                             image = $('<img src="'+item.images.low_resolution.url+'" />');
                         $('.instafeed').append(image);
-                        image.click(function(){
-                            var backdrop = $('<div class="backdrop"></div>'),
-                                large_image = $('<i class="fa fa-times"></i><img src="'+item.images.standard_resolution.url+'" /><p>'+item.caption.text+'</p>')
-                            backdrop.append(large_image);
-                            $('body').append(backdrop);
-                            backdrop.click(function() {
-                               $(this).remove(); 
-                            });
-                        });
                         if(index == 7) {
                             return false;
                         }
@@ -48,7 +39,7 @@ $(document).ready(function() {
 function setup() {
     // Initialize your app
     var myApp = new Framework7({
-        animatePages:false
+        animatePages: true
     });
 
     // Export selectors engine

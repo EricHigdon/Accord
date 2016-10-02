@@ -234,6 +234,17 @@ form p {
 i.js-edit {
     cursor: pointer;
 }
+form.list-block {
+    margin-top: 20px;
+}
+a.back {
+    color: #fff;
+}
+a.back i {
+    font-size: 20pt;
+    margin-left: 10px;
+    vertical-align: bottom;
+}
 
 /* iPad Styles */
 @media (min-width: 767px) {
