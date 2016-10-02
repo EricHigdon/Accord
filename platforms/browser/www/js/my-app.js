@@ -47,29 +47,19 @@ function setup() {
     var mainView = myApp.addView('.view-main', {
         domCache: true //enable inline pages
     });
-    /*$("body").touchwipe({
-         wipeLeft: function() { 
-            var next_page = $('.active').next('a');
-            next_page.click();
-            mainView.router.load({pageName: next_page.attr('href').replace('#', '')});
-         },
-         wipeRight: function() { 
-            var prev_page = $('.active').prev('a');
-            prev_page.click();
-            mainView.router.load({pageName: prev_page.attr('href').replace('#', '')});
-         },
-         wipeUp: false,
-         wipeDown: false,
-         min_move_x: 20,
-         min_move_y: 20,
-         preventDefaultEvents: false
-    });*/
-    $$('form.ajax-submit').on('submitted', function (e) {
+    $$('.ajax-submit').on('beforeSubmit', function(e) {
+       myApp.showPreloader('Submitting') 
+    });
+    $$('.ajax-submit').on('submitted', function (e) {
       var xhr = e.detail.xhr; // actual XHR object
       var data = JSON.parse(e.detail.data); // Ajax response from action file
       if(data.success) {
-          $$(this).html('<p>Thanks for contacting us!</p>')
+          $(this).html('<p>Thanks for contacting us!</p>')
       }
+      else {
+          console.log(data);
+      }
+      myApp.hidePreloader();
     });
     //Parallax home screen
     var bodyCSS = "0px 0px";
