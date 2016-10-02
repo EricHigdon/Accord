@@ -48,7 +48,7 @@ $(document).ready(function() {
 function setup() {
     // Initialize your app
     var myApp = new Framework7({
-        animatePages:true
+        animatePages:false
     });
 
     // Export selectors engine
