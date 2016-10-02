@@ -5,17 +5,6 @@
     <author email="eric.s.higeon@gmail.com" href="http://accord.erichigdon.com.com">Eric Higdon</author>
     <content src="index.html" />
     <icon src="icon.png" />
-    <icon platform="android" qualifier="ldpi" src="www/res/icon/android/icon-36-ldpi.png" />
-    <icon platform="android" qualifier="mdpi" src="www/res/icon/android/icon-48-mdpi.png" />
-    <icon platform="android" qualifier="hdpi" src="www/res/icon/android/icon-72-hdpi.png" />
-    <icon platform="android" qualifier="xhdpi" src="www/res/icon/android/icon-96-xhdpi.png" />
-    <icon height="57" platform="ios" src="www/res/icon/ios/icon-57.png" width="57" />
-    <icon height="72" platform="ios" src="www/res/icon/ios/icon-72.png" width="72" />
-    <icon height="114" platform="ios" src="www/res/icon/ios/icon-57-2x.png" width="114" />
-    <icon height="144" platform="ios" src="www/res/icon/ios/icon-72-2x.png" width="144" />
-    <icon height="76" platform="ios" src="www/res/icon/ios/icon-76.png" width="76" />
-    <icon height="120" platform="ios" src="www/res/icon/ios/icon-120.png" width="120" />
-    <icon height="152" platform="ios" src="www/res/icon/ios/icon-152.png" width="152" />
     <icon platform="winphone" src="www/res/icon/windows-phone/icon-48.png" />
     <icon platform="winphone" role="background" src="www/res/icon/windows-phone/icon-173-tile.png" />
     <splash src="splash.png" />
@@ -31,7 +20,7 @@
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="true" />
     <preference name="webviewbounce" value="false" />
-    <preference name="prerendered-icon" value="true" />
+    <preference name="prerendered-icon" value="false" />
     <preference name="stay-in-webview" value="false" />
     <preference name="StatusBarOverlaysWebView" value="true" />
     <preference name="StatusBarBackgroundColor" value="#000000" />
