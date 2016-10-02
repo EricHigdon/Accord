@@ -30,6 +30,7 @@ $(document).ready(function() {
                             return false;
                         }
                     });
+                    navigator.splashscreen.hide();
                 }
             });
         }
