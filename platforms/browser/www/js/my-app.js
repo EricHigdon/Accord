@@ -47,10 +47,10 @@ function setup() {
     var mainView = myApp.addView('.view-main', {
         domCache: true //enable inline pages
     });
-    $$('.ajax-submit').on('beforeSubmit', function(e) {
-       myApp.showPreloader('Submitting') 
+    $$('body').on('beforeSubmit', '.ajax-submit', function(e) {
+       myApp.showPreloader('Submitting');
     });
-    $$('.ajax-submit').on('submitted', function (e) {
+    $$('body').on('submitted', '.ajax-submit', function (e) {
       var xhr = e.detail.xhr; // actual XHR object
       var data = JSON.parse(e.detail.data); // Ajax response from action file
       if(data.success) {
