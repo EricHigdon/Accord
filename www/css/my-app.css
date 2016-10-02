@@ -65,8 +65,8 @@ h3 {
 }
 .page-content.love-works .instafeed img {
     width: 50%;
-    margin-bottom: -5px;
     display: inline-block;
+    vertical-align: top;
 }
 .love-works .content-block.foreground-block {
     position: absolute;

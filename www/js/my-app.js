@@ -26,9 +26,6 @@ $(document).ready(function() {
                         var item = this,
                             image = $('<img src="'+item.images.low_resolution.url+'" />');
                         $('.instafeed').append(image);
-                        if(index == 7) {
-                            return false;
-                        }
                     });
                     navigator.splashscreen.hide();
                 }
