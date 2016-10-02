@@ -4,6 +4,10 @@ html, body, .pages, .page {
 body {
     font-family: 'ralewayregular', sans-serif;
     font-size: 12pt;
+    margin-top: 0px !important;
+}
+.page {
+    padding-top: 20px;
 }
 .accordion-item-content {
     font-size: 12pt;
@@ -31,12 +35,15 @@ h3 {
     background: rgba(247, 247, 248, 0.9);
     -webkit-backdrop-filter: blur(10px);
 }
+[data-page='home'] {
+    overflow: hidden;
+}
 .page-content.love-works {
     width: 110%;
     padding: 5%;
     margin-left: -5%;
-    height: 110%;
-    margin-top: -5%;
+    height: 120%;
+    margin-top: -10%;
 }
 .page-content.love-works .content-block {
     background: rgba(0, 0, 0, .7);
@@ -71,7 +78,7 @@ h3 {
 }
 .love-works .button {
     position: absolute;
-    bottom: 85px;
+    bottom: 135px;
     left: 35px;
     right: 35px;
 }

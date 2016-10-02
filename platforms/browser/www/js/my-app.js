@@ -12,11 +12,9 @@ $(document).ready(function() {
                 link.click(function(){
                     $('.active').removeClass('active');
                     $(this).addClass('active');
-                    $('.back').removeClass('back');
-                    $(this).prevAll().addClass('back').attr('data-force', 'true');
                 });
                 if (index == 0) {
-                    link.addClass('active')
+                    link.addClass('active');
                 }
             });
             setup();
