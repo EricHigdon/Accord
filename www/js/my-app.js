@@ -68,8 +68,8 @@ function setup() {
 	var content = $(".foreground-block");
 	window.suspendAnimation = false;
 	 
-	var xMovement = 15;
-	var yMovement = 30;
+	var xMovement = 45;
+	var yMovement = 90;
 	var halfX = xMovement/2;
 	var halfY = yMovement/2;
 	 
