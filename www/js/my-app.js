@@ -115,8 +115,7 @@ function setup() {
 	function updateBackground() {
 	 
 	 if (!window.suspendAnimation) {
-	  if ( position.valueOf() != lastPosition.valueOf() ) {
-	   console.log(body);	 
+	  if ( position.valueOf() != lastPosition.valueOf() ) {	 
 	   body.css( "-webkit-transform", position);
 	   content.css( "-webkit-transform", contentCSS);
 	   lastPosition = position;
