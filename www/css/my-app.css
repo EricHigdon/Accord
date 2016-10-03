@@ -251,20 +251,24 @@ a.back i {
 }
 scripture {
     color: #fff;
+    font-size:14pt;
 }
-scripture b {
+scripture center b {
     font-family: 'ralewaybold', sans-serif;
-    font-size: 14pt;
+    font-size: 16pt;
+    margin-bottom: 25px;
+    display: block;
 }
 scripture sup {
     font-size: 9pt;
     font-family: 'ralewaybold', sans-serif;
 }
 scripture br {
-    line-height: 22pt;
+    line-height: 30pt;
 }
 scripture p {
     margin-top: 0px;
+    text-align: justify;
 }
 
 /* iPad Styles */
