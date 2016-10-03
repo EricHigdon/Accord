@@ -102,13 +102,13 @@ function setup() {
 	 }
 	 
 	 // update positions to be used for CSS
-	 var yPosition = -yMovement - (beta * yMovement);
-	 var xPosition = -xMovement - (gamma * xMovement);
+	 var yPosition = (-yMovement - (beta * yMovement)) * -1;
+	 var xPosition = (-xMovement - (gamma * xMovement)) * -1;
 	 var contentX = (-xMovement - xPosition)/2;
 	 var contentY = (-yMovement - yPosition)/2;
 	 
 	 // generate css styles
-	 position = "translate3d( -" + (xPosition.toFixed(1)) + "px, -" + (yPosition.toFixed(1)) + "px, " + " 0px)";
+	 position = "translate3d( " + (xPosition.toFixed(1)) + "px, " + (yPosition.toFixed(1)) + "px, " + " 0px)";
 	 contentCSS = "translate3d( " + (contentX.toFixed(1)) + "px, " + (contentY.toFixed(1)) + "px, " + " 0px)";
 	}
 	 
