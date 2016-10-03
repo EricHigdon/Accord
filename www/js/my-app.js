@@ -117,7 +117,7 @@ function setup() {
 	 if (!window.suspendAnimation) {
 	  if ( position.valueOf() != lastPosition.valueOf() ) {
 	 
-	   body.css( "background-position", position);
+	   body.css( "-webkit-transform", position);
 	   content.css( "-webkit-transform", contentCSS);
 	   lastPosition = position;
 	  }
