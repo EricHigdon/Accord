@@ -61,7 +61,7 @@ function setup() {
       }
       myApp.hidePreloader();
     });
-    	var position = "center";
+		var position = "center";
 	var lastPosition = "center";
 	var contentCSS = "";
 	var body = $(".instafeed");
@@ -108,7 +108,7 @@ function setup() {
 	 var contentY = (-yMovement - yPosition)/2;
 	 
 	 // generate css styles
-	 position = "translate3d( -" + (contentX.toFixed(1)) + "px, -" + (contentY.toFixed(1)) + "px, " + " 0px)";
+	 position = "translate3d( " + (yPosition.toFixed(1)) + "px, " + (yPosition.toFixed(1)) + "px, " + " 0px)";
 	 contentCSS = "translate3d( " + (contentX.toFixed(1)) + "px, " + (contentY.toFixed(1)) + "px, " + " 0px)";
 	}
 	 
