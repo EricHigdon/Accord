@@ -17,7 +17,6 @@ $(document).ready(function() {
                     link.addClass('active');
                 }
             });
-            setup();
             $.ajax({
                 url: 'https://www.instagram.com/loveworks2016/media/',
                 dataType: 'json',
@@ -27,9 +26,10 @@ $(document).ready(function() {
                             image = $('<img src="'+item.images.low_resolution.url+'" />');
                         $('.instafeed').append(image);
                     });
-                    navigator.splashscreen.hide();
+                    //navigator.splashscreen.hide();
                 }
             });
+            setup();
         }
     });
 });
@@ -107,6 +107,7 @@ function setup() {
     }
 
     render();
+    get_bible();
 }
 
 function slugify(Text)

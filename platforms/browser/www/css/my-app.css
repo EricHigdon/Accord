@@ -246,6 +246,23 @@ a.back i {
     margin-left: 10px;
     vertical-align: bottom;
 }
+.scripture-block {
+    margin-top: 0px;
+}
+scripture {
+    color: #fff;
+}
+scripture b {
+    font-family: 'ralewaybold', sans-serif;
+    font-size: 14pt;
+}
+scripture sup {
+    font-size: 9pt;
+    font-family: 'ralewaybold', sans-serif;
+}
+scripture br {
+    line-height: 22pt;
+}
 
 /* iPad Styles */
 @media (min-width: 767px) {
