@@ -128,7 +128,6 @@ function setup() {
 	}
 	 
 	window.requestAnimationFrame(updateBackground);
-    render();
     get_bible();
 }
 
