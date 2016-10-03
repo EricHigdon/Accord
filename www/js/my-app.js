@@ -61,51 +61,74 @@ function setup() {
       }
       myApp.hidePreloader();
     });
-    //Parallax home screen
-    var bodyCSS = "0px 0px";
-    var backgroundCSS = "0px 0px";
-    var contentCSS = "translate3d( 0,0,0 );";
-
-    window.ondeviceorientation = function(event) {
-        gamma = event.gamma/90;
-        beta = event.beta/180;
-        var temp = 0;
-
-        //handle actual device orientation relative to the user interface
-        switch (window.orientation) {
-            case 90: 
-                temp = gamma;
-                gamma = beta;
-                beta = temp;
-                break;
-            case -90: 
-                temp = -gamma;
-                gamma = beta;
-                beta = temp;
-                break;
-        }
-
-        var increment = 15;
-        var xPosition = (gamma * increment);
-        var yPosition = (beta * increment)*2;
-
-        bodyCSS = xPosition + "px " + yPosition + "px";
-        backgroundCSS = "translate3d( " + (-xPosition) + "px, " + (-yPosition) + "px, " + " 0px)";
-
-        var xPosition = -(gamma * increment);
-        var yPosition = -(beta * increment)*2;
-        contentCSS = "translate3d( " + (-xPosition) + "px, " + (-yPosition) + "px, " + " 0px)";
-
-        //for debugging only
-        //$(".content").html( "A:" + event.alpha + " B:" + event.beta + " G:" + event.gamma+ " _:" + event.absolute );
-    }
-
-    function render() {
-        window.requestAnimationFrame( render );
-        $(".instafeed").css( "-webkit-transform", backgroundCSS);
-        $(".foreground-block").css( "-webkit-transform", contentCSS);
-    }
-
+    	var position = "center";
+	var lastPosition = "center";
+	var contentCSS = "";
+	var body = $(".instafeed");
+	var content = $(".foreground-block");
+	window.suspendAnimation = false;
+	 
+	var xMovement = 15;
+	var yMovement = 30;
+	var halfX = xMovement/2;
+	var halfY = yMovement/2;
+	 
+	window.ondeviceorientation = function(event) {
+	 var gamma = event.gamma/90;
+	 var beta = event.beta/180;
+	 
+	 var temp = 0;
+	 
+	 //fix for holding the device upside down
+	 if ( gamma >= 1 ) {
+	  gamma = 2- gamma;
+	 } else if ( gamma <= -1) {
+	  gamma = -2 - gamma;
+	 }
+	 
+	 // shift values/motion based upon device orientation
+	 switch (window.orientation) {
+	  case 90:
+	   temp = gamma;
+	   gamma = beta;
+	   beta = temp;
+	   break;
+	  case -90:
+	   temp = -gamma;
+	   gamma = beta;
+	   beta = temp;
+	   break;
+	 
+	 }
+	 
+	 // update positions to be used for CSS
+	 var yPosition = -yMovement - (beta * yMovement);
+	 var xPosition = -xMovement - (gamma * xMovement);
+	 var contentX = (-xMovement - xPosition)/2;
+	 var contentY = (-yMovement - yPosition)/2;
+	 
+	 // generate css styles
+	 position = "translate3d( -" + (contentX.toFixed(1)) + "px, -" + (contentY.toFixed(1)) + "px, " + " 0px)";
+	 contentCSS = "translate3d( " + (contentX.toFixed(1)) + "px, " + (contentY.toFixed(1)) + "px, " + " 0px)";
+	}
+	 
+	function updateBackground() {
+	 
+	 if (!window.suspendAnimation) {
+	  if ( position.valueOf() != lastPosition.valueOf() ) {
+	 
+	   body.css( "background-position", position);
+	   content.css( "-webkit-transform", contentCSS);
+	   lastPosition = position;
+	  }
+	 } else {
+	  lastPosition = "translate3d(0px, 0px, 0px)";;
+	 }
+	 
+	 window.requestAnimationFrame(updateBackground);
+	}
+	 
+	window.requestAnimationFrame(updateBackground);
     render();
     get_bible();
 }
