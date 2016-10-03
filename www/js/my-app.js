@@ -61,7 +61,7 @@ function setup() {
       }
       myApp.hidePreloader();
     });
-		var position = "center";
+	var position = "center";
 	var lastPosition = "center";
 	var contentCSS = "";
 	var body = $(".instafeed");
@@ -108,7 +108,7 @@ function setup() {
 	 var contentY = (-yMovement - yPosition)/2;
 	 
 	 // generate css styles
-	 position = "translate3d( -" + (xPosition.toFixed(1)) + "px, -" + (yPosition.toFixed(1)) + "px, " + " 0px)";
+	 position = "translate3d( " + (xPosition.toFixed(1)) + "px, " + (yPosition.toFixed(1)) + "px, " + " 0px)";
 	 contentCSS = "translate3d( " + (contentX.toFixed(1)) + "px, " + (contentY.toFixed(1)) + "px, " + " 0px)";
 	}
 	 
@@ -116,7 +116,7 @@ function setup() {
 	 
 	 if (!window.suspendAnimation) {
 	  if ( position.valueOf() != lastPosition.valueOf() ) {
-	 
+	   console.log(body);	 
 	   body.css( "-webkit-transform", position);
 	   content.css( "-webkit-transform", contentCSS);
 	   lastPosition = position;
