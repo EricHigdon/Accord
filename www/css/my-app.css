@@ -209,8 +209,8 @@ form p {
 .tabbar [href="#news"]:before {
     content: "\f1ea";
 }
-.tabbar [href="#notes"]:before {
-    content: "\f249";
+.tabbar [href="#service"]:before {
+    content: "\f02d";
 }
 .content-block-inner {
     overflow: hidden;
