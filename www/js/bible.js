@@ -1,13 +1,19 @@
 function get_bible(){
     $('scripture').each(function() {
         var element = $(this),
-            passage = element.attr('data-book')+element.attr('data-chapter')+':'+element.attr('data-verse-verse');
+            passage = element.attr('data-book');
+        if (element.attr('data-chapter') != null)
+            passage += element.attr('data-chapter');
+        if (element.attr('data-verse-verse') != null)
+            passage += ':'+element.attr('data-verse-verse');
+        console.log(passage);
         $.ajax({
             url:'http://getbible.net/json',
             dataType: 'jsonp',
             data: 'v=kjv&p='+passage,
             jsonp: 'getbible',
             success:function(json){
+                console.log(json);
                 // set text direction
                 if (json.direction == 'RTL'){
                     var direction = 'rtl';

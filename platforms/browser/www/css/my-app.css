@@ -263,6 +263,9 @@ scripture sup {
 scripture br {
     line-height: 22pt;
 }
+scripture p {
+    margin-top: 0px;
+}
 
 /* iPad Styles */
 @media (min-width: 767px) {
