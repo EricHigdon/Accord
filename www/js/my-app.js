@@ -47,7 +47,7 @@ function setup() {
         domCache: true //enable inline pages
     });
     myApp.onPageInit('*', function (page) {
-      window.FirebasePlugin.logEvent("page_view", {page: (page.name});
+      window.FirebasePlugin.logEvent("page_view", {page: page.name});
     });
     $$('body').on('beforeSubmit', '.ajax-submit', function(e) {
        myApp.showPreloader('Submitting');
