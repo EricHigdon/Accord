@@ -18,15 +18,16 @@ $(document).ready(function() {
                 }
             });
             $.ajax({
-                url: 'https://www.instagram.com/loveworks2016/media/',
-                dataType: 'json',
+                url: "http://whateverorigin.org/get?url=" + encodeURIComponent("https://www.instagram.com/loveworks2016/media/"),
+                dataType: 'jsonp',
                 success: function(data) {
-                    $.each(data.items, function(index) {
+                    console.log(data);
+                    $.each(data.contents.items, function(index) {
                         var item = this,
                             image = $('<img src="'+item.images.low_resolution.url+'" />');
                         $('.instafeed').append(image);
                     });
-                    navigator.splashscreen.hide();
+                    //navigator.splashscreen.hide();
                 }
             });
             setup();

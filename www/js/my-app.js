@@ -19,7 +19,6 @@ $(document).ready(function() {
             });
             $.ajax({
                 url: 'https://www.instagram.com/loveworks2016/media/',
-                dataType: 'json',
                 success: function(data) {
                     $.each(data.items, function(index) {
                         var item = this,
