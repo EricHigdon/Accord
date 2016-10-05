@@ -54,6 +54,7 @@ function setup() {
     });
     myApp.onPageInit('*', function (page) {
       window.FirebasePlugin.logEvent("page_view", {'value': page.name});
+      $('.page[data-page="'+page.name+'"]').css('overflow', 'hidden');
     });
     $$('body').on('beforeSubmit', '.ajax-submit', function(e) {
        myApp.showPreloader('Submitting');
@@ -128,7 +129,6 @@ function setup() {
 	   body.css( "-webkit-transform", position);
 	   content.css( "-webkit-transform", contentCSS);
 	   lastPosition = position;
-       console.log(body.parent('.page'));
 	  }
 	 } else {
 	  lastPosition = "translate3d(0px, 0px, 0px)";;
