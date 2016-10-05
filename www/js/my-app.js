@@ -47,6 +47,11 @@ function setup() {
         domCache: true //enable inline pages
     });
     window.FirebasePlugin.grantPermission();
+    window.FirebasePlugin.onNotificationOpen(function(notification) {
+    	alert(notification);
+    }, function(error) {
+    	alert(error);
+    });
     myApp.onPageInit('*', function (page) {
       window.FirebasePlugin.logEvent("page_view", page.name);
     });
