@@ -128,7 +128,7 @@ function setup() {
 	   body.css( "-webkit-transform", position);
 	   content.css( "-webkit-transform", contentCSS);
 	   lastPosition = position;
-       body.parent('.page').css('overflow', 'hidden');
+       console.log(body.parent('.page'));
 	  }
 	 } else {
 	  lastPosition = "translate3d(0px, 0px, 0px)";;
