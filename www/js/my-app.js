@@ -46,7 +46,7 @@ function setup() {
     var mainView = myApp.addView('.view-main', {
         domCache: true //enable inline pages
     });
-    //window.FirebasePlugin.grantPermission();
+    window.FirebasePlugin.grantPermission();
     window.FirebasePlugin.onNotificationOpen(function(notification) {
     	alert(notification);
     }, function(error) {
