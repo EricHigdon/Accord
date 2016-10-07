@@ -48,7 +48,8 @@ function setup() {
     });
     window.FirebasePlugin.grantPermission();
     window.FirebasePlugin.onNotificationOpen(function(notification) {
-    	alert(notification);
+	console.log(notification);
+    	alert(notification.notification.body);
     }, function(error) {
     	alert(error);
     });
