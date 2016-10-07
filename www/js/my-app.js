@@ -54,7 +54,6 @@ function setup() {
     });
     myApp.onPageInit('*', function (page) {
       window.FirebasePlugin.logEvent("page_view", {'value': page.name});
-      $('.page[data-page="'+page.name+'"]').css('overflow', 'hidden');
     });
     $$('body').on('beforeSubmit', '.ajax-submit', function(e) {
        myApp.showPreloader('Submitting');
@@ -78,8 +77,8 @@ function setup() {
 	var content = $(".foreground-block");
 	window.suspendAnimation = false;
 	 
-	var xMovement = 30;
-	var yMovement = 60;
+	var xMovement = 20;
+	var yMovement = 40;
 	var halfX = xMovement/2;
 	var halfY = yMovement/2;
 	 
