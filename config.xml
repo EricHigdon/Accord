@@ -39,7 +39,6 @@
   <plugin name="org.apache.cordova.splashscreen"/>
   <plugin name="org.apache.cordova.vibration"/>
   <plugin name="org.apache.cordova.statusbar"/>
-  <plugin name="cordova-plugin-firebase" spec="0.1.13" />
   
   <icon src="icon.png"/>
   <platform name="android">
