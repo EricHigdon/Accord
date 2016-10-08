@@ -47,25 +47,7 @@ function setup() {
         domCache: true //enable inline pages
     });
     
-    FCMPlugin.onNotification(
-      function(data){
-        if(data.wasTapped){
-          //Notification was received on device tray and tapped by the user. 
-          alert( JSON.stringify(data) );
-        }else{
-          //Notification was received in foreground. Maybe the user needs to be notified. 
-          alert( JSON.stringify(data) );
-        }
-      },
-      function(msg){
-        console.log('onNotification callback successfully registered: ' + msg);
-      },
-      function(err){
-        console.log('Error registering onNotification callback: ' + err);
-      }
-    );
-    
-    /*window.FirebasePlugin.grantPermission();
+    window.FirebasePlugin.grantPermission();
     window.FirebasePlugin.onNotificationOpen(function(notification) {
 	console.log(notification);
     	alert(notification.notification.body);
@@ -74,14 +56,14 @@ function setup() {
     });
     myApp.onPageInit('*', function (page) {
       window.FirebasePlugin.logEvent("page_view", {'value': page.name});
-    });*/
+    });
     $$('body').on('beforeSubmit', '.ajax-submit', function(e) {
        myApp.showPreloader('Submitting');
     });
     $$('body').on('submitted', '.ajax-submit', function (e) {
       var xhr = e.detail.xhr; // actual XHR object
       var data = JSON.parse(e.detail.data); // Ajax response from action file
-      //window.FirebasePlugin.logEvent("submit_form", {'value': $(this).find('#id_form').val()});
+      window.FirebasePlugin.logEvent("submit_form", {'value': $(this).find('#id_form').val()});
       if(data.success) {
           $(this).html('<p>Thanks for contacting us!</p>')
       }
