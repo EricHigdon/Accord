@@ -9,6 +9,14 @@ body {
 .page {
     padding-top: 20px;
 }
+.button {
+    border-color: #333;
+    color: #333;
+    margin-top: 15px;
+    padding: 5px;
+    height: auto;
+    font-size: 15pt;
+}
 .accordion-item-content {
     font-size: 12pt;
 }
