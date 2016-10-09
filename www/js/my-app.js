@@ -29,6 +29,7 @@ $(document).ready(function() {
                 }
             });
             setup();
+            window.FirebasePlugin.grantPermission();
         }
     });
 });
@@ -46,7 +47,6 @@ function setup() {
     var mainView = myApp.addView('.view-main', {
         domCache: true //enable inline pages
     });
-    window.FirebasePlugin.grantPermission();
     myApp.onPageInit('*', function (page) {
       window.FirebasePlugin.logEvent("page_view", {'page': page.name});
     });
