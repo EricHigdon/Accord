@@ -43,10 +43,10 @@
   
   <icon src="icon.png"/>
   <platform name="android">
-      <icon src="www/res/icon/android/icon-36-ldpi.png" qualifier="ldpi"/>
-      <icon src="www/res/icon/android/icon-48-mdpi.png" qualifier="mdpi"/>
-      <icon src="www/res/icon/android/icon-72-hdpi.png" qualifier="hdpi"/>
-      <icon src="www/res/icon/android/icon-96-xhdpi.png" qualifier="xhdpi"/>
+      <icon src="res/icon/android/icon-36-ldpi.png" qualifier="ldpi"/>
+      <icon src="res/icon/android/icon-48-mdpi.png" qualifier="mdpi"/>
+      <icon src="res/icon/android/icon-72-hdpi.png" qualifier="hdpi"/>
+      <icon src="res/icon/android/icon-96-xhdpi.png" qualifier="xhdpi"/>
   </platform>
   <platform name="ios">
       <icon src="www/res/icon/ios/icon-small.png" platform="ios" width="29" height="29" />
