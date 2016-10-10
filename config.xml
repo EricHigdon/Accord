@@ -20,24 +20,14 @@
   <preference name="disable-cursor" value="false"/>
   <preference name="android-minSdkVersion" value="14"/>
   <preference name="android-installLocation" value="auto"/>
-  <plugin name="org.apache.cordova.battery-status"/>
-  <plugin name="org.apache.cordova.camera"/>
-  <plugin name="org.apache.cordova.media-capture"/>
-  <plugin name="org.apache.cordova.console"/>
-  <plugin name="org.apache.cordova.contacts"/>
-  <plugin name="org.apache.cordova.device"/>
-  <plugin name="org.apache.cordova.device-motion"/>
-  <plugin name="org.apache.cordova.device-orientation"/>
-  <plugin name="org.apache.cordova.dialogs"/>
-  <plugin name="org.apache.cordova.file"/>
-  <plugin name="org.apache.cordova.file-transfer"/>
-  <plugin name="org.apache.cordova.geolocation"/>
-  <plugin name="org.apache.cordova.globalization"/>
-  <plugin name="org.apache.cordova.inappbrowser"/>
-  <plugin name="org.apache.cordova.media"/>
-  <plugin name="org.apache.cordova.network-information"/>
+  <preference name="SplashScreen" value="screen" />
+  <preference name="SplashScreenDelay" value="3000" />
+  <preference name="SplashMaintainAspectRatio" value="true" />
+  <preference name="SplashShowOnlyFirstTime" value="false" />
+  <preference name="FadeSplashScreen" value="true"/>
+  <preference name="FadeSplashScreenDuration" value="500"/>
+  <preference name="ShowSplashScreenSpinner" value="false"/>
   <plugin name="org.apache.cordova.splashscreen"/>
-  <plugin name="org.apache.cordova.vibration"/>
   <plugin name="org.apache.cordova.statusbar"/>
   <plugin spec="https://github.com/EricHigdon/cordova-plugin-firebase.git" source="git" />
   
