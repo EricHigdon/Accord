@@ -80,13 +80,11 @@
   <access origin="http://erichigdon.com" subdomains="true" />
   <plugin name="cordova-plugin-whitelist" version="1"/>
   <allow-intent href="cdvfile://*" />
-  <allow-intent href="http://*.erichigdon.com/*"/>
-  <allow-intent href="https://*.erichigdon.com/*"/>
+  <allow-intent href="http://*/*"/>
+  <allow-intent href="https://*/*"/>
   <allow-intent href="tel:*"/>
   <allow-intent href="sms:*"/>
   <allow-intent href="mailto:*"/>
-  <allow-intent href="http://*"/>
-  <allow-intent href="https://*"/>
   <platform name="android">
     <allow-intent href="market:*"/>
   </platform>
