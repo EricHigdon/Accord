@@ -1,4 +1,4 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.erichigdon.accord" version="0.0.6">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.erichigdon.accord" version="0.0.7">
   <name>FWBC</name>
   <description>Weekly bulletins from Fairfield West Baptist Church</description>
   <author href="http://accord.erichigdon.com.com" email="eric.s.higeon@gmail.com">Eric Higdon</author>
