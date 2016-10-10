@@ -85,8 +85,6 @@
   <allow-intent href="tel:*"/>
   <allow-intent href="sms:*"/>
   <allow-intent href="mailto:*"/>
-  <allow-navigation href="http://*"/>
-  <allow-navigation href="https://*"/>
   <platform name="android">
     <allow-intent href="market:*"/>
   </platform>
