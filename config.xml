@@ -33,6 +33,7 @@
   <plugin name="org.apache.cordova.device"/>
   <plugin name="org.apache.cordova.file"/>
   <plugin name="org.apache.cordova.file-transfer"/>
+  <plugin name="cordova-plugin-headercolor"/>
   
   <icon src="icon.png"/>
   <platform name="android">

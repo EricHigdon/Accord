@@ -58,6 +58,7 @@ document.addEventListener("deviceready", function(){
 });
 
 function setup() {
+    window.plugins.headerColor.tint("#0f1229");
     // Initialize your app
     var myApp = new Framework7({
         animatePages: true
