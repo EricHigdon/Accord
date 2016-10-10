@@ -6,36 +6,8 @@
 
 }
 @font-face {
-    font-family: 'ralewaybold_italic';
-    src: url('raleway-bolditalic-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-@font-face {
     font-family: 'ralewayextrabold';
     src: url('raleway-extrabold-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-@font-face {
-    font-family: 'ralewayextrabold_italic';
-    src: url('raleway-extrabolditalic-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-@font-face {
-    font-family: 'ralewayextralight';
-    src: url('raleway-extralight-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-@font-face {
-    font-family: 'ralewayextralight_italic';
-    src: url('raleway-extralightitalic-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -48,36 +20,8 @@
 
 }
 @font-face {
-    font-family: 'ralewaylight';
-    src: url('raleway-light-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-@font-face {
-    font-family: 'ralewaylight_italic';
-    src: url('raleway-lightitalic-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-@font-face {
     font-family: 'ralewayregular';
     src: url('raleway-regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-@font-face {
-    font-family: 'ralewaythin';
-    src: url('raleway-thin-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-@font-face {
-    font-family: 'ralewaythin_italic';
-    src: url('raleway-thinitalic-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
