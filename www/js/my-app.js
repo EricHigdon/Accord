@@ -24,35 +24,35 @@ document.addEventListener("deviceready", function(){
             $.ajax({
                 url: 'https://www.instagram.com/loveworks2016/media/',
                 success: function(data) {
-		    ImgCache.init(function () {
-			console.log('ImgCache init: success!');
-		        $.each(data.items, function(index) {
-			    var item = this,
-			    image = $('<img src="'+item.images.low_resolution.url+'" />');
-			    ImgCache.isCached(image.attr('src'), function(path, success) {
-				  if (success) {
-				    // already cached
-				    ImgCache.useCachedFile(image);
-				  } else {
-				    // not there, need to cache the image
-				    ImgCache.cacheFile(image.attr('src'), function () {
-				      ImgCache.useCachedFile(image);
-				    });
-				  }
-			    });
-			    $('.instafeed').append(image);
-		        });
-		        navigator.splashscreen.hide();
-			    // from within this function you're now able to call other ImgCache methods
-			    // or you can wait for the ImgCacheReady event
+                    ImgCache.init(function () {
+                    console.log('ImgCache init: success!');
+                        $.each(data.items, function(index) {
+                        var item = this,
+                        image = $('<img src="'+item.images.low_resolution.url+'" />');
+                        ImgCache.isCached(image.attr('src'), function(path, success) {
+                          if (success) {
+                            // already cached
+                            ImgCache.useCachedFile(image);
+                          } else {
+                            // not there, need to cache the image
+                            ImgCache.cacheFile(image.attr('src'), function () {
+                              ImgCache.useCachedFile(image);
+                            });
+                          }
+                        });
+                        $('.instafeed').append(image);
+                        });
+                        navigator.splashscreen.hide();
+                        // from within this function you're now able to call other ImgCache methods
+                        // or you can wait for the ImgCacheReady event
 
-		    }, function () {
-		    	console.error('ImgCache init: error! Check the log for errors');
-		    });
+                    }, function () {
+                        console.error('ImgCache init: error! Check the log for errors');
+                    });
                 }
             });
             setup();
-            //window.FirebasePlugin.grantPermission();
+            window.FirebasePlugin.grantPermission();
         }
     });
 });
@@ -95,7 +95,7 @@ function setup() {
 	var content = $(".foreground-block");
 	window.suspendAnimation = false;
 	 
-	var xMovement = 20;
+	var xMovement = 15;
 	var yMovement = 40;
 	var halfX = xMovement/2;
 	var halfY = yMovement/2;
