@@ -36,10 +36,10 @@
   
   <icon src="icon.png"/>
   <platform name="android">
-      <icon src="res/icon/android/icon-36-ldpi.png" qualifier="ldpi"/>
-      <icon src="res/icon/android/icon-48-mdpi.png" qualifier="mdpi"/>
-      <icon src="res/icon/android/icon-72-hdpi.png" qualifier="hdpi"/>
-      <icon src="res/icon/android/icon-96-xhdpi.png" qualifier="xhdpi"/>
+      <icon src="www/res/icon/android/icon-36-ldpi.png" qualifier="ldpi"/>
+      <icon src="www/res/icon/android/icon-48-mdpi.png" qualifier="mdpi"/>
+      <icon src="www/res/icon/android/icon-72-hdpi.png" qualifier="hdpi"/>
+      <icon src="www/res/icon/android/icon-96-xhdpi.png" qualifier="xhdpi"/>
   </platform>
   <platform name="ios">
       <icon src="www/res/icon/ios/icon-small.png" platform="ios" width="29" height="29" />
@@ -76,14 +76,13 @@
       <splash src="www/res/screen/windows-phone/screen-portrait.jpg"/>
   </platform>
   
-  <access origin="*"/>
+  <access origin="http://erichigdon.com" subdomains="true" />
   <plugin name="cordova-plugin-whitelist" version="1"/>
-  <allow-intent href="http://*/*"/>
-  <allow-intent href="https://*/*"/>
+  <allow-intent href="http://*.erichigdon.com/*"/>
+  <allow-intent href="https://*.erichigdon.com/*"/>
   <allow-intent href="tel:*"/>
   <allow-intent href="sms:*"/>
   <allow-intent href="mailto:*"/>
-  <allow-intent href="geo:*"/>
   <platform name="android">
     <allow-intent href="market:*"/>
   </platform>
