@@ -1,4 +1,8 @@
-$(document).ready(function() {
+document.addEventListener("deviceready", function(){
+    // write log to console
+    ImgCache.options.debug = true;
+    // increase allocated space on Chrome to 50MB, default was 10MB
+    ImgCache.options.chromeQuota = 50*1024*1024;
     //load pages
     $.ajax({
         url: 'http://accord.erichigdon.com/api/bulletin/',
@@ -20,12 +24,31 @@ $(document).ready(function() {
             $.ajax({
                 url: 'https://www.instagram.com/loveworks2016/media/',
                 success: function(data) {
-                    $.each(data.items, function(index) {
-                        var item = this,
-                            image = $('<img src="'+item.images.low_resolution.url+'" />');
-                        $('.instafeed').append(image);
-                    });
-                    navigator.splashscreen.hide();
+		    ImgCache.init(function () {
+			alert('ImgCache init: success!');
+		        $.each(data.items, function(index) {
+			    var item = this,
+			    image = $('<img src="'+item.images.low_resolution.url+'" />');
+			    ImgCache.isCached(target.attr('src'), function(path, success) {
+				  if (success) {
+				    // already cached
+				    ImgCache.useCachedFile(target);
+				  } else {
+				    // not there, need to cache the image
+				    ImgCache.cacheFile(target.attr('src'), function () {
+				      ImgCache.useCachedFile(target);
+				    });
+				  }
+			    });
+			    $('.instafeed').append(image);
+		        });
+		        navigator.splashscreen.hide();
+			    // from within this function you're now able to call other ImgCache methods
+			    // or you can wait for the ImgCacheReady event
+
+		    }, function () {
+		    	alert('ImgCache init: error! Check the log for errors');
+		    });
                 }
             });
             setup();
