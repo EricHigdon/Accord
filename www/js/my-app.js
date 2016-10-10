@@ -52,7 +52,7 @@ document.addEventListener("deviceready", function(){
                 }
             });
             setup();
-            window.FirebasePlugin.grantPermission();
+            //window.FirebasePlugin.grantPermission();
         }
     });
 });
