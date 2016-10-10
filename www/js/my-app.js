@@ -25,18 +25,18 @@ document.addEventListener("deviceready", function(){
                 url: 'https://www.instagram.com/loveworks2016/media/',
                 success: function(data) {
 		    ImgCache.init(function () {
-			alert('ImgCache init: success!');
+			console.log('ImgCache init: success!');
 		        $.each(data.items, function(index) {
 			    var item = this,
 			    image = $('<img src="'+item.images.low_resolution.url+'" />');
-			    ImgCache.isCached(target.attr('src'), function(path, success) {
+			    ImgCache.isCached(image.attr('src'), function(path, success) {
 				  if (success) {
 				    // already cached
-				    ImgCache.useCachedFile(target);
+				    ImgCache.useCachedFile(image);
 				  } else {
 				    // not there, need to cache the image
-				    ImgCache.cacheFile(target.attr('src'), function () {
-				      ImgCache.useCachedFile(target);
+				    ImgCache.cacheFile(image.attr('src'), function () {
+				      ImgCache.useCachedFile(image);
 				    });
 				  }
 			    });
@@ -47,7 +47,7 @@ document.addEventListener("deviceready", function(){
 			    // or you can wait for the ImgCacheReady event
 
 		    }, function () {
-		    	alert('ImgCache init: error! Check the log for errors');
+		    	console.error('ImgCache init: error! Check the log for errors');
 		    });
                 }
             });
