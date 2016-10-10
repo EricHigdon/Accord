@@ -76,17 +76,15 @@
       <splash src="www/res/screen/windows-phone/screen-portrait.jpg"/>
   </platform>
   
-  <access origin="cdvfile://*" />
   <access origin="http://erichigdon.com" subdomains="true" />
+  <access origin="cdvfile://*" />
   <plugin name="cordova-plugin-whitelist" version="1"/>
-  <allow-intent href="cdvfile://*" />
   <allow-intent href="http://*.erichigdon.com/*"/>
   <allow-intent href="https://*.erichigdon.com/*"/>
+  <allow-intent href="cdvfile://*" />
   <allow-intent href="tel:*"/>
   <allow-intent href="sms:*"/>
   <allow-intent href="mailto:*"/>
-  <allow-navigation href="http://*"/>
-  <allow-navigation href="https://*"/>
   <platform name="android">
     <allow-intent href="market:*"/>
   </platform>
