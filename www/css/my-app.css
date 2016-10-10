@@ -249,6 +249,10 @@ form.list-block {
 a.back {
     color: #fff;
 }
+.android a.back {
+    display: block;
+    padding-top: 10px;
+}
 a.back i {
     font-size: 20pt;
     margin-left: 10px;
