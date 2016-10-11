@@ -52,7 +52,6 @@ document.addEventListener("deviceready", function(){
                 }
             });
             setup();
-            window.FirebasePlugin.grantPermission();
         }
     });
 });
@@ -70,14 +69,6 @@ function setup() {
     // Add view
     var mainView = myApp.addView('.view-main', {
         domCache: true //enable inline pages
-    });
-    window.FirebasePlugin.onNotificationOpen(function(notification) {
-        alert(JSON.stringify(notification));
-    }, function(error) {
-        console.error(error);
-    });
-    myApp.onPageInit('*', function (page) {
-      window.FirebasePlugin.logEvent("page_view", {'page': page.name});
     });
     $$('body').on('beforeSubmit', '.ajax-submit', function(e) {
        myApp.showPreloader('Submitting');
@@ -162,6 +153,18 @@ function setup() {
 	 
 	window.requestAnimationFrame(updateBackground);
     get_bible();
+    
+    window.FirebasePlugin.grantPermission();
+    
+    window.FirebasePlugin.onNotificationOpen(function(notification) {
+        alert(JSON.stringify(notification));
+    }, function(error) {
+        console.error(error);
+    });
+    
+    myApp.onPageInit('*', function (page) {
+      window.FirebasePlugin.logEvent("page_view", {'page': page.name});
+    });
 }
 
 function slugify(Text)
