@@ -6,8 +6,16 @@ body {
     font-size: 12pt;
     padding-top: 0px !important;
 }
-.page {
+.ios .page {
     padding-top: 20px;
+}
+.button {
+    border-color: #333;
+    color: #333;
+    margin-top: 15px;
+    padding: 5px;
+    height: auto;
+    font-size: 15pt;
 }
 .accordion-item-content {
     font-size: 12pt;
@@ -241,6 +249,10 @@ form.list-block {
 a.back {
     color: #fff;
 }
+.android a.back {
+    display: block;
+    padding-top: 10px;
+}
 a.back i {
     font-size: 20pt;
     margin-left: 10px;
@@ -273,7 +285,14 @@ scripture p {
 
 /* iPad Styles */
 @media (min-width: 767px) {
-    
+    .love-works .button {
+        right: 75px;
+        left: 75px;
+        bottom: 175px;
+    }
+    .accordion-item img {
+        width: 10%;
+    }
     .page-content.love-works .instafeed img {
         width: 33.333%;
     }
@@ -325,20 +344,19 @@ scripture p {
         display: block;
         width: 100%;
     }
-}
+    .accordion-item {
+        display: flex;
+        margin-bottom: 20px;
+    }
 
-/* Admin Styles */
-.backdrop {
-    position: absolute;
-    z-index: 10000;
-    background: rgba(0, 0, 0, .7);
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 5%;
-}
-form.overlay {
-    background: #fff;
-    padding: 10px;
+    .accordion-item-content {
+        height: auto !important;
+        margin-top: 0px;
+        border-bottom: none;
+    }
+    .accordion-item-toggle {
+        flex-basis: 40%;
+        flex-grow: 0;
+        flex-shrink: 0;
+    }
 }

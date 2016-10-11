@@ -1,4 +1,8 @@
-$(document).ready(function() {
+document.addEventListener("deviceready", function(){
+    // write log to console
+    ImgCache.options.debug = true;
+    // increase allocated space on Chrome to 50MB, default was 10MB
+    ImgCache.options.chromeQuota = 50*1024*1024;
     //load pages
     $.ajax({
         url: 'http://accord.erichigdon.com/api/bulletin/',
@@ -20,20 +24,41 @@ $(document).ready(function() {
             $.ajax({
                 url: 'https://www.instagram.com/loveworks2016/media/',
                 success: function(data) {
-                    $.each(data.items, function(index) {
+                    ImgCache.init(function () {
+                    console.log('ImgCache init: success!');
+                        $.each(data.items, function(index) {
                         var item = this,
-                            image = $('<img src="'+item.images.low_resolution.url+'" />');
+                        image = $('<img src="'+item.images.low_resolution.url+'" />');
+                        ImgCache.isCached(image.attr('src'), function(path, success) {
+                          if (success) {
+                            // already cached
+                            ImgCache.useCachedFile(image);
+                          } else {
+                            // not there, need to cache the image
+                            ImgCache.cacheFile(image.attr('src'), function () {
+                              ImgCache.useCachedFile(image);
+                            });
+                          }
+                        });
                         $('.instafeed').append(image);
+                        });
+                        navigator.splashscreen.hide();
+                        // from within this function you're now able to call other ImgCache methods
+                        // or you can wait for the ImgCacheReady event
+
+                    }, function () {
+                        console.error('ImgCache init: error! Check the log for errors');
                     });
-                    navigator.splashscreen.hide();
                 }
             });
             setup();
+            //window.FirebasePlugin.grantPermission();
         }
     });
 });
 
 function setup() {
+    window.plugins.headerColor.tint("#0f1229");
     // Initialize your app
     var myApp = new Framework7({
         animatePages: true
@@ -46,15 +71,8 @@ function setup() {
     var mainView = myApp.addView('.view-main', {
         domCache: true //enable inline pages
     });
-    window.FirebasePlugin.grantPermission();
-    window.FirebasePlugin.onNotificationOpen(function(notification) {
-    	alert(notification);
-    }, function(error) {
-    	alert(error);
-    });
     myApp.onPageInit('*', function (page) {
-      window.FirebasePlugin.logEvent("page_view", {'value': page.name});
-      $('.page[data-page="'+page.name+'"]').css('overflow', 'hidden');
+      window.FirebasePlugin.logEvent("page_view", {'page': page.name});
     });
     $$('body').on('beforeSubmit', '.ajax-submit', function(e) {
        myApp.showPreloader('Submitting');
@@ -62,7 +80,7 @@ function setup() {
     $$('body').on('submitted', '.ajax-submit', function (e) {
       var xhr = e.detail.xhr; // actual XHR object
       var data = JSON.parse(e.detail.data); // Ajax response from action file
-      window.FirebasePlugin.logEvent("submit_form", {'value': $(this).find('#id_form').val()});
+      window.FirebasePlugin.logEvent("submit_form", {'form': $(this).find('#id_form').val()});
       if(data.success) {
           $(this).html('<p>Thanks for contacting us!</p>')
       }
@@ -79,7 +97,7 @@ function setup() {
 	window.suspendAnimation = false;
 	 
 	var xMovement = 15;
-	var yMovement = 30;
+	var yMovement = 40;
 	var halfX = xMovement/2;
 	var halfY = yMovement/2;
 	 

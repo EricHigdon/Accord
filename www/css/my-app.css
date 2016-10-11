@@ -285,7 +285,14 @@ scripture p {
 
 /* iPad Styles */
 @media (min-width: 767px) {
-    
+    .love-works .button {
+        right: 75px;
+        left: 75px;
+        bottom: 175px;
+    }
+    .accordion-item img {
+        width: 10%;
+    }
     .page-content.love-works .instafeed img {
         width: 33.333%;
     }
@@ -347,7 +354,6 @@ scripture p {
         margin-top: 0px;
         border-bottom: none;
     }
-
     .accordion-item-toggle {
         flex-basis: 40%;
         flex-grow: 0;
