@@ -161,7 +161,12 @@ function setup() {
     }, function(error) {
         console.error(error);
     });
-    
+    window.FirebasePlugin.getInstanceId(function(token) {
+        // save this server-side and use it to push notifications to this device
+        console.log(token);
+    }, function(error) {
+        console.error(error);
+    });
     myApp.onPageInit('*', function (page) {
       window.FirebasePlugin.logEvent("page_view", {'page': page.name});
     });

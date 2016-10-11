@@ -2,7 +2,7 @@
 <widget android-versionCode="4" id="com.erichigdon.accord" version="0.0.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>FWBC</name>
     <description>Weekly bulletins from Fairfield West Baptist Church</description>
-    <author email="eric.s.higeon@gmail.com" href="http://accord.erichigdon.com.com">Eric Higdon</author>
+    <author email="eric.s.higdon@gmail.com" href="http://accord.erichigdon.com.com">Eric Higdon</author>
     <content src="index.html" />
     <icon src="icon.png" />
     <icon platform="winphone" src="www/res/icon/windows-phone/icon-48.png" />
