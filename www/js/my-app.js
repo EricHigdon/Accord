@@ -157,7 +157,7 @@ function setup() {
     window.FirebasePlugin.grantPermission();
     
     window.FirebasePlugin.onNotificationOpen(function(notification) {
-        alert(JSON.stringify(notification));
+        alert(notification);
     }, function(error) {
         console.error(error);
     });
