@@ -33,7 +33,6 @@
   <plugin name="org.apache.cordova.file"/>
   <plugin name="org.apache.cordova.file-transfer"/>
   <plugin name="cordova-plugin-headercolor"/>
-  <plugin name="cordova-plugin-fcm"/>
 
   <icon src="icon.png"/>
   <platform name="android">
