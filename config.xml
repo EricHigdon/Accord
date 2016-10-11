@@ -29,11 +29,11 @@
   <preference name="ShowSplashScreenSpinner" value="false"/>
   <plugin name="org.apache.cordova.splashscreen"/>
   <plugin name="org.apache.cordova.statusbar"/>
-  <plugin spec="https://github.com/EricHigdon/cordova-plugin-firebase.git" source="git" />
   <plugin name="org.apache.cordova.device"/>
   <plugin name="org.apache.cordova.file"/>
   <plugin name="org.apache.cordova.file-transfer"/>
   <plugin name="cordova-plugin-headercolor"/>
+  <plugin spec="https://github.com/EricHigdon/cordova-plugin-firebase.git" source="git" />
   
   <icon src="icon.png"/>
   <platform name="android">
