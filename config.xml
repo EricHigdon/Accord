@@ -52,6 +52,10 @@
       <icon src="www/res/icon/ios/icon-120.png" platform="ios" width="120" height="120"/>
       <icon src="www/res/icon/ios/icon-152.png" platform="ios" width="152" height="152"/>
       <icon src="www/res/icon/ios/icon-180.png" platform="ios" width="180" height="180"/>
+      <icon src="www/res/icon/ios/icon-57.png" platform="ios" width="57" height="57"/>
+      <icon src="www/res/icon/ios/icon-72.png" platform="ios" width="72" height="72"/>
+      <icon src="www/res/icon/ios/icon-57-2x.png" platform="ios" width="114" height="114"/>
+      <icon src="www/res/icon/ios/icon-72-2x.png" platform="ios" width="144" height="144"/>
   </platform>
   
   <icon src="www/res/icon/windows-phone/icon-48.png" platform="winphone"/>
