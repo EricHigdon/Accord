@@ -71,6 +71,11 @@ function setup() {
     var mainView = myApp.addView('.view-main', {
         domCache: true //enable inline pages
     });
+    window.FirebasePlugin.onNotificationOpen(function(notification) {
+        alert(JSON.stringify(notification));
+    }, function(error) {
+        console.error(error);
+    });
     myApp.onPageInit('*', function (page) {
       window.FirebasePlugin.logEvent("page_view", {'page': page.name});
     });
