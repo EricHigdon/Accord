@@ -52,7 +52,7 @@ document.addEventListener("deviceready", function(){
                 }
             });
             setup();
-            setupNotifications();
+            //window.FirebasePlugin.grantPermission();
         }
     });
 });
@@ -72,7 +72,7 @@ function setup() {
         domCache: true //enable inline pages
     });
     myApp.onPageInit('*', function (page) {
-      //window.FirebasePlugin.logEvent("page_view", {'page': page.name});
+      window.FirebasePlugin.logEvent("page_view", {'page': page.name});
     });
     $$('body').on('beforeSubmit', '.ajax-submit', function(e) {
        myApp.showPreloader('Submitting');
@@ -80,7 +80,7 @@ function setup() {
     $$('body').on('submitted', '.ajax-submit', function (e) {
       var xhr = e.detail.xhr; // actual XHR object
       var data = JSON.parse(e.detail.data); // Ajax response from action file
-      //window.FirebasePlugin.logEvent("submit_form", {'form': $(this).find('#id_form').val()});
+      window.FirebasePlugin.logEvent("submit_form", {'form': $(this).find('#id_form').val()});
       if(data.success) {
           $(this).html('<p>Thanks for contacting us!</p>')
       }
@@ -166,26 +166,4 @@ function slugify(Text)
         .replace(/ /g,'-')
         .replace(/[^\w-]+/g,'')
         ;
-}
-
-function setupNotifications() {
-	//FCMPlugin.onNotification( onNotificationCallback(data), successCallback(msg), errorCallback(err) )
-	//Here you define your application behaviour based on the notification data.
-	FCMPlugin.onNotification(
-	  function(data){
-	    if(data.wasTapped){
-	      //Notification was received on device tray and tapped by the user.
-	      alert( JSON.stringify(data) );
-	    }else{
-	      //Notification was received in foreground. Maybe the user needs to be notified.
-	      alert( JSON.stringify(data) );
-	    }
-	  },
-	  function(msg){
-	    console.log('onNotification callback successfully registered: ' + msg);
-	  },
-	  function(err){
-	    console.log('Error registering onNotification callback: ' + err);
-	  }
-	);
-}
+} 

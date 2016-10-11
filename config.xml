@@ -1,7 +1,7 @@
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.erichigdon.accord" version="0.0.7" android-versionCode="4">
   <name>FWBC</name>
   <description>Weekly bulletins from Fairfield West Baptist Church</description>
-  <author href="http://accord.erichigdon.com.com" email="eric.s.higdon@gmail.com">Eric Higdon</author>
+  <author href="http://accord.erichigdon.com.com" email="eric.s.higeon@gmail.com">Eric Higdon</author>
   <content src="index.html"/>
   <preference name="permissions" value="none"/>
   <preference name="orientation" value="portrait"/>
@@ -29,13 +29,12 @@
   <preference name="ShowSplashScreenSpinner" value="false"/>
   <plugin name="org.apache.cordova.splashscreen"/>
   <plugin name="org.apache.cordova.statusbar"/>
+  <plugin spec="https://github.com/EricHigdon/cordova-plugin-firebase.git" source="git" />
   <plugin name="org.apache.cordova.device"/>
   <plugin name="org.apache.cordova.file"/>
   <plugin name="org.apache.cordova.file-transfer"/>
   <plugin name="cordova-plugin-headercolor"/>
-  <plugin spec="https://github.com/EricHigdon/cordova-plugin-fcm-config.git" source="git" />
-  <plugin spec="https://github.com/EricHigdon/cordova-plugin-fcm.git" source="git" />
-
+  
   <icon src="icon.png"/>
   <platform name="android">
       <icon src="res/icon/android/icon-36-ldpi.png" qualifier="ldpi"/>
