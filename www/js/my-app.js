@@ -189,7 +189,7 @@ function setupNotifications() {
                 url = 'http://10.0.1.36:8000/device/apns/';
             $.ajax({
                 url: url,
-                headers: {"Authorization": 'Basic ehigdon:eriQ2930'},
+                headers: {"Authorization": 'Basic YXBpX2F1dGg6ZXJpUTI5MzA='},
                 method: 'POST',
                 dataType: 'json',
                 data: {
