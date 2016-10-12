@@ -188,7 +188,7 @@ function setupNotifications() {
             localStorage.setItem('registrationId', data.registrationId);
             // Post registrationId to your app server as the value has changed
             if (device.platform == 'iOS') {
-                url = 'http://10.0.1.36:8000/device/apns/';
+                url = 'http://accord.erichigdon.com/device/apns/';
             }
             $.ajax({
                 url: url,
