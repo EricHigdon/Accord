@@ -179,21 +179,30 @@ function setupNotifications() {
     console.log('after init');
 
     push.on('registration', function(data) {
-        console.log('registration event: ' + data.registrationId);
-
         var oldRegId = localStorage.getItem('registrationId');
         if (oldRegId !== data.registrationId) {
+            var url = 'http://accord.erichigdon.com/device/gcm/';
             // Save new registration ID
             localStorage.setItem('registrationId', data.registrationId);
             // Post registrationId to your app server as the value has changed
+            if (device.platform == 'iOS')
+                url = 'http://accord.erichigdon.com/device/apns/';
+            $.ajax({
+                url: url,
+                method: 'POST',
+                data: {
+                    'device_id': device.uuid,
+                    'registration_id': data.registrationId,
+                    'active': true
+                },
+                success: function(data) {
+                    console.log('registration event: ' + data);
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
         }
-
-        var parentElement = document.getElementById('registration');
-        var listeningElement = parentElement.querySelector('.waiting');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
     });
 
     push.on('error', function(e) {
