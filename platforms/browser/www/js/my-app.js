@@ -72,13 +72,19 @@ function setup() {
     var mainView = myApp.addView('.view-main', {
         domCache: true //enable inline pages
     });
+    ga('create', 'UA-85602316-1', 'auto');
+    ga('send', 'event', 'App', 'Start');
+    myApp.onPageInit('*', function (page) {
+        ga('set', 'page', page.name);
+        ga('send', 'pageview');
+    });
     $$('body').on('beforeSubmit', '.ajax-submit', function(e) {
-       myApp.showPreloader('Submitting');
+        myApp.showPreloader('Submitting');
     });
     $$('body').on('submitted', '.ajax-submit', function (e) {
       var xhr = e.detail.xhr; // actual XHR object
       var data = JSON.parse(e.detail.data); // Ajax response from action file
-      //window.FirebasePlugin.logEvent("submit_form", {'form': $(this).find('#id_form').val()});
+        ga('send', 'event', 'App', 'Form Submit', $(this).find('#id_form').val());
       if(data.success) {
           $(this).html('<p>Thanks for contacting us!</p>')
       }
@@ -155,10 +161,6 @@ function setup() {
 	 
 	window.requestAnimationFrame(updateBackground);
     get_bible();
-    
-    myApp.onPageInit('*', function (page) {
-      //window.FirebasePlugin.logEvent("page_view", {'page': page.name});
-    });
     setupNotifications();
 }
 
