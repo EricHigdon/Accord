@@ -42,6 +42,7 @@ document.addEventListener("deviceready", function(){
                         });
                         $('.instafeed').append(image);
                         });
+			get_bible();
                         navigator.splashscreen.hide();
                         // from within this function you're now able to call other ImgCache methods
                         // or you can wait for the ImgCacheReady event
@@ -164,7 +165,6 @@ function setup() {
 	}
 	 
 	window.requestAnimationFrame(updateBackground);
-    get_bible();
     setupNotifications();
 }
 
