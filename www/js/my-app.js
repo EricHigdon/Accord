@@ -198,7 +198,7 @@ function setupNotifications() {
                     'active': true
                 },
                 success: function(data) {
-                    console.log('registration event: ' + data);
+                    console.log('registration event: ' + data.registrationId);
                 },
                 error: function(error) {
                     console.error(error);
