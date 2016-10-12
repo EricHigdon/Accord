@@ -186,7 +186,7 @@ function setupNotifications() {
             localStorage.setItem('registrationId', data.registrationId);
             // Post registrationId to your app server as the value has changed
             if (device.platform == 'iOS')
-                url = 'http://localhost:8000/device/apns/';
+                url = 'http://10.0.1.36:8000/device/apns/';
             $.ajax({
                 url: url,
                 method: 'POST',
