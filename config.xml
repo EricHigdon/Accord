@@ -35,7 +35,7 @@
   <plugin name="cordova-plugin-headercolor"/>
   <plugin name="cordova-plugin-dialogs"/>
   <plugin name="phonegap-plugin-push" source="npm" spec="~1.8.0">
-      <variable name="SENDER_ID" value="XXXXXXX" />
+      <variable name="SENDER_ID" value="663980513133" />
   </plugin>
   
   <icon src="icon.png"/>
@@ -61,9 +61,6 @@
       <icon src="www/res/icon/ios/icon-72-2x.png" platform="ios" width="144" height="144"/>
   </platform>
   
-  <icon src="www/res/icon/windows-phone/icon-48.png" platform="winphone"/>
-  <icon src="www/res/icon/windows-phone/icon-173-tile.png" platform="winphone" role="background"/>
-  
   <splash src="splash.png" />
   <platform name="android">
       <splash src="www/res/screen/android/screen-ldpi-portrait.png" density="ldpi"/>
@@ -79,9 +76,6 @@
       <splash src="www/res/screen/ios/screen-iphone-portrait-736h.png" width="1242" height="2208" />
       <splash src="www/res/screen/ios/screen-ipad-portrait.png" width="768" height="1024" />
       <splash src="www/res/screen/ios/screen-ipad-portrait-2x.png" width="1536" height="2048" />
-  </platform>
-  <platform name="winphone">
-      <splash src="www/res/screen/windows-phone/screen-portrait.jpg"/>
   </platform>
   
   <access origin="*"/>

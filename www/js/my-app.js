@@ -166,7 +166,7 @@ function setupNotifications() {
     console.log('calling push init');
     var push = PushNotification.init({
         "android": {
-            "senderID": "XXXXXXXX"
+            "senderID": "663980513133"
         },
         "browser": {},
         "ios": {
