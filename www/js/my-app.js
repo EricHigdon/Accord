@@ -72,8 +72,12 @@ function setup() {
     var mainView = myApp.addView('.view-main', {
         domCache: true //enable inline pages
     });
-    ga('create', 'UA-85602316-1', 'auto');
-    ga('send', 'event', 'App', 'Start');
+    ga('create', 'UA-85602316-1', {
+	'storage': 'none',
+	'clientId':device.uuid
+    });
+    ga('set','checkProtocolTask',null);
+    ga('set','checkStorageTask',null);
     myApp.onPageInit('*', function (page) {
         ga('set', 'page', page.name);
         ga('send', 'pageview');
