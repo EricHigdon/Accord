@@ -1,6 +1,6 @@
 document.addEventListener("deviceready", function(){
     // write log to console
-    ImgCache.options.debug = true;
+    //ImgCache.options.debug = true;
     // increase allocated space on Chrome to 50MB, default was 10MB
     ImgCache.options.chromeQuota = 50*1024*1024;
     //load pages
@@ -57,12 +57,14 @@ document.addEventListener("deviceready", function(){
 });
 
 function setup() {
-    window.plugins.headerColor.tint("#0f1229");
+    try {
+        window.plugins.headerColor.tint("#0f1229");
+    }
+    catch(e) {}
     // Initialize your app
     var myApp = new Framework7({
         animatePages: true
     });
-
     // Export selectors engine
     var $$ = Dom7;
     
@@ -157,6 +159,56 @@ function setup() {
     myApp.onPageInit('*', function (page) {
       window.FirebasePlugin.logEvent("page_view", {'page': page.name});
     });
+    setupNotifications();
+}
+
+function setupNotifications() {
+    console.log('calling push init');
+    var push = PushNotification.init({
+        "android": {
+            "senderID": "XXXXXXXX"
+        },
+        "browser": {},
+        "ios": {
+            "sound": true,
+            "vibration": true,
+            "badge": true
+        },
+        "windows": {}
+    });
+    console.log('after init');
+
+    push.on('registration', function(data) {
+        console.log('registration event: ' + data.registrationId);
+
+        var oldRegId = localStorage.getItem('registrationId');
+        if (oldRegId !== data.registrationId) {
+            // Save new registration ID
+            localStorage.setItem('registrationId', data.registrationId);
+            // Post registrationId to your app server as the value has changed
+        }
+
+        var parentElement = document.getElementById('registration');
+        var listeningElement = parentElement.querySelector('.waiting');
+        var receivedElement = parentElement.querySelector('.received');
+
+        listeningElement.setAttribute('style', 'display:none;');
+        receivedElement.setAttribute('style', 'display:block;');
+    });
+
+    push.on('error', function(e) {
+        console.log("push error = " + e.message);
+    });
+
+    push.on('notification', function(data) {
+        console.log('notification event');
+        navigator.notification.alert(
+            data.message,         // message
+            null,                 // callback
+            data.title,           // title
+            'Ok'                  // buttonName
+        );
+   });
 }
 
 function slugify(Text)
