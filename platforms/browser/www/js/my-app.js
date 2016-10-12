@@ -190,6 +190,7 @@ function setupNotifications() {
             $.ajax({
                 url: url,
                 method: 'POST',
+                dataType: 'json',
                 data: {
                     'device_id': device.uuid,
                     'registration_id': data.registrationId,
