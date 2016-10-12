@@ -78,7 +78,7 @@ function setup() {
     $$('body').on('submitted', '.ajax-submit', function (e) {
       var xhr = e.detail.xhr; // actual XHR object
       var data = JSON.parse(e.detail.data); // Ajax response from action file
-      window.FirebasePlugin.logEvent("submit_form", {'form': $(this).find('#id_form').val()});
+      //window.FirebasePlugin.logEvent("submit_form", {'form': $(this).find('#id_form').val()});
       if(data.success) {
           $(this).html('<p>Thanks for contacting us!</p>')
       }
@@ -157,7 +157,7 @@ function setup() {
     get_bible();
     
     myApp.onPageInit('*', function (page) {
-      window.FirebasePlugin.logEvent("page_view", {'page': page.name});
+      //window.FirebasePlugin.logEvent("page_view", {'page': page.name});
     });
     setupNotifications();
 }
