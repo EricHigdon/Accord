@@ -33,6 +33,7 @@
   <plugin name="org.apache.cordova.file"/>
   <plugin name="org.apache.cordova.file-transfer"/>
   <plugin name="cordova-plugin-headercolor"/>
+  <plugin name="cordova-plugin-dialogs"/>
   <plugin name="phonegap-plugin-push" source="npm" spec="~1.8.0">
       <variable name="SENDER_ID" value="XXXXXXX" />
   </plugin>
