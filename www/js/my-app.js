@@ -256,10 +256,10 @@ function setupNotifications() {
     push.on('notification', function(data) {
         console.log('notification event');
 	console.log(data);
-        /*myApp.confirm(data.message, 'Update Available', function () {
-            localStorage.removeItem('cacheExpires');
+	if(data.additionalData.content-available == 1) {
+	    localStorage.removeItem('cacheExpires');
             location.reload();
-        });*/
+	}
    });
 }
 
