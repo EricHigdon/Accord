@@ -255,13 +255,13 @@ function setupNotifications() {
 
     push.on('notification', function(data) {
         console.log('notification event');
-        myApp.confirm(data.message, ['Update available', updateBulletin()])
+        myApp.confirm(data.message, ['Update Available', updateBulletin()])
    });
 }
 
 function updateBulletin() {
     localStorage.removeItem('cacheExpires');
-    //location.reload();
+    location.reload();
 }
 
 function slugify(Text)
