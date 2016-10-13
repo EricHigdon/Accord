@@ -5,8 +5,6 @@
     <author email="eric.s.higdon@gmail.com" href="http://accord.erichigdon.com.com">Eric Higdon</author>
     <content src="index.html" />
     <icon src="icon.png" />
-    <icon platform="winphone" src="www/res/icon/windows-phone/icon-48.png" />
-    <icon platform="winphone" role="background" src="www/res/icon/windows-phone/icon-173-tile.png" />
     <splash src="splash.png" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

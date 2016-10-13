@@ -1,6 +1,6 @@
 document.addEventListener("deviceready", function(){
     // write log to console
-    ImgCache.options.debug = true;
+    //ImgCache.options.debug = true;
     // increase allocated space on Chrome to 50MB, default was 10MB
     ImgCache.options.chromeQuota = 50*1024*1024;
     //load pages
@@ -42,6 +42,7 @@ document.addEventListener("deviceready", function(){
                         });
                         $('.instafeed').append(image);
                         });
+			get_bible();
                         navigator.splashscreen.hide();
                         // from within this function you're now able to call other ImgCache methods
                         // or you can wait for the ImgCacheReady event
@@ -57,12 +58,14 @@ document.addEventListener("deviceready", function(){
 });
 
 function setup() {
-    window.plugins.headerColor.tint("#0f1229");
+    try {
+        window.plugins.headerColor.tint("#0f1229");
+    }
+    catch(e) {}
     // Initialize your app
     var myApp = new Framework7({
         animatePages: true
     });
-
     // Export selectors engine
     var $$ = Dom7;
     
@@ -70,13 +73,23 @@ function setup() {
     var mainView = myApp.addView('.view-main', {
         domCache: true //enable inline pages
     });
+    ga('create', 'UA-85602316-1', {
+	'storage': 'none',
+	'clientId':device.uuid
+    });
+    ga('set','checkProtocolTask',null);
+    ga('set','checkStorageTask',null);
+    myApp.onPageInit('*', function (page) {
+        ga('set', 'page', page.name);
+        ga('send', 'pageview');
+    });
     $$('body').on('beforeSubmit', '.ajax-submit', function(e) {
-       myApp.showPreloader('Submitting');
+        myApp.showPreloader('Submitting');
     });
     $$('body').on('submitted', '.ajax-submit', function (e) {
       var xhr = e.detail.xhr; // actual XHR object
       var data = JSON.parse(e.detail.data); // Ajax response from action file
-      window.FirebasePlugin.logEvent("submit_form", {'form': $(this).find('#id_form').val()});
+        ga('send', 'event', 'App', 'Form Submit', $(this).find('#id_form').val());
       if(data.success) {
           $(this).html('<p>Thanks for contacting us!</p>')
       }
@@ -152,11 +165,68 @@ function setup() {
 	}
 	 
 	window.requestAnimationFrame(updateBackground);
-    get_bible();
-    
-    myApp.onPageInit('*', function (page) {
-      window.FirebasePlugin.logEvent("page_view", {'page': page.name});
+    setupNotifications();
+}
+
+function setupNotifications() {
+    console.log('calling push init');
+    var push = PushNotification.init({
+        "android": {
+            "senderID": "663980513133"
+        },
+        "browser": {},
+        "ios": {
+            "sound": true,
+            "vibration": true,
+            "badge": true
+        },
+        "windows": {}
     });
+    console.log('after init');
+
+    push.on('registration', function(data) {
+        var oldRegId = localStorage.getItem('registrationId');
+        if (oldRegId !== data.registrationId) {
+            var url = 'http://accord.erichigdon.com/device/gcm/';
+            // Save new registration ID
+            localStorage.setItem('registrationId', data.registrationId);
+            // Post registrationId to your app server as the value has changed
+            if (device.platform == 'iOS') {
+                url = 'http://accord.erichigdon.com/device/apns/';
+            }
+            $.ajax({
+                url: url,
+                headers: {"Authorization": 'Basic YXBpX2F1dGg6ZXJpUTI5MzA='},
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    'device_id': device.uuid,
+                    'registration_id': data.registrationId,
+                    'active': true
+                },
+                success: function(data) {
+                    console.log('registration event: ' + data.registrationId);
+                },
+                error: function(error) {
+                    console.error(error);
+                }
+            });
+        }
+    });
+
+    push.on('error', function(e) {
+        console.log("push error = " + e.message);
+    });
+
+    push.on('notification', function(data) {
+        console.log('notification event');
+        navigator.notification.alert(
+            data.message,         // message
+            null,                 // callback
+            data.title,           // title
+            'Ok'                  // buttonName
+        );
+   });
 }
 
 function slugify(Text)
