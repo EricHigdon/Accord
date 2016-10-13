@@ -257,6 +257,7 @@ function setupNotifications() {
         console.log('notification event');
 	console.log(data);
 	if(data.additionalData['content-available'] == 1) {
+	    navigator.splashscreen.show();
 	    localStorage.removeItem('cacheExpires');
 	    if(data.additionalData.foreground) {
 		push.finish(function() {
