@@ -255,10 +255,11 @@ function setupNotifications() {
 
     push.on('notification', function(data) {
         console.log('notification event');
-        myApp.confirm(data.message, 'Update Available', function () {
+	console.log(data);
+        /*myApp.confirm(data.message, 'Update Available', function () {
             localStorage.removeItem('cacheExpires');
             location.reload();
-        });
+        });*/
    });
 }
 
