@@ -255,12 +255,12 @@ function setupNotifications() {
 
     push.on('notification', function(data) {
         console.log('notification event');
-        myApp.confirm(data.message, [data.title, updateBulletin()])
+        myApp.confirm(data.message, ['Update available', updateBulletin()])
    });
 }
 
 function updateBulletin() {
-    localStorage.setItem('cacheExpires', undefined);
+    localStorage.removeItem('cacheExpires');
     //location.reload();
 }
 
