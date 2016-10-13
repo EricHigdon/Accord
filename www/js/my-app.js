@@ -258,7 +258,7 @@ function setupNotifications() {
 	console.log(data);
 	if(data.additionalData['content-available'] == 1) {
 	    localStorage.removeItem('cacheExpires');
-	    if(data.additionalData.foreground) {
+	    if(data.additionalData.foreground || data.additionalData.coldstart) {
 		    myApp.confirm(data.message, 'Update Available', function () {
 			location.reload();
 		    });
