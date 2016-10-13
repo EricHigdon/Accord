@@ -4,58 +4,92 @@ document.addEventListener("deviceready", function(){
     // increase allocated space on Chrome to 50MB, default was 10MB
     ImgCache.options.chromeQuota = 50*1024*1024;
     //load pages
-    $.ajax({
-        url: 'http://accord.erichigdon.com/api/bulletin/',
-        crossDomain: true,
-        dataType: 'json',
-        success: function(data) {
-            $.each(data.pages, function(index){
-                $('div.pages').append(this.content);
-                var link = $('<a href="#'+slugify(this.title)+'" class="no-animation">'+this.title+'</a>')
-                $('.toolbar-inner').append(link)
-                link.click(function(){
-                    $('.active').removeClass('active');
-                    $(this).addClass('active');
-                });
-                if (index == 0) {
-                    link.addClass('active');
-                }
-            });
-            $.ajax({
-                url: 'https://www.instagram.com/loveworks2016/media/',
-                success: function(data) {
-                    ImgCache.init(function () {
-                    console.log('ImgCache init: success!');
-                        $.each(data.items, function(index) {
-                        var item = this,
-                        image = $('<img src="'+item.images.low_resolution.url+'" />');
-                        ImgCache.isCached(image.attr('src'), function(path, success) {
-                          if (success) {
-                            // already cached
-                            ImgCache.useCachedFile(image);
-                          } else {
-                            // not there, need to cache the image
-                            ImgCache.cacheFile(image.attr('src'), function () {
-                              ImgCache.useCachedFile(image);
-                            });
-                          }
-                        });
-                        $('.instafeed').append(image);
-                        });
-			get_bible();
-                        navigator.splashscreen.hide();
-                        // from within this function you're now able to call other ImgCache methods
-                        // or you can wait for the ImgCacheReady event
+    loadPages();
+});
 
-                    }, function () {
-                        console.error('ImgCache init: error! Check the log for errors');
-                    });
-                }
-            });
-            setup();
+function loadPages() {
+    if (localStorage.cacheExpires <= new Date() || localStorage.pages === undefined) {
+        $.ajax({
+            url: 'http://accord.erichigdon.com/api/bulletin/',
+            crossDomain: true,
+            dataType: 'json',
+            success: function(data) {
+                renderPages(data);
+                var expires = new Date();
+                expires.setDate(expires.getDate() + 1); 
+                localStorage.setItem('cacheExpires', expires);
+                localStorage.setItem('pages', JSON.stringify(data));
+            }
+        });
+    }
+    else {
+        renderPages(JSON.parse(localStorage.pages));
+    }
+}
+
+function renderPages(data) {
+    var pageData = data;
+    $.each(pageData.pages, function(index){
+        $('div.pages').append(this.content);
+        var link = $('<a href="#'+slugify(this.title)+'" class="no-animation">'+this.title+'</a>')
+        $('.toolbar-inner').append(link)
+        link.click(function(){
+            $('.active').removeClass('active');
+            $(this).addClass('active');
+        });
+        if (index == 0) {
+            link.addClass('active');
         }
     });
-});
+    get_bible();
+    loadInsta();
+    setup();
+}
+
+function loadInsta() {
+    if (localStorage.cacheExpires <= new Date() || localStorage.instaFeed === undefined) {
+        $.ajax({
+            url: 'https://www.instagram.com/loveworks2016/media/',
+            success: function(data) {
+                renderInsta(data);
+                var expires = new Date();
+                expires.setDate(expires.getDate() + 1); 
+                localStorage.setItem('cacheExpires', expires);
+                localStorage.setItem('instaFeed', JSON.stringify(data));
+            }
+        });   
+    }
+    else {
+        renderInsta(JSON.parse(localStorage.instaFeed));
+    }
+}
+
+function renderInsta(data) {
+    var instaData = data;
+    ImgCache.init(function () {
+        console.log('ImgCache init: success!');
+        $.each(instaData.items, function(index) {
+            var item = this,
+            image = $('<img src="'+item.images.low_resolution.url+'" />');
+            ImgCache.isCached(image.attr('src'), function(path, success) {
+              if (success) {
+                // already cached
+                ImgCache.useCachedFile(image);
+              } else {
+                // not there, need to cache the image
+                ImgCache.cacheFile(image.attr('src'), function () {
+                  ImgCache.useCachedFile(image);
+                });
+              }
+            });
+            $('.instafeed').append(image);
+        });
+        navigator.splashscreen.hide();
+
+    }, function () {
+        console.error('ImgCache init: error! Check the log for errors');
+    });
+}
 
 function setup() {
     try {
@@ -74,8 +108,8 @@ function setup() {
         domCache: true //enable inline pages
     });
     ga('create', 'UA-85602316-1', {
-	'storage': 'none',
-	'clientId':device.uuid
+        'storage': 'none',
+        'clientId':device.uuid
     });
     ga('set','checkProtocolTask',null);
     ga('set','checkStorageTask',null);

@@ -1,4 +1,4 @@
-function get_bible(){
+function get_bible() {
     $('scripture').each(function() {
         var element = $(this),
             passage = element.attr('data-book');
