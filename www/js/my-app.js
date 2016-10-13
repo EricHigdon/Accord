@@ -255,8 +255,8 @@ function setupNotifications() {
 
     push.on('notification', function(data) {
         console.log('notification event');
-	console.log(JSON.parse(data));
-	if(data.additionalData.content-available == 1) {
+	console.log(data);
+	if(data.additionalData['content-available'] == 1) {
 	    localStorage.removeItem('cacheExpires');
             location.reload();
 	}
