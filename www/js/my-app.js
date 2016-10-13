@@ -252,7 +252,10 @@ function setupNotifications() {
     push.on('error', function(e) {
         console.log("push error = " + e.message);
     });
-
+    
+    push.finish(function() {
+        console.log("processing of push data is finished");
+    });
     push.on('notification', function(data) {
         console.log('notification event');
 	console.log(data);
