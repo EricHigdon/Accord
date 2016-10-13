@@ -255,7 +255,7 @@ function setupNotifications() {
 
     push.on('notification', function(data) {
         console.log('notification event');
-        myApp.confirm(data.message, ['Update Available', updateBulletin()])
+        myApp.confirm(data.message, ['Update Available', updateBulletin]);
    });
 }
 
