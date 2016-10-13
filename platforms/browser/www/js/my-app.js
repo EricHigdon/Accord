@@ -1,3 +1,4 @@
+var myApp;
 document.addEventListener("deviceready", function(){
     // write log to console
     //ImgCache.options.debug = true;
@@ -97,7 +98,7 @@ function setup() {
     }
     catch(e) {}
     // Initialize your app
-    var myApp = new Framework7({
+    myApp = new Framework7({
         animatePages: true
     });
     // Export selectors engine
