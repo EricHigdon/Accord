@@ -253,15 +253,15 @@ function setupNotifications() {
         console.log("push error = " + e.message);
     });
     
-    push.finish(function() {
-        console.log("processing of push data is finished");
-    });
     push.on('notification', function(data) {
         console.log('notification event');
 	console.log(data);
 	if(data.additionalData['content-available'] == 1) {
 	    localStorage.removeItem('cacheExpires');
 	    if(data.additionalData.foreground) {
+		push.finish(function() {
+		    console.log("processing of push data is finished");
+		});
 		    myApp.confirm(data.message, 'Update Available', function () {
 			location.reload();
 		    });
@@ -270,9 +270,6 @@ function setupNotifications() {
 	    	location.reload();
 	    }
 	}
-	push.finish(function() {
-	    console.log("processing of push data is finished");
-	});
    });
 }
 
