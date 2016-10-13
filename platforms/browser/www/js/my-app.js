@@ -9,7 +9,7 @@ document.addEventListener("deviceready", function(){
 });
 
 function loadPages() {
-    if (new Date(localStorage.cacheExpires) <= new Date() || localStorage.pages === undefined) {
+    if (localStorage.cacheExpires === undefined || localStorage.pages === undefined || new Date(localStorage.cacheExpires) <= new Date()) {
         $.ajax({
             url: 'http://accord.erichigdon.com/api/bulletin/',
             crossDomain: true,
@@ -48,7 +48,7 @@ function renderPages(data) {
 }
 
 function loadInsta() {
-    if (new Date(localStorage.cacheExpires) <= new Date() || localStorage.instaFeed === undefined) {
+    if (localStorage.cacheExpires === undefined || localStorage.instaFeed === undefined || new Date(localStorage.cacheExpires) <= new Date()) {
         $.ajax({
             url: 'https://www.instagram.com/loveworks2016/media/',
             success: function(data) {
@@ -255,8 +255,13 @@ function setupNotifications() {
 
     push.on('notification', function(data) {
         console.log('notification event');
-        myApp.alert(data.message, data.title);
+        myApp.confirm(data.message, [data.title, updateBulletin()])
    });
+}
+
+function updateBulletin() {
+    localStorage.setItem('cacheExpires', undefined);
+    //location.reload();
 }
 
 function slugify(Text)
