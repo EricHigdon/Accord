@@ -260,6 +260,9 @@ function setupNotifications() {
 	    localStorage.removeItem('cacheExpires');
             location.reload();
 	}
+	push.finish(function() {
+		console.log("processing of push data is finished");
+	    });
    });
 }
 
