@@ -199,7 +199,11 @@ function setup() {
 	}
 	 
 	window.requestAnimationFrame(updateBackground);
-    navigator.splashscreen.hide();
+	
+    $(window).on("load", function() {
+	navigator.splashscreen.hide();
+    });
+    
     setupNotifications();
 }
 
