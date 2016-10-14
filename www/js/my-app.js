@@ -1,4 +1,7 @@
 var myApp;
+window.addEventListener("load", function () {
+    window.loaded = true;
+});
 $(document).ready(function() {
     // write log to console
     ImgCache.options.debug = true;
@@ -199,10 +202,13 @@ function setup() {
 	}
 	 
 	window.requestAnimationFrame(updateBackground);
-	
-    $(window).on("load", function() {
-	navigator.splashscreen.hide();
-    });
+    (function listen () {
+	    if (window.loaded) {
+		navigator.splashscreen.hide();
+	    } else {
+		window.setTimeout(listen, 50);
+	    }
+	})();
     
     setupNotifications();
 }
