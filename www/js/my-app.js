@@ -1,7 +1,7 @@
 var myApp;
 $(document).ready(function() {
     // write log to console
-    //ImgCache.options.debug = true;
+    ImgCache.options.debug = true;
     // increase allocated space on Chrome to 50MB, default was 10MB
     ImgCache.options.chromeQuota = 50*1024*1024;
     //load pages
