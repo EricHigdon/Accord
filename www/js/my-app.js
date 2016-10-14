@@ -1,5 +1,5 @@
 var myApp;
-document.addEventListener("deviceready", function(){
+$(document).ready(function() {
     // write log to console
     //ImgCache.options.debug = true;
     // increase allocated space on Chrome to 50MB, default was 10MB
@@ -44,7 +44,6 @@ function renderPages(data) {
     });
     get_bible();
     loadInsta();
-    setup();
 }
 
 function loadInsta() {
@@ -85,11 +84,11 @@ function renderInsta(data) {
             });
             $('.instafeed').append(image);
         });
-        navigator.splashscreen.hide();
 
     }, function () {
         console.error('ImgCache init: error! Check the log for errors');
     });
+    document.addEventListener("deviceready", setup, false);
 }
 
 function setup() {
@@ -200,6 +199,7 @@ function setup() {
 	}
 	 
 	window.requestAnimationFrame(updateBackground);
+    navigator.splashscreen.hide();
     setupNotifications();
 }
 
