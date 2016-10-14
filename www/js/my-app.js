@@ -5,7 +5,7 @@ $(document).ready(function() {
     // increase allocated space on Chrome to 50MB, default was 10MB
     ImgCache.options.chromeQuota = 50*1024*1024;
     //load pages
-    loadPages();
+    document.addEventListener("deviceready", loadPages, false);
 });
 
 function loadPages() {
@@ -88,7 +88,7 @@ function renderInsta(data) {
     }, function () {
         console.error('ImgCache init: error! Check the log for errors');
     });
-    document.addEventListener("deviceready", setup, false);
+    setup();
 }
 
 function setup() {
