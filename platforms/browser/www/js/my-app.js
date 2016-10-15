@@ -1,11 +1,14 @@
 var myApp;
-document.addEventListener("deviceready", function(){
+window.addEventListener("load", function () {
+    window.loaded = true;
+});
+$(document).ready(function() {
     // write log to console
-    //ImgCache.options.debug = true;
+    ImgCache.options.debug = true;
     // increase allocated space on Chrome to 50MB, default was 10MB
     ImgCache.options.chromeQuota = 50*1024*1024;
     //load pages
-    loadPages();
+    document.addEventListener("deviceready", loadPages, false);
 });
 
 function loadPages() {
@@ -44,7 +47,6 @@ function renderPages(data) {
     });
     get_bible();
     loadInsta();
-    setup();
 }
 
 function loadInsta() {
@@ -85,11 +87,11 @@ function renderInsta(data) {
             });
             $('.instafeed').append(image);
         });
-        navigator.splashscreen.hide();
 
     }, function () {
         console.error('ImgCache init: error! Check the log for errors');
     });
+    setup();
 }
 
 function setup() {
@@ -203,6 +205,14 @@ function setup() {
 	}
 	 
 	window.requestAnimationFrame(updateBackground);
+    (function listen () {
+	    if (window.loaded) {
+		navigator.splashscreen.hide();
+	    } else {
+		window.setTimeout(listen, 50);
+	    }
+	})();
+    
     setupNotifications();
 }
 
@@ -255,13 +265,26 @@ function setupNotifications() {
     push.on('error', function(e) {
         console.log("push error = " + e.message);
     });
-
+    
     push.on('notification', function(data) {
         console.log('notification event');
-        myApp.confirm(data.message, 'Update Available', function () {
-            localStorage.removeItem('cacheExpires');
-            location.reload();
-        });
+	console.log(data);
+	if(data.additionalData['content-available'] == 1) {
+	    localStorage.removeItem('cacheExpires');
+	    if(data.additionalData.foreground) {
+		push.finish(function() {
+		    console.log("processing of push data is finished");
+		});
+		    myApp.confirm(data.message, 'Update Available', function () {
+	    		navigator.splashscreen.show();
+			location.reload();
+		    });
+	    }
+	    else {
+	   	navigator.splashscreen.show();
+	    	location.reload();
+	    }
+	}
    });
 }
 
