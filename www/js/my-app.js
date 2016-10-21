@@ -138,6 +138,11 @@ function setup() {
       }
       myApp.hidePreloader();
     });
+    $$('body').on('opened', '*', function() {
+        var item = $$(this),
+            container = $$('.page-on-center .page-content');
+        container.scrollTop(item.offset().top + container.scrollTop(), 300);
+    });
 	var position = "center";
 	var lastPosition = "center";
 	var contentCSS = "";
