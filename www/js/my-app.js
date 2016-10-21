@@ -1,7 +1,9 @@
 var myApp;
+
 window.addEventListener("load", function () {
     window.loaded = true;
 });
+
 $(document).ready(function() {
     // write log to console
     ImgCache.options.debug = true;
