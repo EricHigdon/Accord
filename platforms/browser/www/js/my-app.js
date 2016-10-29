@@ -305,7 +305,7 @@ function setupNotifications() {
 	    }
 	}
     else {
-        myApp.confirm(data.message, 'Update Available', function () {});
+        myApp.alert('Here goes alert text', '');
     }
    });
 }
