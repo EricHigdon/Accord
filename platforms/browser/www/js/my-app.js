@@ -117,10 +117,6 @@ function setup() {
     });
     // Export selectors engine
     var $$ = Dom7;
-    $$(document).on('ajaxStart', function(e){
-       var xhr = e.detail.xhr;
-       xhr.setRequestHeader('AUTHORIZATION', 'Basic YXBpX2F1dGg6ZXJpUTI5MzA=');
-    });
     // Add view
     var mainView = myApp.addView('.view-main', {
         domCache: true //enable inline pages
@@ -231,6 +227,11 @@ function setup() {
 	})();
     
     setupNotifications();
+    
+    $$(document).on('ajaxStart', function(e){
+       var xhr = e.detail.xhr;
+       xhr.setRequestHeader('AUTHORIZATION', 'Basic YXBpX2F1dGg6ZXJpUTI5MzA=');
+    });
 }
 
 function setupNotifications() {
@@ -261,7 +262,9 @@ function setupNotifications() {
             }
             $.ajax({
                 url: url,
-                headers: {"Authorization": 'Basic YXBpX2F1dGg6ZXJpUTI5MzA='},
+                headers: {
+                    "Authorization": 'Basic YXBpX2F1dGg6ZXJpUTI5MzA='
+                },
                 method: 'POST',
                 dataType: 'json',
                 data: {
