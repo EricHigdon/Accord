@@ -305,7 +305,7 @@ function setupNotifications() {
 	    }
 	}
     else {
-        myApp.alert('Here goes alert text', '');
+        myApp.alert(data.message, '');
     }
    });
 }
