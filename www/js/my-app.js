@@ -252,12 +252,12 @@ function setupNotifications() {
     push.on('registration', function(data) {
         var oldRegId = localStorage.getItem('registrationId');
         if (oldRegId !== data.registrationId) {
-            var url = 'http://accord.erichigdon.com/device/gcm/';
+            var url = 'http://accordapp.com/device/gcm/';
             // Save new registration ID
             localStorage.setItem('registrationId', data.registrationId);
             // Post registrationId to your app server as the value has changed
             if (device.platform == 'iOS') {
-                url = 'http://accord.erichigdon.com/device/apns/';
+                url = 'http://accordapp.com/device/apns/';
             }
             $.ajax({
                 url: url,
