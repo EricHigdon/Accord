@@ -165,6 +165,13 @@ function setup() {
       }
       myApp.hidePreloader();
     });
+    $$('body').on('submitError', '.ajax-submit',, function (e) {
+      var xhr = e.detail.xhr; // actual XHR object
+      var data = e.detail.data; // Ajax response from action file
+      // do something with response data
+        myApp.alert('There was a problem submitting this form.', '');
+        myApp.hidePreloader();
+    });
     $$('body').on('opened', '*', function() {
         var item = $$(this),
             container = $$('.page-on-center .page-content');
