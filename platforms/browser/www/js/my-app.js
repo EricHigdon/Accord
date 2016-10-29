@@ -138,6 +138,21 @@ function setup() {
     $$('body').on('beforeSubmit', '.ajax-submit', function(e) {
         myApp.showPreloader('Submitting');
     });
+    $$('body').on('submit', '.ajax-submit', function(e) {
+        // Required attribute HTML5 info http://stackoverflow.com/a/25010485 
+        var missingMessages = [];
+        $$('form [required]').each(function(key, value) {
+            trimmedVal = $$(this).val().replace(/^\s+|\s+$/g, '');
+            if (trimmedVal === '') {
+                missingMessages.push($$(this).attr('placeholder') + ' is required.');
+            }
+        })
+        if (missingMessages.length !== 0) {
+            myApp.alert(missingMessages.join('<br/>'), '');
+            event.preventDefault();
+            event.stopPropagation();
+        }
+    });
     $$('body').on('submitted', '.ajax-submit', function (e) {
       var xhr = e.detail.xhr; // actual XHR object
       var data = JSON.parse(e.detail.data); // Ajax response from action file
