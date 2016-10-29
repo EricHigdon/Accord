@@ -243,8 +243,15 @@ form p {
 i.js-edit {
     cursor: pointer;
 }
+h1.form-header {
+    color: #fff;
+    font-size: 12pt;
+    display: block;
+    text-align: center;
+    margin-bottom: 0px;
+}
 form.list-block {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 a.back {
     color: #fff;
