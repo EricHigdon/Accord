@@ -1,34 +1,46 @@
 var myApp;
+
 window.addEventListener("load", function () {
     window.loaded = true;
 });
+
 $(document).ready(function() {
     // write log to console
     ImgCache.options.debug = true;
     // increase allocated space on Chrome to 50MB, default was 10MB
     ImgCache.options.chromeQuota = 50*1024*1024;
     //load pages
-    document.addEventListener("deviceready", loadPages, false);
+    document.addEventListener("deviceready", checkModified, false);
 });
-
-function loadPages() {
-    if (localStorage.cacheExpires === undefined || localStorage.pages === undefined || new Date(localStorage.cacheExpires) <= new Date()) {
-        $.ajax({
-            url: 'http://accord.erichigdon.com/api/bulletin/',
-            crossDomain: true,
-            dataType: 'json',
-            success: function(data) {
-                renderPages(data);
-                var expires = new Date();
-                expires.setDate(expires.getDate() + 1); 
-                localStorage.setItem('cacheExpires', expires);
-                localStorage.setItem('pages', JSON.stringify(data));
+function checkModified() {
+    $.ajax({
+        url: 'https://accordapp.com/modified/1/',
+        crossDomain: true,
+        dataType: 'json',
+        success: function(data) {
+            var saved = localStorage.cacheModified,
+                modified = new Date(data.modified);
+            if (localStorage.cacheModified === undefined || localStorage.pages === undefined || saved != modified) {
+                loadPages(modified);
             }
-        });
-    }
-    else {
-        renderPages(JSON.parse(localStorage.pages));
-    }
+            else {
+                renderPages(JSON.parse(localStorage.pages));
+            }
+        }
+    });
+}
+
+function loadPages(modified) {
+    $.ajax({
+        url: 'https://accordapp.com/api/1/',
+        crossDomain: true,
+        dataType: 'json',
+        success: function(data) {
+            renderPages(data);
+            localStorage.setItem('cacheModified', modified);
+            localStorage.setItem('pages', JSON.stringify(data));
+        }
+    });
 }
 
 function renderPages(data) {
@@ -137,6 +149,11 @@ function setup() {
           console.log(data);
       }
       myApp.hidePreloader();
+    });
+    $$('body').on('opened', '*', function() {
+        var item = $$(this),
+            container = $$('.page-on-center .page-content');
+        container.scrollTop(item.offset().top + container.scrollTop(), 300);
     });
 	var position = "center";
 	var lastPosition = "center";
@@ -270,7 +287,7 @@ function setupNotifications() {
         console.log('notification event');
 	console.log(data);
 	if(data.additionalData['content-available'] == 1) {
-	    localStorage.removeItem('cacheExpires');
+	    localStorage.removeItem('cacheModified');
 	    if(data.additionalData.foreground) {
 		push.finish(function() {
 		    console.log("processing of push data is finished");
@@ -285,6 +302,9 @@ function setupNotifications() {
 	    	location.reload();
 	    }
 	}
+    else {
+        myApp.confirm(data.message, 'Update Available', function () {});
+    }
    });
 }
 
