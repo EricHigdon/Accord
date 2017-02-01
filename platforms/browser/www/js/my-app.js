@@ -238,9 +238,10 @@ function setup() {
 	    }
 	})();
     
-    var media_url = 'http://fairfieldwestbc.org/mt-content/uploads/2017/01/january082017amjesus-acryforchangeluke3.mp3';
-    var media = new Media(media_url);
-    $('.play').click(function() {
+    $('.playSermon').click(function(e) {
+        e.preventDefault();
+        var media_url = $(this).attr('href');
+        var media = new Media(media_url);
         media.play();
     });
     

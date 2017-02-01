@@ -20,6 +20,9 @@ body {
 .accordion-item-content {
     font-size: 12pt;
 }
+img {
+    max-width: 100%;
+}
 h3 {
     color: #fff;
     margin: 20px;
