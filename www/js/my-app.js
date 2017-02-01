@@ -238,6 +238,12 @@ function setup() {
 	    }
 	})();
     
+    var media_url = 'http://fairfieldwestbc.org/mt-content/uploads/2017/01/january082017amjesus-acryforchangeluke3.mp3';
+    var media = new Media(media_url);
+    $('.play').click(function() {
+        media.play();
+    });
+    
     setupNotifications();
 }
 
@@ -294,27 +300,25 @@ function setupNotifications() {
     });
     
     push.on('notification', function(data) {
-        console.log('notification event');
-	console.log(data);
-	if(data.additionalData['content-available'] == 1) {
-	    localStorage.removeItem('cacheModified');
-	    if(data.additionalData.foreground) {
-		push.finish(function() {
-		    console.log("processing of push data is finished");
-		});
-		    myApp.confirm(data.message, 'Update Available', function () {
-	    		navigator.splashscreen.show();
-			location.reload();
-		    });
-	    }
-	    else {
-	   	navigator.splashscreen.show();
-	    	location.reload();
-	    }
-	}
-    else {
-        myApp.alert(data.message, '');
-    }
+        if(data.additionalData['content-available'] == 1) {
+            localStorage.removeItem('cacheModified');
+            if(data.additionalData.foreground) {
+            push.finish(function() {
+                console.log("processing of push data is finished");
+            });
+                myApp.confirm(data.message, 'Update Available', function () {
+                    navigator.splashscreen.show();
+                location.reload();
+                });
+            }
+            else {
+            navigator.splashscreen.show();
+                location.reload();
+            }
+        }
+        else {
+            myApp.alert(data.message, '');
+        }
    });
 }
 

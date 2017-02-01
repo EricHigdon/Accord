@@ -17,6 +17,7 @@
     <config-file mode="replace" parent="UIBackgroundModes" platform="ios">
         <array>
             <string>remote-notification</string>
+            <string>audio</string>
         </array>
     </config-file>
     <preference name="permissions" value="none" />
