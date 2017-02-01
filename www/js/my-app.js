@@ -238,22 +238,7 @@ function setup() {
 	    }
 	})();
 
-    function onSuccess(data) {
-        console.log('controls success');
-        console.log(data);
-    }
-
-    function onError(data) {
-        console.log('controls error');
-        console.log(data);
-    }
-
-    function mediaStatus(data) {
-        console.log('media status');
-        console.log(data);
-    }
-
-    function create_media_player(media) {
+    function create_media_player(media, item) {
         media.play();
         MusicControls.create({
             track: 'Time is Running Out',
@@ -266,21 +251,32 @@ function setup() {
             // hide previous/next/close buttons:
             hasPrev: false,
             hasNext: false,
-            // iOS only, optional
-            album: 'Absolution',
             duration: media.getDuration(),
             elapsed: media.getCurrentPosition(),
             // Android only, optional
             // text displayed in the status bar when the notification (and the ticker) are updated
             ticker: 'Now playing "Time is Running Out"'
-        }, onSuccess, onError);
+        });
+        artist = "Fairfield West Baptist Church";
+        title = item.attr("date-title");
+        album = "Sermons";
+        image = "https://fwbcpodcast.files.wordpress.com/2017/01/bulletin-2.jpg";
+        duration = media.getDuration();
+        elapsedTime = media.getCurrentPosition();
+
+        var params = [artist, title, album, image, duration, elapsedTime];
+        window.remoteControls.updateMetas(function(success){
+            console.log(success);
+        }, function(fail){
+            console.log(fail);
+        }, params);
     }
     
     $('.playSermon').click(function(e) {
         e.preventDefault();
         var media_url = $(this).attr('href');
-        var media = new Media(media_url, onSuccess, onError, mediaStatus);
-        create_media_player(media);
+        var media = new Media(media_url);
+        create_media_player(media, $(this));
     });
     
     setupNotifications();
