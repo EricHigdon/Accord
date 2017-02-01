@@ -238,6 +238,21 @@ function setup() {
 	    }
 	})();
 
+    function onSuccess(data) {
+        console.log('controls success');
+        console.log(data);
+    }
+
+    function onError(data) {
+        console.log('controls error');
+        console.log(data);
+    }
+
+    function mediaStatus(data) {
+        console.log('media status');
+        console.log(data);
+    }
+
     function create_media_player(media) {
         media.play();
         MusicControls.create({
@@ -258,13 +273,13 @@ function setup() {
             // Android only, optional
             // text displayed in the status bar when the notification (and the ticker) are updated
             ticker: 'Now playing "Time is Running Out"'
-        }, function(){}, function(){});
+        }, onSuccess, onError);
     }
     
     $('.playSermon').click(function(e) {
         e.preventDefault();
         var media_url = $(this).attr('href');
-        var media = new Media(media_url, function(){});
+        var media = new Media(media_url, onSuccess, [onError], [mediaStatus]);
         create_media_player(media);
     });
     
