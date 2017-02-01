@@ -35,7 +35,7 @@
   <plugin name="cordova-plugin-headercolor"/>
   <plugin name="cordova-plugin-dialogs"/>
   <plugin name="cordova-plugin-media" spec="~2.4.1" />
-  <plugin name="cordova-plugin-music-controls" source="npm" spec="~1.4.0">
+  <plugin name="cordova-plugin-music-controls" source="npm" spec="~1.4.0" />
   <plugin name="phonegap-plugin-push" source="npm" spec="~1.8.0">
       <variable name="SENDER_ID" value="663980513133" />
   </plugin>
