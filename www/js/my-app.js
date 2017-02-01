@@ -258,9 +258,9 @@ function setup() {
             ticker: 'Now playing "Time is Running Out"'
         });
         artist = "Fairfield West Baptist Church";
-        title = item.attr("date-title");
+        title = item.attr("data-title");
         album = "Sermons";
-        image = "https://fwbcpodcast.files.wordpress.com/2017/01/bulletin-2.jpg";
+        image = item.parent('div').find('img').attr("src");
         duration = media.getDuration();
         elapsedTime = media.getCurrentPosition();
 
@@ -270,6 +270,10 @@ function setup() {
         }, function(fail){
             console.log(fail);
         }, params);
+
+        document.addEventListener("remote-event", function(event) {
+            console.log(event);
+        })
     }
     
     $('.playSermon').click(function(e) {
