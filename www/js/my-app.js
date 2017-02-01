@@ -258,7 +258,7 @@ function setup() {
             // Android only, optional
             // text displayed in the status bar when the notification (and the ticker) are updated
             ticker: 'Now playing "Time is Running Out"'
-        });
+        }, function(){}, function(){});
     }
     
     $('.playSermon').click(function(e) {
