@@ -1,4 +1,5 @@
 var myApp;
+var url = 'http://accordapp.com/';
 
 window.addEventListener("load", function () {
     window.loaded = true;
@@ -14,7 +15,7 @@ $(document).ready(function() {
 });
 function checkModified() {
     $.ajax({
-        url: 'https://accordapp.com/modified/1/',
+        url: url+'modified/1/',
         crossDomain: true,
         dataType: 'json',
         success: function(data) {
@@ -32,7 +33,7 @@ function checkModified() {
 
 function loadPages(modified) {
     $.ajax({
-        url: 'https://accordapp.com/api/1/',
+        url: url+'api/1/',
         crossDomain: true,
         dataType: 'json',
         success: function(data) {
@@ -58,7 +59,7 @@ function renderPages(data) {
         }
     });
     get_bible();
-    loadInsta();
+    setup();
 }
 
 function loadInsta() {
@@ -125,12 +126,12 @@ function setup() {
     var mainView = myApp.addView('.view-main', {
         domCache: true //enable inline pages
     });
-    ga('create', 'UA-85602316-1', {
-        'storage': 'none',
-        'clientId':device.uuid
-    });
-    ga('set','checkProtocolTask',null);
-    ga('set','checkStorageTask',null);
+    //ga('create', 'UA-85602316-1', {
+    //    'storage': 'none',
+    //    'clientId':device.uuid
+    //});
+    //ga('set','checkProtocolTask',null);
+    //ga('set','checkStorageTask',null);
     myApp.onPageInit('*', function (page) {
         ga('set', 'page', page.name);
         ga('send', 'pageview');
@@ -180,7 +181,7 @@ function setup() {
 	var position = "center";
 	var lastPosition = "center";
 	var contentCSS = "";
-	var body = $(".instafeed");
+	var body = $(".background-block");
 	var content = $(".foreground-block");
 	window.suspendAnimation = false;
 	 
@@ -200,21 +201,6 @@ function setup() {
 	  gamma = 2- gamma;
 	 } else if ( gamma <= -1) {
 	  gamma = -2 - gamma;
-	 }
-	 
-	 // shift values/motion based upon device orientation
-	 switch (window.orientation) {
-	  case 90:
-	   temp = gamma;
-	   gamma = beta;
-	   beta = temp;
-	   break;
-	  case -90:
-	   temp = -gamma;
-	   gamma = beta;
-	   beta = temp;
-	   break;
-	 
 	 }
 	 
 	 // update positions to be used for CSS

@@ -10,7 +10,17 @@
         "phonegap-plugin-push": {
             "SENDER_ID": "XXXXXXX",
             "PACKAGE_NAME": "com.erichigdon.accord"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "com.erichigdon.accord"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.erichigdon.accord"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.erichigdon.accord"
+        }
+    }
 }

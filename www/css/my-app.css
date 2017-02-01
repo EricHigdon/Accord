@@ -47,13 +47,6 @@ h3 {
     overflow-x: hidden !important;
     overflow-y: hidden !important;
 }
-.page-content.love-works {
-    width: 110%;
-    padding: 5%;
-    margin-left: -5%;
-    height: 120%;
-    margin-top: -10%;
-}
 .page-content.love-works .content-block {
     background: rgba(0, 0, 0, .7);
     margin: 0px;
@@ -67,29 +60,17 @@ h3 {
     overflow:hidden;
     padding:0px;
 }
-.page-content.love-works img {
-    max-width: 90%;
-    display: block;
-    margin: auto;
-}
-.page-content.love-works .instafeed img {
-    width: 50%;
-    display: inline-block;
-    vertical-align: top;
-}
-.love-works .content-block.foreground-block {
+.content-block.foreground-block {
     position: absolute;
     top: 0;
-    bottom: 44px;
+    bottom: 0;
     left: 0;
     right: 0;
-    padding-top: 30%;
-}
-.love-works .button {
-    position: absolute;
-    bottom: 135px;
-    left: 35px;
-    right: 35px;
+    background-size: contain;
+    background-position:center center;
+    height: 100%;
+    margin:0px;
+    background-repeat: no-repeat
 }
 .button {
     font-family: 'ralewaybold', sans-serif;
