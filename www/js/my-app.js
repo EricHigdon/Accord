@@ -279,7 +279,7 @@ function setup() {
     $('.playSermon').click(function(e) {
         e.preventDefault();
         var media_url = $(this).attr('href');
-        var media = new Media(media_url, onSuccess, [onError], [mediaStatus]);
+        var media = new Media(media_url, onSuccess, onError, mediaStatus);
         create_media_player(media);
     });
     
