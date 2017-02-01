@@ -264,7 +264,7 @@ function setup() {
     $('.playSermon').click(function(e) {
         e.preventDefault();
         var media_url = $(this).attr('href');
-        var media = new Media(media_url);
+        var media = new Media(media_url, function(){});
         create_media_player(media);
     });
     
