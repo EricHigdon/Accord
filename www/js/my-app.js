@@ -237,12 +237,34 @@ function setup() {
 		window.setTimeout(listen, 50);
 	    }
 	})();
+
+    function create_media_player(media) {
+        media.play();
+        MusicControls.create({
+            track: 'Time is Running Out',
+            artist: 'Muse',
+            cover: 'albums/absolution.jpg',
+            // cover can be a local path (use fullpath 'file:///storage/emulated/...', or only 'my_image.jpg' if my_image.jpg is in the www folder of your app)
+            //           or a remote url ('http://...', 'https://...', 'ftp://...')
+            isPlaying   : true,
+            dismissable : true,
+            // hide previous/next/close buttons:
+            hasPrev: false,
+            hasNext: false,
+            // iOS only, optional
+            album: 'Absolution'
+            duration: media.getDuration(),
+            elapsed: media.getCurrentPosition(),
+            // Android only, optional
+            // text displayed in the status bar when the notification (and the ticker) are updated
+            ticker: 'Now playing "Time is Running Out"'
+        });
+    }
     
     $('.playSermon').click(function(e) {
         e.preventDefault();
         var media_url = $(this).attr('href');
-        var media = new Media(media_url);
-        media.play();
+        var media = new Media(media_url, create_media_player);
     });
     
     setupNotifications();
