@@ -241,31 +241,31 @@ function setup() {
 
     function create_media_player(item) {
         var media_url = item.attr('href');
-        media = new Media(media_url);
-        media.play();
+        mediaPlayer = new Media(media_url);
+        mediaPlayer.play();
+
+        artist = "Fairfield West Baptist Church";
+        title = item.attr("data-title");
+        album = "Sermons";
+        image = item.parent('div').find('img').attr("src");
+        duration = mediaPlayer.getDuration();
+        elapsedTime = mediaPlayer.getCurrentPosition();
+
         MusicControls.create({
-            track: 'Time is Running Out',
-            artist: 'Muse',
-            cover: 'albums/absolution.jpg',
-            // cover can be a local path (use fullpath 'file:///storage/emulated/...', or only 'my_image.jpg' if my_image.jpg is in the www folder of your app)
-            //           or a remote url ('http://...', 'https://...', 'ftp://...')
+            track: title,
+            artist: artist,
+            cover: image,
             isPlaying: true,
             dismissable: true,
             // hide previous/next/close buttons:
             hasPrev: false,
             hasNext: false,
-            duration: media.getDuration(),
-            elapsed: media.getCurrentPosition(),
+            duration: mediaPlayer.getDuration(),
+            elapsed: mediaPlayer.getCurrentPosition(),
             // Android only, optional
             // text displayed in the status bar when the notification (and the ticker) are updated
             ticker: 'Now playing "Time is Running Out"'
         });
-        artist = "Fairfield West Baptist Church";
-        title = item.attr("data-title");
-        album = "Sermons";
-        image = item.parent('div').find('img').attr("src");
-        duration = media.getDuration();
-        elapsedTime = media.getCurrentPosition();
 
         var params = [artist, title, album, image, duration, elapsedTime];
         window.remoteControls.updateMetas(function(success){
@@ -281,13 +281,13 @@ function setup() {
 
     function destroy_media_player(){
         MusicControls.destroy();
-        media.stop();
-        media.release();
+        mediaPlayer.stop();
+        mediaPlayer.release();
     }
     
     $('.playSermon').click(function(e) {
         e.preventDefault();
-        if (media) {
+        if (mediaPlayer) {
             destroy_media_player();
         }
         create_media_player($(this));
