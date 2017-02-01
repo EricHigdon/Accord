@@ -1,5 +1,6 @@
-var myApp;
-var url = 'http://accordapp.com/';
+var myApp,
+    url = 'http://accordapp.com/',
+    mediaPlayer;
 
 window.addEventListener("load", function () {
     window.loaded = true;
@@ -238,7 +239,9 @@ function setup() {
 	    }
 	})();
 
-    function create_media_player(media, item) {
+    function create_media_player(item) {
+        var media_url = item.attr('href');
+        media = new Media(media_url);
         media.play();
         MusicControls.create({
             track: 'Time is Running Out',
@@ -275,12 +278,19 @@ function setup() {
             console.log(event);
         })
     }
+
+    function destroy_media_player(){
+        MusicControls.destroy();
+        media.stop();
+        media.release();
+    }
     
     $('.playSermon').click(function(e) {
         e.preventDefault();
-        var media_url = $(this).attr('href');
-        var media = new Media(media_url);
-        create_media_player(media, $(this));
+        if (media) {
+            destroy_media_player();
+        }
+        create_media_player($(this));
     });
     
     setupNotifications();
