@@ -246,13 +246,13 @@ function setup() {
             cover: 'albums/absolution.jpg',
             // cover can be a local path (use fullpath 'file:///storage/emulated/...', or only 'my_image.jpg' if my_image.jpg is in the www folder of your app)
             //           or a remote url ('http://...', 'https://...', 'ftp://...')
-            isPlaying   : true,
-            dismissable : true,
+            isPlaying: true,
+            dismissable: true,
             // hide previous/next/close buttons:
             hasPrev: false,
             hasNext: false,
             // iOS only, optional
-            album: 'Absolution'
+            album: 'Absolution',
             duration: media.getDuration(),
             elapsed: media.getCurrentPosition(),
             // Android only, optional
