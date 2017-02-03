@@ -276,9 +276,13 @@ function setup() {
             // text displayed in the status bar when the notification (and the ticker) are updated
             ticker: 'Now playing ' + title
         });*/
-
+        
         var params = [artist, title, album, image, duration, elapsedTime];
-        window.remoteControls.updateMetas(log, log, params);
+        console.log(params);
+        var playTimer = setInterval(function() {
+            params.elapsedTime = mediaPlayer.getCurrentPosition(log, log);
+            window.remoteControls.updateMetas(log, log, params);
+        }, 1000);
 
         document.addEventListener("remote-event", function(event) {
             console.log(event);
@@ -288,7 +292,7 @@ function setup() {
                     $('.playing').addClass('paused').removeClass('playing');
                     break;
                 case 'play':
-                    mediaPlayer.pause();
+                    mediaPlayer.play();
                     $('.paused').addClass('playing').removeClass('paused');
                     break;
                 default:
