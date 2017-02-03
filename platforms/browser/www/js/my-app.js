@@ -233,7 +233,12 @@ function setup() {
 	window.requestAnimationFrame(updateBackground);
     (function listen () {
 	    if (window.loaded) {
-		  //navigator.splashscreen.hide();
+            try {
+                navigator.splashscreen.hide();
+            }
+            catch(e) {
+                console.log(e);
+            }
 	    } else {
 		window.setTimeout(listen, 50);
 	    }
@@ -277,6 +282,18 @@ function setup() {
 
         document.addEventListener("remote-event", function(event) {
             console.log(event);
+            switch (event.remoteEvent.subtype) {
+                case 'pause':
+                    mediaPlayer.pause();
+                    $('.playing').addClass('paused').removeClass('playing');
+                    break;
+                case 'play':
+                    mediaPlayer.pause();
+                    $('.paused').addClass('playing').removeClass('paused');
+                    break;
+                default:
+                    break;
+            }
         })
     }
 
