@@ -256,7 +256,7 @@ function setup() {
         duration = mediaPlayer.getDuration();
         elapsedTime = mediaPlayer.getCurrentPosition(log, log);
 
-        MusicControls.create({
+        /*MusicControls.create({
             track: title,
             artist: artist,
             cover: image,
@@ -269,8 +269,8 @@ function setup() {
             elapsed: elapsedTime,
             // Android only, optional
             // text displayed in the status bar when the notification (and the ticker) are updated
-            ticker: 'Now playing "Time is Running Out"'
-        });
+            ticker: 'Now playing ' + title
+        });*/
 
         var params = [artist, title, album, image, duration, elapsedTime];
         window.remoteControls.updateMetas(log, log, params);
@@ -284,7 +284,7 @@ function setup() {
         console.log('destroying');
         $('.playing').removeClass('playing');
         $('paused').removeClass('paused');
-        MusicControls.destroy();
+        //MusicControls.destroy();
         mediaPlayer.stop();
         mediaPlayer.release();
     }
