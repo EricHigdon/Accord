@@ -252,7 +252,7 @@ function setup() {
         artist = "Fairfield West Baptist Church";
         title = item.attr("data-title");
         album = "Sermons";
-        image = item.parent('div').find('img').attr("src");
+        image = item.parent().parent().parent().parent().find('img').attr("src");
         duration = mediaPlayer.getDuration();
         elapsedTime = mediaPlayer.getCurrentPosition(log, log);
 
