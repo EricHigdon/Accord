@@ -233,7 +233,7 @@ function setup() {
 	window.requestAnimationFrame(updateBackground);
     (function listen () {
 	    if (window.loaded) {
-		  navigator.splashscreen.hide();
+		  //navigator.splashscreen.hide();
 	    } else {
 		window.setTimeout(listen, 50);
 	    }
@@ -244,7 +244,7 @@ function setup() {
     }
 
     function create_media_player(item) {
-        var media_url = item.attr('data-href');
+        var media_url = item.attr('href');
         mediaPlayer = new Media(media_url);
         mediaPlayer.play();
         item.addClass('playing');
