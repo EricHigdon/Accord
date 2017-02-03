@@ -248,6 +248,47 @@ function setup() {
     function log(item) {
         console.log(item);
     }
+    
+    function events(action) {
+        switch(action) {
+            case 'music-controls-next':
+                // Do something
+                break;
+            case 'music-controls-previous':
+                // Do something
+                break;
+            case 'music-controls-pause':
+                mediaPlayer.pause();
+                $('.playing').addClass('paused').removeClass('playing');
+                break;
+            case 'music-controls-play':
+                mediaPlayer.play();
+                $('.paused').addClass('playing').removeClass('paused');
+                break;
+            case 'music-controls-destroy':
+                destroy_media_player();
+                break;
+            // Headset events (Android only)
+            case 'music-controls-media-button' :
+                // Do something
+                break;
+            case 'music-controls-headset-unplugged':
+                // Do something
+                break;
+            case 'music-controls-headset-plugged':
+                // Do something
+                break;
+            default:
+                break;
+        }
+    }
+
+// Register callback
+MusicControls.subscribe(events);
+
+// Start listening for events
+// The plugin will run the events function each time an event is fired
+MusicControls.listen();
 
     function create_media_player(item) {
         var media_url = item.attr('href');
@@ -266,7 +307,7 @@ function setup() {
             elapsedTime = position;
         });
 
-        /*MusicControls.create({
+        MusicControls.create({
             track: title,
             artist: artist,
             cover: image,
@@ -280,7 +321,7 @@ function setup() {
             // Android only, optional
             // text displayed in the status bar when the notification (and the ticker) are updated
             ticker: 'Now playing ' + title
-        });*/
+        });
         
         var params = [artist, title, album, image, duration, elapsedTime];
         var timerDur = setInterval(function() {
@@ -331,7 +372,7 @@ function setup() {
         clearInterval(playTimer);
         $('.playing').removeClass('playing');
         $('paused').removeClass('paused');
-        //MusicControls.destroy();
+        MusicControls.destroy();
         mediaPlayer.stop();
         mediaPlayer.release();
     }
