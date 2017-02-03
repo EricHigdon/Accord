@@ -260,10 +260,12 @@ function setup() {
             case 'music-controls-pause':
                 mediaPlayer.pause();
                 $('.playing').addClass('paused').removeClass('playing');
+                MusicControls.updateIsPlaying(false);
                 break;
             case 'music-controls-play':
                 mediaPlayer.play();
                 $('.paused').addClass('playing').removeClass('paused');
+                MusicControls.updateIsPlaying(true);
                 break;
             case 'music-controls-destroy':
                 destroy_media_player();
