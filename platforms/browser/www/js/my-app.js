@@ -296,7 +296,7 @@ function setup() {
             }
         }, 100);
         console.log(params);
-        var playTimer = setInterval(function() {
+        playTimer = setInterval(function() {
             mediaPlayer.getCurrentPosition(function(position){
                 elapsedTime = position;
             });
