@@ -1,6 +1,7 @@
 var myApp,
     url = 'http://accordapp.com/',
-    mediaPlayer;
+    mediaPlayer,
+    playTimer;
 
 window.addEventListener("load", function () {
     window.loaded = true;
@@ -254,12 +255,16 @@ function setup() {
         mediaPlayer.play();
         item.addClass('playing');
 
-        artist = "Fairfield West Baptist Church";
-        title = item.attr("data-title");
-        album = "Sermons";
-        image = item.parent().parent().parent().parent().find('img').attr("src");
-        duration = mediaPlayer.getDuration();
-        elapsedTime = mediaPlayer.getCurrentPosition(log, log);
+        var artist = "Fairfield West Baptist Church",
+            title = item.attr("data-title"),
+            album = "Sermons",
+            image = item.parent().parent().parent().parent().find('img').attr("src"),
+            duration = -1,
+            counter = 0,
+            elapsedTime = 0;
+        mediaPlayer.getCurrentPosition(function(position){
+            elapsedTime = position;
+        });
 
         /*MusicControls.create({
             track: title,
@@ -278,10 +283,30 @@ function setup() {
         });*/
         
         var params = [artist, title, album, image, duration, elapsedTime];
+        var timerDur = setInterval(function() {
+            counter = counter + 100;
+            if (counter > 2000) {
+                clearInterval(timerDur);
+            }
+            var dur = mediaPlayer.getDuration();
+            if (dur > 0) {
+                clearInterval(timerDur);
+                duration = dur;
+                params[4] = dur;
+            }
+        }, 100);
         console.log(params);
         var playTimer = setInterval(function() {
-            params.elapsedTime = mediaPlayer.getCurrentPosition(log, log);
-            window.remoteControls.updateMetas(log, log, params);
+            mediaPlayer.getCurrentPosition(function(position){
+                elapsedTime = position;
+            });
+            console.log('elapsed time:', elapsedTime);
+            params[5] = elapsedTime;
+            window.remoteControls.updateMetas(function(success){
+                console.log(success);
+            }, function(fail){
+                console.log(fail);
+            }, params);
         }, 1000);
 
         document.addEventListener("remote-event", function(event) {
@@ -303,6 +328,7 @@ function setup() {
 
     function destroy_media_player(){
         console.log('destroying');
+        clearInterval(playTimer);
         $('.playing').removeClass('playing');
         $('paused').removeClass('paused');
         //MusicControls.destroy();
