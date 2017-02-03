@@ -273,6 +273,20 @@ scripture p {
     margin-top: 0px;
     text-align: justify;
 }
+.list-block .item-link.playSermon .item-inner {
+    background: none;
+}
+.list-block .item-link.playSermon:after {
+    content: '\f144';
+    font-family: fontawesome;
+    position: absolute;
+    right: 15px;
+    font-size: 22pt;
+    color: #6d6d72;
+}
+.list-block .item-link.playSermon.playing:after {
+    content: '\f28b';
+}
 
 /* iPad Styles */
 @media (min-width: 767px) {

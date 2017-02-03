@@ -218,6 +218,22 @@ module.exports = [
         "clobbers": [
             "window.Media"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-music-controls/www/MusicControls.js",
+        "id": "cordova-plugin-music-controls.MusicControls",
+        "pluginId": "cordova-plugin-music-controls",
+        "clobbers": [
+            "MusicControls"
+        ]
+    },
+    {
+        "file": "plugins/com.rd11.remote-controls/www/RemoteControls.js",
+        "id": "com.rd11.remote-controls.RemoteControls",
+        "pluginId": "com.rd11.remote-controls",
+        "clobbers": [
+            "window.remoteControls"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -226,7 +242,9 @@ module.exports.metadata =
     "phonegap-plugin-push": "1.8.2",
     "cordova-plugin-compat": "1.1.0",
     "cordova-plugin-file": "4.3.1",
-    "cordova-plugin-media": "2.4.1"
+    "cordova-plugin-media": "2.4.1",
+    "cordova-plugin-music-controls": "1.4",
+    "com.rd11.remote-controls": "1.0.1"
 }
 // BOTTOM OF METADATA
 });

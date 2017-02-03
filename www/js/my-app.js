@@ -243,6 +243,7 @@ function setup() {
         var media_url = item.attr('href');
         mediaPlayer = new Media(media_url);
         mediaPlayer.play();
+        item.addClass('playing');
 
         artist = "Fairfield West Baptist Church";
         title = item.attr("data-title");
@@ -280,6 +281,7 @@ function setup() {
     }
 
     function destroy_media_player(){
+        $('.playing').removeClass('playing');
         MusicControls.destroy();
         mediaPlayer.stop();
         mediaPlayer.release();
@@ -287,10 +289,15 @@ function setup() {
     
     $('.playSermon').click(function(e) {
         e.preventDefault();
-        if (mediaPlayer) {
+        item = $(this);
+        if (item.hasClass('playing')) {
+            mediaPlayer.pause();
+            item.removeClass('playing');
+        }
+        else if (mediaPlayer) {
             destroy_media_player();
         }
-        create_media_player($(this));
+        create_media_player(item);
     });
     
     setupNotifications();

@@ -1,5 +1,6 @@
-var myApp;
-var url = 'http://accordapp.com/';
+var myApp,
+    url = 'http://accordapp.com/',
+    mediaPlayer;
 
 window.addEventListener("load", function () {
     window.loaded = true;
@@ -237,12 +238,66 @@ function setup() {
 		window.setTimeout(listen, 50);
 	    }
 	})();
+
+    function create_media_player(item) {
+        var media_url = item.attr('href');
+        mediaPlayer = new Media(media_url);
+        mediaPlayer.play();
+        item.addClass('playing');
+
+        artist = "Fairfield West Baptist Church";
+        title = item.attr("data-title");
+        album = "Sermons";
+        image = item.parent('div').find('img').attr("src");
+        duration = mediaPlayer.getDuration();
+        elapsedTime = mediaPlayer.getCurrentPosition();
+
+        MusicControls.create({
+            track: title,
+            artist: artist,
+            cover: image,
+            isPlaying: true,
+            dismissable: true,
+            // hide previous/next/close buttons:
+            hasPrev: false,
+            hasNext: false,
+            duration: mediaPlayer.getDuration(),
+            elapsed: mediaPlayer.getCurrentPosition(),
+            // Android only, optional
+            // text displayed in the status bar when the notification (and the ticker) are updated
+            ticker: 'Now playing "Time is Running Out"'
+        });
+
+        var params = [artist, title, album, image, duration, elapsedTime];
+        window.remoteControls.updateMetas(function(success){
+            console.log(success);
+        }, function(fail){
+            console.log(fail);
+        }, params);
+
+        document.addEventListener("remote-event", function(event) {
+            console.log(event);
+        })
+    }
+
+    function destroy_media_player(){
+        $('.playing').removeClass('playing');
+        MusicControls.destroy();
+        mediaPlayer.stop();
+        mediaPlayer.release();
+    }
     
     $('.playSermon').click(function(e) {
         e.preventDefault();
-        var media_url = $(this).attr('href');
-        var media = new Media(media_url);
-        media.play();
+        item = $(this);
+        if (item.hasClass('playing')) {
+            mediaPlayer.pause();
+            item.removeClass('playing');
+        }
+        else if (mediaPlayer) {
+            destroy_media_player();
+        }
+        create_media_player(item);
     });
     
     setupNotifications();
