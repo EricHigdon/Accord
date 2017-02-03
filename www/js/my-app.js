@@ -1,6 +1,7 @@
 var myApp,
     url = 'http://accordapp.com/',
-    mediaPlayer;
+    mediaPlayer,
+    playTimer;
 
 window.addEventListener("load", function () {
     window.loaded = true;
@@ -279,7 +280,7 @@ function setup() {
         
         var params = [artist, title, album, image, duration, elapsedTime];
         console.log(params);
-        var playTimer = setInterval(function() {
+        playTimer = setInterval(function() {
             params.elapsedTime = mediaPlayer.getCurrentPosition(log, log);
             window.remoteControls.updateMetas(log, log, params);
         }, 1000);
@@ -308,6 +309,7 @@ function setup() {
         //MusicControls.destroy();
         mediaPlayer.stop();
         mediaPlayer.release();
+        clearInterval(playTimer);
     }
     
     $('.playSermon').click(function(e) {
