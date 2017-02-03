@@ -281,7 +281,7 @@ scripture p {
     font-family: fontawesome;
     position: absolute;
     right: 15px;
-    font-size: 22pt;
+    font-size: 24pt;
     color: #6d6d72;
 }
 .list-block .item-link.playSermon.playing:after {

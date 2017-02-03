@@ -233,14 +233,18 @@ function setup() {
 	window.requestAnimationFrame(updateBackground);
     (function listen () {
 	    if (window.loaded) {
-		navigator.splashscreen.hide();
+		  navigator.splashscreen.hide();
 	    } else {
 		window.setTimeout(listen, 50);
 	    }
 	})();
+    
+    function log(item) {
+        console.log(item);
+    }
 
     function create_media_player(item) {
-        var media_url = item.attr('href');
+        var media_url = item.attr('data-href');
         mediaPlayer = new Media(media_url);
         mediaPlayer.play();
         item.addClass('playing');
@@ -250,7 +254,7 @@ function setup() {
         album = "Sermons";
         image = item.parent('div').find('img').attr("src");
         duration = mediaPlayer.getDuration();
-        elapsedTime = mediaPlayer.getCurrentPosition();
+        elapsedTime = mediaPlayer.getCurrentPosition(log, log);
 
         MusicControls.create({
             track: title,
@@ -261,19 +265,15 @@ function setup() {
             // hide previous/next/close buttons:
             hasPrev: false,
             hasNext: false,
-            duration: mediaPlayer.getDuration(),
-            elapsed: mediaPlayer.getCurrentPosition(),
+            duration: duration,
+            elapsed: elapsedTime,
             // Android only, optional
             // text displayed in the status bar when the notification (and the ticker) are updated
             ticker: 'Now playing "Time is Running Out"'
         });
 
         var params = [artist, title, album, image, duration, elapsedTime];
-        window.remoteControls.updateMetas(function(success){
-            console.log(success);
-        }, function(fail){
-            console.log(fail);
-        }, params);
+        window.remoteControls.updateMetas(log, log, params);
 
         document.addEventListener("remote-event", function(event) {
             console.log(event);
@@ -281,7 +281,9 @@ function setup() {
     }
 
     function destroy_media_player(){
+        console.log('destroying');
         $('.playing').removeClass('playing');
+        $('paused').removeClass('paused');
         MusicControls.destroy();
         mediaPlayer.stop();
         mediaPlayer.release();
@@ -292,12 +294,19 @@ function setup() {
         item = $(this);
         if (item.hasClass('playing')) {
             mediaPlayer.pause();
-            item.removeClass('playing');
+            item.addClass('paused').removeClass('playing');
         }
-        else if (mediaPlayer) {
+        else if (item.hasClass('paused')) {
+            mediaPlayer.play();
+            item.addClass('playing').removeClass('paused');
+        }
+        else if (typeof mediaPlayer !== "undefined") {
             destroy_media_player();
+            create_media_player(item);
         }
-        create_media_player(item);
+        else {  
+            create_media_player(item);
+        }
     });
     
     setupNotifications();
