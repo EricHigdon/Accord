@@ -287,6 +287,10 @@ scripture p {
 .list-block .item-link.playSermon.playing:after {
     content: '\f28b';
 }
+span.caption {
+    color: #666;
+    font-size: 10pt;
+}
 
 /* iPad Styles */
 @media (min-width: 767px) {

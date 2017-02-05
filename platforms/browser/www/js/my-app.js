@@ -251,12 +251,6 @@ function setup() {
     
     function events(action) {
         switch(action) {
-            case 'music-controls-next':
-                // Do something
-                break;
-            case 'music-controls-previous':
-                // Do something
-                break;
             case 'music-controls-pause':
                 mediaPlayer.pause();
                 $('.playing').addClass('paused').removeClass('playing');
@@ -269,16 +263,6 @@ function setup() {
                 break;
             case 'music-controls-destroy':
                 destroy_media_player();
-                break;
-            // Headset events (Android only)
-            case 'music-controls-media-button' :
-                // Do something
-                break;
-            case 'music-controls-headset-unplugged':
-                // Do something
-                break;
-            case 'music-controls-headset-plugged':
-                // Do something
                 break;
             default:
                 break;
@@ -338,17 +322,15 @@ MusicControls.listen();
                 params[4] = dur;
             }
         }, 100);
-        console.log(params);
         playTimer = setInterval(function() {
             mediaPlayer.getCurrentPosition(function(position){
                 elapsedTime = position;
             });
-            console.log('elapsed time:', elapsedTime);
             params[5] = elapsedTime;
             window.remoteControls.updateMetas(function(success){
-                console.log(success);
+                //console.log(success);
             }, function(fail){
-                console.log(fail);
+                //console.log(fail);
             }, params);
         }, 1000);
 
@@ -385,10 +367,12 @@ MusicControls.listen();
         if (item.hasClass('playing')) {
             mediaPlayer.pause();
             item.addClass('paused').removeClass('playing');
+            MusicControls.updateIsPlaying(false);
         }
         else if (item.hasClass('paused')) {
             mediaPlayer.play();
             item.addClass('playing').removeClass('paused');
+            MusicControls.updateIsPlaying(true);
         }
         else if (typeof mediaPlayer !== "undefined") {
             destroy_media_player();
