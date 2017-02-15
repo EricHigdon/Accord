@@ -1,13 +1,62 @@
 var myApp,
     url = 'http://accordapp.com/',
     mediaPlayer,
-    playTimer;
+    playTimer,
+    auth_token = localStorage.getItem('auth_token');
+
+url = 'http://192.168.0.103:8000/'
 
 window.addEventListener("load", function () {
     window.loaded = true;
 });
-
+function guid() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+    s4() + '-' + s4() + s4() + s4();
+}
 $(document).ready(function() {
+    if (!auth_token) {
+        var username = localStorage.getItem('username');
+        if (!username) {
+            try {
+                username = device.uuid;
+            }
+            catch (e) {
+                console.log(e);
+                username = guid();
+            }
+        }
+        password = guid();
+
+        $.ajax({
+            url: url + 'account/',
+            method: 'PUT',
+            dataType: 'json',
+            data: {
+                'username': username,
+                'password': password
+            },
+            success: function(response) {
+                auth_token = response.authtoken;
+                localStorage.setItem('auth_token', response.auth_token);
+                localStorage.setItem('username', response.username)
+                localStorage.setItem('user_id', response.pk)
+            },
+            error: function(response) {
+                console.log(response);
+            }
+        });
+    }
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            xhr.setRequestHeader('Authorization', 'Token '+auth_token);
+        }
+    });
+    
     // write log to console
     ImgCache.options.debug = true;
     // increase allocated space on Chrome to 50MB, default was 10MB
@@ -122,11 +171,41 @@ function setup() {
     var $$ = Dom7;
     $$(document).on('ajaxStart', function(e){
        var xhr = e.detail.xhr;
-       xhr.setRequestHeader('AUTHORIZATION', 'Basic YXBpX2F1dGg6ZXJpUTI5MzA=');
+       xhr.setRequestHeader('Authorization', 'Token '+auth_token);
     });
     // Add view
     var mainView = myApp.addView('.view-main', {
         domCache: true //enable inline pages
+    });
+    if (!localStorage.getItem('login_finished')) {
+        myApp.loginScreen('.login-screen', true);
+    }
+    $$('.login-skip').click(function() {
+        if ($$('#disable-login').val())
+            localStorage.setItem('login_finished', true);
+        myApp.closeModal('.login-screen', true);
+    });
+    $('#login-save').click(function() {
+        var first_name = $('#first_name').val(),
+            last_name = $('#last_name').val();
+        if (first_name && last_name) {
+            $.ajax({
+                url: url+'account/',
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    'first_name': first_name,
+                    'last_name': last_name,
+                },
+                success: function(response) {
+                    localStorage.setItem('login_finished', true);
+                    myApp.closeModal('.login-screen', true);
+                },
+                error: function(response) {
+                    console.log(response);
+                },
+            });
+        }
     });
     //ga('create', 'UA-85602316-1', {
     //    'storage': 'none',
@@ -245,10 +324,6 @@ function setup() {
 	    }
 	})();
     
-    function log(item) {
-        console.log(item);
-    }
-    
     function events(action) {
         switch(action) {
             case 'music-controls-pause':
@@ -269,12 +344,12 @@ function setup() {
         }
     }
 
-// Register callback
-MusicControls.subscribe(events);
+    // Register callback
+    MusicControls.subscribe(events);
 
-// Start listening for events
-// The plugin will run the events function each time an event is fired
-MusicControls.listen();
+    // Start listening for events
+    // The plugin will run the events function each time an event is fired
+    MusicControls.listen();
 
     function create_media_player(item) {
         var media_url = item.attr('href');
@@ -405,18 +480,15 @@ function setupNotifications() {
     push.on('registration', function(data) {
         var oldRegId = localStorage.getItem('registrationId');
         if (oldRegId !== data.registrationId) {
-            var url = 'http://accordapp.com/device/gcm/';
+            var url = url+'device/gcm/';
             // Save new registration ID
             localStorage.setItem('registrationId', data.registrationId);
             // Post registrationId to your app server as the value has changed
             if (device.platform == 'iOS') {
-                url = 'http://accordapp.com/device/apns/';
+                url = url+'device/apns/';
             }
             $.ajax({
                 url: url,
-                headers: {
-                    "Authorization": 'Basic YXBpX2F1dGg6ZXJpUTI5MzA='
-                },
                 method: 'POST',
                 dataType: 'json',
                 data: {

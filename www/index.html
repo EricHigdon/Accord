@@ -14,6 +14,53 @@
     <link rel="stylesheet" href="css/font-awesome.min.css">
   </head>
   <body>
+    <div class="login-screen">
+      <!-- Default view-page layout -->
+      <div class="view">
+        <div class="page">
+          <!-- page-content has additional login-screen content -->
+          <div class="page-content login-screen-content">
+            <div class="login-screen-title">Fairfield West Baptist Church</div>
+            <!-- Login form -->
+            <form>
+              <div class="list-block">
+                <ul>
+                  <li class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title label">First Name</div>
+                      <div class="item-input">
+                        <input type="text" id="first_name" name="first_name" placeholder="First Name">
+                      </div>
+                    </div>
+                  </li>
+                  <li class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title label">Last Name</div>
+                      <div class="item-input">
+                        <input type="text" id="last_name" name="last_name" placeholder="Last name">
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="list-block">
+                <ul>
+                  <li>
+                    <a href="#" id="login-save" class="item-link list-button">Sign In</a>
+                  </li>
+                </ul>
+                <div class="list-block-label">
+                    <p>
+                        <label><input type="checkbox" id="disable-login" /> Don&rsquo;t ask again</label>
+                        <a href="#" class="login-skip">Skip</a>
+                    </p>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Views-->
     <div class="views">
       <!-- Your main view, should have "view-main" class-->

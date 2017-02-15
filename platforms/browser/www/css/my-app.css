@@ -291,6 +291,10 @@ span.caption {
     color: #666;
     font-size: 10pt;
 }
+.login-screen label {
+    display: block;
+    margin-bottom: 15px;
+}
 
 /* iPad Styles */
 @media (min-width: 767px) {
