@@ -41,7 +41,7 @@ $(document).ready(function() {
                 'password': password
             },
             success: function(response) {
-                auth_token = response.authtoken;
+                auth_token = response.auth_token;
                 localStorage.setItem('auth_token', response.auth_token);
                 localStorage.setItem('username', response.username)
                 localStorage.setItem('user_id', response.pk)
