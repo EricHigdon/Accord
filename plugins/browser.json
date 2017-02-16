@@ -19,6 +19,9 @@
         },
         "com.rd11.remote-controls": {
             "PACKAGE_NAME": "com.erichigdon.accord"
+        },
+        "cordova-plugin-appversion": {
+            "PACKAGE_NAME": "com.erichigdon.accord"
         }
     },
     "dependent_plugins": {

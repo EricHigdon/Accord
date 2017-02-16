@@ -221,8 +221,6 @@ form p {
     background: #FFF;
     margin-top: -5px;
     border-bottom: 1.5px solid #0f1229;
-}
-.accordion-item-content p {
     padding: 0px 15px;
 }
 [data-page="Notes"] .list-block {

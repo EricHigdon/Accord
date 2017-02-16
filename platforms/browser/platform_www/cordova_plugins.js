@@ -234,6 +234,14 @@ module.exports = [
         "clobbers": [
             "window.remoteControls"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-appversion/www/app-version.js",
+        "id": "cordova-plugin-appversion.RareloopAppVersion",
+        "pluginId": "cordova-plugin-appversion",
+        "clobbers": [
+            "AppVersion"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -244,7 +252,8 @@ module.exports.metadata =
     "cordova-plugin-file": "4.3.1",
     "cordova-plugin-media": "2.4.1",
     "cordova-plugin-music-controls": "1.4",
-    "com.rd11.remote-controls": "1.0.1"
+    "com.rd11.remote-controls": "1.0.1",
+    "cordova-plugin-appversion": "1.0.0"
 }
 // BOTTOM OF METADATA
 });
