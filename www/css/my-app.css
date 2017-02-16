@@ -201,8 +201,15 @@ form p {
 .tabbar [href="#news"]:before {
     content: "\f1ea";
 }
-.tabbar [href="#service"]:before {
-    content: "\f02d";
+.tabbar [href="#my-church"]:before {
+    content: "";
+    background-image: url(../img/church.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.tabbar a.active[href="#my-church"]:before {
+    background-image: url(../img/church-active.png);
 }
 .content-block-inner {
     overflow: hidden;
@@ -294,6 +301,26 @@ span.caption {
 .login-screen label {
     display: block;
     margin-bottom: 15px;
+    color: #fff;
+}
+.login-screen label input {
+    margin: 6px 5px 10px 5px;
+    vertical-align: middle;
+}
+[data-page="podcasts"] .list-block .item-title {
+    max-width: 95%;
+}
+.login-screen-content {
+    background: #0f1229;
+    color: #fff;
+}
+.login-screen-content .list-block {
+    background: #fff;
+}
+a.login-skip {
+    text-align: center;
+    display: block;
+    color: #fff;
 }
 
 /* iPad Styles */
