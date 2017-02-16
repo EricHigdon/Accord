@@ -4,8 +4,6 @@ var myApp,
     playTimer,
     auth_token = localStorage.getItem('auth_token');
 
-url = 'http://192.168.0.103:8000/'
-
 window.addEventListener("load", function () {
     window.loaded = true;
 });
