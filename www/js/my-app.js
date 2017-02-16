@@ -490,7 +490,7 @@ function setupNotifications() {
                 method: 'POST',
                 dataType: 'json',
                 data: {
-                    'device_id': device.uuid,
+                    'device_id': username,
                     'registration_id': data.registrationId,
                     'active': true
                 },
