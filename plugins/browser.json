@@ -7,10 +7,6 @@
         "files": {}
     },
     "installed_plugins": {
-        "phonegap-plugin-push": {
-            "SENDER_ID": "XXXXXXX",
-            "PACKAGE_NAME": "com.erichigdon.accord"
-        },
         "cordova-plugin-media": {
             "PACKAGE_NAME": "com.erichigdon.accord"
         },
@@ -18,6 +14,13 @@
             "PACKAGE_NAME": "com.erichigdon.accord"
         },
         "com.rd11.remote-controls": {
+            "PACKAGE_NAME": "com.erichigdon.accord"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "663980513133",
+            "PACKAGE_NAME": "com.erichigdon.accord"
+        },
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.erichigdon.accord"
         },
         "cordova-plugin-appversion": {

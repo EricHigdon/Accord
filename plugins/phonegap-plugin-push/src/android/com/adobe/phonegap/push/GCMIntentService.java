@@ -130,7 +130,7 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
                 JSONObject localeObject = new JSONObject(value);
 
                 String localeKey = localeObject.getString(LOC_KEY);
-                
+
                 ArrayList<String> localeFormatData = new ArrayList<String>();
                 if (!localeObject.isNull(LOC_DATA)) {
                     String localeData = localeObject.getString(LOC_DATA);
@@ -168,11 +168,13 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
      * Replace alternate keys with our canonical value
      */
     private String normalizeKey(String key) {
-        if (key.equals(BODY) || key.equals(ALERT) || key.equals(GCM_NOTIFICATION_BODY)) {
+        if (key.equals(BODY) || key.equals(ALERT) || key.equals(GCM_NOTIFICATION_BODY) || key.equals(TWILIO_BODY)) {
             return MESSAGE;
-        } else if (key.equals(MSGCNT) || key.equals(BADGE)) {
+        } else if (key.equals(TWILIO_TITLE)) {
+            return TITLE;
+        }else if (key.equals(MSGCNT) || key.equals(BADGE)) {
             return COUNT;
-        } else if (key.equals(SOUNDNAME)) {
+        } else if (key.equals(SOUNDNAME) || key.equals(TWILIO_SOUND)) {
             return SOUND;
         } else if (key.startsWith(GCM_NOTIFICATION)) {
             return key.substring(GCM_NOTIFICATION.length()+1, key.length());
@@ -289,6 +291,10 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
                 (title != null && title.length() != 0)) {
 
             Log.d(LOG_TAG, "create notification");
+
+            if(title == null || title.isEmpty()){
+                extras.putString(TITLE, getAppName(this));
+            }
 
             createNotification(context, extras);
         }
@@ -430,7 +436,10 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
                 JSONArray actionsArray = new JSONArray(actions);
                 ArrayList<NotificationCompat.Action> wActions = new ArrayList<NotificationCompat.Action>();
                 for (int i=0; i < actionsArray.length(); i++) {
-                    int uniquePendingIntentRequestCode = i + notId;
+                    int min = 1;
+                    int max = 2000000000;
+                    Random random = new Random();
+                    int uniquePendingIntentRequestCode = random.nextInt((max - min) + 1) + min;
                     Log.d(LOG_TAG, "adding action");
                     JSONObject action = actionsArray.getJSONObject(i);
                     Log.d(LOG_TAG, "adding callback = " + action.getString(CALLBACK));

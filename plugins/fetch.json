@@ -1,22 +1,4 @@
 {
-    "cordova-plugin-whitelist": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-whitelist@1"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "phonegap-plugin-push": {
-        "source": {
-            "type": "registry",
-            "id": "phonegap-plugin-push@~1.8.0"
-        },
-        "is_top_level": true,
-        "variables": {
-            "SENDER_ID": "XXXXXXX"
-        }
-    },
     "cordova-plugin-media": {
         "source": {
             "type": "registry",
@@ -54,6 +36,24 @@
             "type": "git",
             "url": "https://github.com/shi11/RemoteControls.git",
             "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "phonegap-plugin-push": {
+        "source": {
+            "type": "registry",
+            "id": "phonegap-plugin-push@~1.8.0"
+        },
+        "is_top_level": true,
+        "variables": {
+            "SENDER_ID": "663980513133"
+        }
+    },
+    "cordova-plugin-whitelist": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-whitelist@1"
         },
         "is_top_level": true,
         "variables": {}
