@@ -328,11 +328,15 @@ function setup() {
                 mediaPlayer.pause();
                 $('.playing').addClass('paused').removeClass('playing');
                 MusicControls.updateIsPlaying(false);
+                clearInterval(playTimer);
                 break;
             case 'music-controls-play':
                 mediaPlayer.play();
                 $('.paused').addClass('playing').removeClass('paused');
                 MusicControls.updateIsPlaying(true);
+                playTimer = setInterval(function() {
+                    start_play_timer();
+                }, 1000);
                 break;
             case 'music-controls-destroy':
                 destroy_media_player();
@@ -348,6 +352,18 @@ function setup() {
     // Start listening for events
     // The plugin will run the events function each time an event is fired
     MusicControls.listen();
+
+    function start_play_timer() {
+        mediaPlayer.getCurrentPosition(function(position){
+            elapsedTime = position;
+        });
+        params[5] = elapsedTime;
+        window.remoteControls.updateMetas(function(success){
+            //console.log(success);
+        }, function(fail){
+            //console.log(fail);
+        }, params);
+    }
 
     function create_media_player(item) {
         var media_url = item.attr('href');
@@ -396,15 +412,7 @@ function setup() {
             }
         }, 100);
         playTimer = setInterval(function() {
-            mediaPlayer.getCurrentPosition(function(position){
-                elapsedTime = position;
-            });
-            params[5] = elapsedTime;
-            window.remoteControls.updateMetas(function(success){
-                //console.log(success);
-            }, function(fail){
-                //console.log(fail);
-            }, params);
+            start_play_timer();
         }, 1000);
 
         document.addEventListener("remote-event", function(event) {
@@ -413,10 +421,14 @@ function setup() {
                 case 'pause':
                     mediaPlayer.pause();
                     $('.playing').addClass('paused').removeClass('playing');
+                    clearInterval(playTimer);
                     break;
                 case 'play':
                     mediaPlayer.play();
                     $('.paused').addClass('playing').removeClass('paused');
+                    playTimer = setInterval(function() {
+                        start_play_timer();
+                    }, 1000);
                     break;
                 default:
                     break;
@@ -441,11 +453,15 @@ function setup() {
             mediaPlayer.pause();
             item.addClass('paused').removeClass('playing');
             MusicControls.updateIsPlaying(false);
+            playTimer = setInterval(function() {
+                start_play_timer();
+            }, 1000);
         }
         else if (item.hasClass('paused')) {
             mediaPlayer.play();
             item.addClass('playing').removeClass('paused');
             MusicControls.updateIsPlaying(true);
+            clearInterval(playTimer);
         }
         else if (typeof mediaPlayer !== "undefined") {
             destroy_media_player();
