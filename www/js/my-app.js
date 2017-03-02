@@ -442,6 +442,14 @@ function setup() {
         item.addClass('playing');
 
         create_music_controls();
+        
+        document.addEventListener('pause', function() {
+            create_music_controls();
+            document.removeEventListener('pause',
+                function(){},
+                false
+            );
+        }, false);
 
         document.addEventListener("remote-event", function(event) {
             console.log(event);
@@ -473,6 +481,10 @@ function setup() {
         MusicControls.destroy();
         mediaPlayer.stop();
         mediaPlayer.release();
+        document.removeEventListener('pause',
+            function(){},
+            false
+        );
     }
     
     $('.playSermon').click(function(e) {
