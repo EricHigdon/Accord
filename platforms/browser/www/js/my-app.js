@@ -3,7 +3,8 @@ var myApp,
     mediaPlayer,
     playTimer,
     auth_token = localStorage.getItem('auth_token'),
-    params;
+    params,
+    elapsedTime = 0;
 
 window.addEventListener("load", function () {
     window.loaded = true;
@@ -18,24 +19,6 @@ function guid() {
     s4() + '-' + s4() + s4() + s4();
 }
 $(document).ready(function() {
-    
-    $('img').each(function() {
-        var image = $(this);
-        ImgCache.isCached(image.attr('src'), function(path, success) {
-          if (success) {
-            // already cached
-            console.log('loading cached image');
-            ImgCache.useCachedFile(image);
-          } else {
-            // not there, need to cache the image
-            ImgCache.cacheFile(image.attr('src'), function () {
-                console.log('caching image');
-              ImgCache.useCachedFile(image);
-            });
-          }
-        });
-        
-    });
     
     if (!auth_token) {
         var username = localStorage.getItem('username');
@@ -127,6 +110,29 @@ function renderPages(data) {
             link.addClass('active');
         }
     });
+   
+    ImgCache.init(function () {
+        console.log('ImgCache init: success!');
+        $('img').each(function() {
+            var image = $(this);
+            ImgCache.isCached(image.attr('src'), function(path, success) {
+              if (success) {
+                // already cached
+                console.log('loading cached image');
+                ImgCache.useCachedFile(image);
+              } else {
+                // not there, need to cache the image
+                ImgCache.cacheFile(image.attr('src'), function () {
+                    console.log('caching image');
+                  ImgCache.useCachedFile(image);
+                });
+              }
+            });
+        });
+    }, function () {
+        console.error('ImgCache init: error! Check the log for errors');
+    });
+    
     get_bible();
     setup();
 }
@@ -396,8 +402,7 @@ function setup() {
             album = "Sermons",
             image = item.parent().parent().parent().parent().find('img').attr("src"),
             duration = -1,
-            counter = 0,
-            elapsedTime = 0;
+            counter = 0;
         mediaPlayer.getCurrentPosition(function(position){
             elapsedTime = position;
         });
@@ -459,6 +464,7 @@ function setup() {
     function destroy_media_player(){
         console.log('destroying');
         clearInterval(playTimer);
+        elapsedTime = 0;
         $('.playing').removeClass('playing');
         $('paused').removeClass('paused');
         MusicControls.destroy();
