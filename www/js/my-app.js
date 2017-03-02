@@ -2,7 +2,8 @@ var myApp,
     url = 'http://accordapp.com/',
     mediaPlayer,
     playTimer,
-    auth_token = localStorage.getItem('auth_token');
+    auth_token = localStorage.getItem('auth_token'),
+    params;
 
 window.addEventListener("load", function () {
     window.loaded = true;
@@ -398,7 +399,7 @@ function setup() {
             ticker: 'Now playing ' + title
         });
         
-        var params = [artist, title, album, image, duration, elapsedTime];
+        params = [artist, title, album, image, duration, elapsedTime];
         var timerDur = setInterval(function() {
             counter = counter + 100;
             if (counter > 2000) {

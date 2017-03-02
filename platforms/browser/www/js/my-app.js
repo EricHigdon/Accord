@@ -2,7 +2,8 @@ var myApp,
     url = 'http://accordapp.com/',
     mediaPlayer,
     playTimer,
-    auth_token = localStorage.getItem('auth_token');
+    auth_token = localStorage.getItem('auth_token'),
+    params;
 
 window.addEventListener("load", function () {
     window.loaded = true;
@@ -328,11 +329,15 @@ function setup() {
                 mediaPlayer.pause();
                 $('.playing').addClass('paused').removeClass('playing');
                 MusicControls.updateIsPlaying(false);
+                clearInterval(playTimer);
                 break;
             case 'music-controls-play':
                 mediaPlayer.play();
                 $('.paused').addClass('playing').removeClass('paused');
                 MusicControls.updateIsPlaying(true);
+                playTimer = setInterval(function() {
+                    start_play_timer();
+                }, 1000);
                 break;
             case 'music-controls-destroy':
                 destroy_media_player();
@@ -348,6 +353,18 @@ function setup() {
     // Start listening for events
     // The plugin will run the events function each time an event is fired
     MusicControls.listen();
+
+    function start_play_timer() {
+        mediaPlayer.getCurrentPosition(function(position){
+            elapsedTime = position;
+        });
+        params[5] = elapsedTime;
+        window.remoteControls.updateMetas(function(success){
+            //console.log(success);
+        }, function(fail){
+            //console.log(fail);
+        }, params);
+    }
 
     function create_media_player(item) {
         var media_url = item.attr('href');
@@ -382,7 +399,7 @@ function setup() {
             ticker: 'Now playing ' + title
         });
         
-        var params = [artist, title, album, image, duration, elapsedTime];
+        params = [artist, title, album, image, duration, elapsedTime];
         var timerDur = setInterval(function() {
             counter = counter + 100;
             if (counter > 2000) {
@@ -396,15 +413,7 @@ function setup() {
             }
         }, 100);
         playTimer = setInterval(function() {
-            mediaPlayer.getCurrentPosition(function(position){
-                elapsedTime = position;
-            });
-            params[5] = elapsedTime;
-            window.remoteControls.updateMetas(function(success){
-                //console.log(success);
-            }, function(fail){
-                //console.log(fail);
-            }, params);
+            start_play_timer();
         }, 1000);
 
         document.addEventListener("remote-event", function(event) {
@@ -413,10 +422,14 @@ function setup() {
                 case 'pause':
                     mediaPlayer.pause();
                     $('.playing').addClass('paused').removeClass('playing');
+                    clearInterval(playTimer);
                     break;
                 case 'play':
                     mediaPlayer.play();
                     $('.paused').addClass('playing').removeClass('paused');
+                    playTimer = setInterval(function() {
+                        start_play_timer();
+                    }, 1000);
                     break;
                 default:
                     break;
@@ -441,11 +454,15 @@ function setup() {
             mediaPlayer.pause();
             item.addClass('paused').removeClass('playing');
             MusicControls.updateIsPlaying(false);
+            playTimer = setInterval(function() {
+                start_play_timer();
+            }, 1000);
         }
         else if (item.hasClass('paused')) {
             mediaPlayer.play();
             item.addClass('playing').removeClass('paused');
             MusicControls.updateIsPlaying(true);
+            clearInterval(playTimer);
         }
         else if (typeof mediaPlayer !== "undefined") {
             destroy_media_player();
@@ -478,19 +495,19 @@ function setupNotifications() {
     push.on('registration', function(data) {
         var oldRegId = localStorage.getItem('registrationId');
         if (oldRegId !== data.registrationId) {
-            var url = url+'device/gcm/';
+            var push_url = url+'device/gcm/';
             // Save new registration ID
             localStorage.setItem('registrationId', data.registrationId);
             // Post registrationId to your app server as the value has changed
             if (device.platform == 'iOS') {
-                url = url+'device/apns/';
+                push_url = url+'device/apns/';
             }
             $.ajax({
-                url: url,
+                url: push_url,
                 method: 'POST',
                 dataType: 'json',
                 data: {
-                    'device_id': device.uuid,
+                    'device_id': username,
                     'registration_id': data.registrationId,
                     'active': true
                 },
