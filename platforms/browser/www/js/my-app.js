@@ -4,7 +4,8 @@ var myApp,
     playTimer,
     auth_token = localStorage.getItem('auth_token'),
     params,
-    elapsedTime = 0;
+    elapsedTime = 0,
+    playingItem;
 
 window.addEventListener("load", function () {
     window.loaded = true;
@@ -388,17 +389,11 @@ function setup() {
             //console.log(fail);
         }, params);
     }
-
-    function create_media_player(item) {
-        var media_url = item.attr('href');
-        mediaPlayer = new Media(media_url);
-        mediaPlayer.play();
-        item.addClass('playing');
-
+    function create_music_controls() {
         var artist = "Fairfield West Baptist Church",
-            title = item.attr("data-title"),
+            title = playingItem.attr("data-title"),
             album = "Sermons",
-            image = item.parent().parent().parent().parent().find('img').attr("src"),
+            image = playingItem.parent().parent().parent().parent().find('img').attr("src"),
             duration = -1,
             counter = 0;
         mediaPlayer.getCurrentPosition(function(position){
@@ -437,6 +432,16 @@ function setup() {
         playTimer = setInterval(function() {
             start_play_timer();
         }, 1000);
+    }
+
+    function create_media_player(item) {
+        var media_url = item.attr('href');
+        playingItem = item;
+        mediaPlayer = new Media(media_url);
+        mediaPlayer.play();
+        item.addClass('playing');
+
+        create_music_controls();
 
         document.addEventListener("remote-event", function(event) {
             console.log(event);
