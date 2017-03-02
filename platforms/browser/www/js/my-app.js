@@ -18,6 +18,25 @@ function guid() {
     s4() + '-' + s4() + s4() + s4();
 }
 $(document).ready(function() {
+    
+    $('img').each(function() {
+        var image = $(this);
+        ImgCache.isCached(image.attr('src'), function(path, success) {
+          if (success) {
+            // already cached
+            console.log('loading cached image');
+            ImgCache.useCachedFile(image);
+          } else {
+            // not there, need to cache the image
+            ImgCache.cacheFile(image.attr('src'), function () {
+                console.log('caching image');
+              ImgCache.useCachedFile(image);
+            });
+          }
+        });
+        
+    });
+    
     if (!auth_token) {
         var username = localStorage.getItem('username');
         if (!username) {
