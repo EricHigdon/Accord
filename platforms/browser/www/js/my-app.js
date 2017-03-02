@@ -109,9 +109,9 @@ function renderPages(data) {
         }
     });
    
-    /*ImgCache.init(function () {
+    ImgCache.init(function () {
         console.log('ImgCache init: success!');
-        $('img').each(function() {
+        $('.img').not('.noCache').each(function() {
             var image = $(this);
             ImgCache.isCached(image.attr('src'), function(path, success) {
               if (success) {
@@ -129,7 +129,7 @@ function renderPages(data) {
         });
     }, function () {
         console.error('ImgCache init: error! Check the log for errors');
-    });*/
+    });
     
     get_bible();
     setup();
