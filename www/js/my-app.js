@@ -90,8 +90,6 @@ function loadPages(modified) {
         dataType: 'json',
         success: function(data) {
             renderPages(data);
-            localStorage.setItem('cacheModified', modified);
-            localStorage.setItem('pages', JSON.stringify(data));
         }
     });
 }
@@ -111,7 +109,7 @@ function renderPages(data) {
         }
     });
    
-    ImgCache.init(function () {
+    /*ImgCache.init(function () {
         console.log('ImgCache init: success!');
         $('img').each(function() {
             var image = $(this);
@@ -131,7 +129,7 @@ function renderPages(data) {
         });
     }, function () {
         console.error('ImgCache init: error! Check the log for errors');
-    });
+    });*/
     
     get_bible();
     setup();
