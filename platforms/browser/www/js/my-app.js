@@ -410,7 +410,7 @@ function setup() {
             artist: artist,
             cover: image,
             isPlaying: true,
-            dismissable: true,
+            dismissable: false,
             // hide previous/next/close buttons:
             hasPrev: false,
             hasNext: false,
