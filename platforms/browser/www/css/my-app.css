@@ -321,7 +321,7 @@ a.login-skip {
     color: #fff;
 }
 a.open-notes {
-    position: absolute;
+    position: fixed;
     right: 0px;
     top: 25px;
     background: #0f1229;
