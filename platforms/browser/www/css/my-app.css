@@ -334,8 +334,15 @@ a.open-notes {
 #editor-container {
     width: 100%;
     height: 100%;
-    background: #eee;
+    background: #fff;
     color: #333;
+}
+.ql-toolbar {
+    border: 1px solid #333;
+    background: #fff;
+}
+.panel .content-block {
+    height: 100%;
 }
 
 /* iPad Styles */
