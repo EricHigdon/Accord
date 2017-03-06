@@ -1,6 +1,38 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
+        "file": "plugins/com.rd11.remote-controls/www/RemoteControls.js",
+        "id": "com.rd11.remote-controls.RemoteControls",
+        "pluginId": "com.rd11.remote-controls",
+        "clobbers": [
+            "window.remoteControls"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-appversion/www/app-version.js",
+        "id": "cordova-plugin-appversion.RareloopAppVersion",
+        "pluginId": "cordova-plugin-appversion",
+        "clobbers": [
+            "AppVersion"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+        "id": "cordova-plugin-dialogs.notification",
+        "pluginId": "cordova-plugin-dialogs",
+        "merges": [
+            "navigator.notification"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-dialogs/www/browser/notification.js",
+        "id": "cordova-plugin-dialogs.notification_browser",
+        "pluginId": "cordova-plugin-dialogs",
+        "merges": [
+            "navigator.notification"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-file/www/DirectoryEntry.js",
         "id": "cordova-plugin-file.DirectoryEntry",
         "pluginId": "cordova-plugin-file",
@@ -180,6 +212,14 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/cordova-plugin-headercolor/www/HeaderColor.js",
+        "id": "cordova-plugin-headercolor.HeaderColor",
+        "pluginId": "cordova-plugin-headercolor",
+        "clobbers": [
+            "cordova.plugins.headerColor"
+        ]
+    },
+    {
         "file": "plugins/cordova-plugin-media/www/MediaError.js",
         "id": "cordova-plugin-media.MediaError",
         "pluginId": "cordova-plugin-media",
@@ -212,14 +252,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/com.rd11.remote-controls/www/RemoteControls.js",
-        "id": "com.rd11.remote-controls.RemoteControls",
-        "pluginId": "com.rd11.remote-controls",
-        "clobbers": [
-            "window.remoteControls"
-        ]
-    },
-    {
         "file": "plugins/phonegap-plugin-push/www/push.js",
         "id": "phonegap-plugin-push.PushNotification",
         "pluginId": "phonegap-plugin-push",
@@ -234,27 +266,21 @@ module.exports = [
         "clobbers": [
             "PushNotification"
         ]
-    },
-    {
-        "file": "plugins/cordova-plugin-appversion/www/app-version.js",
-        "id": "cordova-plugin-appversion.RareloopAppVersion",
-        "pluginId": "cordova-plugin-appversion",
-        "clobbers": [
-            "AppVersion"
-        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
+    "com.rd11.remote-controls": "1.0.1",
+    "cordova-plugin-appversion": "1.0.0",
     "cordova-plugin-compat": "1.1.0",
+    "cordova-plugin-dialogs": "1.3.1",
     "cordova-plugin-file": "4.3.1",
+    "cordova-plugin-headercolor": "1.0",
     "cordova-plugin-media": "2.4.1",
     "cordova-plugin-music-controls": "1.4",
-    "com.rd11.remote-controls": "1.0.1",
-    "phonegap-plugin-push": "1.8.4",
     "cordova-plugin-whitelist": "1.3.1",
-    "cordova-plugin-appversion": "1.0.0"
+    "phonegap-plugin-push": "1.8.4"
 }
 // BOTTOM OF METADATA
 });

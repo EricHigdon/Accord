@@ -5,7 +5,9 @@
             "id": "cordova-plugin-media@~2.4.1"
         },
         "is_top_level": true,
-        "variables": {}
+        "variables": {
+            "MICROPHONE_USAGE_DESCRIPTION": " "
+        }
     },
     "cordova-plugin-file": {
         "source": {

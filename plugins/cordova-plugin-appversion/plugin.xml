@@ -26,4 +26,9 @@
         </config-file>
         <source-file src="src/android/RareloopAppVersion.java" target-dir="src/com/rareloop/cordova/appversion" />
     </platform>
+    
+    <platform name="browser">
+        <config-file target="config.xml" parent="/*">
+        </config-file>
+    </platform>
 </plugin>
