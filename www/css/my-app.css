@@ -331,6 +331,12 @@ a.open-notes {
     color: #fff;
     font-size: 16pt;
 }
+#editor-container {
+    width: 100%;
+    height: 100%;
+    background: #eee;
+    color: #333;
+}
 
 /* iPad Styles */
 @media (min-width: 767px) {
