@@ -504,9 +504,9 @@ function setup() {
         }
     });
     
-    var editor = new wysihtml5.Editor('editor', {
+    var editor = new wysihtml.Editor('editor', {
         toolbar: 'toolbar',
-        parserRules:  wysihtml5ParserRules
+        parserRules:  wysihtmlParserRules
     });
     
     setupNotifications();
