@@ -504,16 +504,9 @@ function setup() {
         }
     });
     
-    var quill = new Quill('#editor-container', {
-      modules: {
-        toolbar: [
-            [{ header: [1, 2, false] }],
-            ['bold', 'italic', 'underline'],
-            [{ list: 'ordered' }, { list: 'bullet' }]
-        ]
-      },
-      placeholder: 'Compose an note...',
-      theme: 'snow'
+    var editor = new wysihtml5.Editor('editor', {
+        toolbar: 'toolbar',
+        parserRules:  wysihtml5ParserRules
     });
     
     setupNotifications();
