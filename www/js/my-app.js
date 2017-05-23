@@ -602,8 +602,8 @@ function setupNotifications() {
 			    console.log("processing of push data is finished");
 			});
 			myApp.confirm(data.message, 'Update Available', function () {
-			    navigator.splashscreen.show();
-			location.reload();
+				navigator.splashscreen.show();
+				location.reload();
 			});
 		    }
 		    else {
@@ -612,7 +612,9 @@ function setupNotifications() {
 		    }
 		}
 		else if(data.additionalData.action == 'change_page') {
-			mainView.router.loadPage(data.additionalData.url);
+			myApp.confirm(data.message, '', function () {
+				mainView.router.loadPage(data.additionalData.url);
+			});
 		}
         }
         else {
