@@ -612,9 +612,13 @@ function setupNotifications() {
 		    }
 		}
 		else if(data.additionalData.action == 'change_page') {
-			myApp.confirm(data.message, '', function () {
+			if(data.additionalData.foreground) {
+				myApp.confirm(data.message, '', function () {
+					mainView.router.loadPage(data.additionalData.url);
+				});
+			else {
 				mainView.router.loadPage(data.additionalData.url);
-			});
+			}
 		}
         }
         else {
