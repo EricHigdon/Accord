@@ -39,7 +39,7 @@ $(document).ready(function() {
     if (!auth_token) {
         
         password = guid();
-
+        console.log(username, device.uuid);
         $.ajax({
             url: url + 'account/',
             method: 'PUT',
