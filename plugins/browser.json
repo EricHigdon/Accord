@@ -7,23 +7,23 @@
         "files": {}
     },
     "installed_plugins": {
+        "com.rd11.remote-controls": {
+            "PACKAGE_NAME": "com.erichigdon.accord"
+        },
+        "cordova-plugin-appversion": {
+            "PACKAGE_NAME": "com.erichigdon.accord"
+        },
         "cordova-plugin-media": {
             "PACKAGE_NAME": "com.erichigdon.accord"
         },
         "cordova-plugin-music-controls": {
             "PACKAGE_NAME": "com.erichigdon.accord"
         },
-        "com.rd11.remote-controls": {
+        "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.erichigdon.accord"
         },
         "phonegap-plugin-push": {
             "SENDER_ID": "663980513133",
-            "PACKAGE_NAME": "com.erichigdon.accord"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.erichigdon.accord"
-        },
-        "cordova-plugin-appversion": {
             "PACKAGE_NAME": "com.erichigdon.accord"
         },
         "cordova-plugin-headercolor": {
@@ -37,7 +37,13 @@
         "cordova-plugin-compat": {
             "PACKAGE_NAME": "com.erichigdon.accord"
         },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.erichigdon.accord"
+        },
         "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.erichigdon.accord"
+        },
+        "cordova-plugin-headercolor": {
             "PACKAGE_NAME": "com.erichigdon.accord"
         }
     }

@@ -505,6 +505,11 @@ function setup() {
         }
     });
     
+    var editor = new wysihtml.Editor('editor', {
+        toolbar: 'toolbar',
+        parserRules:  wysihtmlParserRules
+    });
+    
     setupNotifications();
 }
 

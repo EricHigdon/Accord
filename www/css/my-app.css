@@ -320,6 +320,30 @@ a.login-skip {
     display: block;
     color: #fff;
 }
+a.open-notes {
+    position: fixed;
+    right: 0px;
+    top: 25px;
+    background: #0f1229;
+    padding: 10px;
+    border: 2px solid #fff;
+    border-right: none;
+    color: #fff;
+    font-size: 16pt;
+}
+#editor-container {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    color: #333;
+}
+.ql-toolbar {
+    border: 1px solid #333;
+    background: #fff;
+}
+.panel .content-block {
+    height: 100%;
+}
 
 /* iPad Styles */
 @media (min-width: 767px) {
