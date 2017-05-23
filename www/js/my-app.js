@@ -1,5 +1,5 @@
 var myApp,
-    url = 'http://192.168.200.243:8000/',
+    url = 'http://accordapp.com/',
     mediaPlayer,
     playTimer,
     auth_token = localStorage.getItem('auth_token'),
