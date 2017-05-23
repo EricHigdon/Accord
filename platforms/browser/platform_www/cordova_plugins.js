@@ -242,6 +242,30 @@ module.exports = [
         "clobbers": [
             "AppVersion"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-headercolor/www/HeaderColor.js",
+        "id": "cordova-plugin-headercolor.HeaderColor",
+        "pluginId": "cordova-plugin-headercolor",
+        "clobbers": [
+            "cordova.plugins.headerColor"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-dialogs/www/notification.js",
+        "id": "cordova-plugin-dialogs.notification",
+        "pluginId": "cordova-plugin-dialogs",
+        "merges": [
+            "navigator.notification"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-dialogs/www/browser/notification.js",
+        "id": "cordova-plugin-dialogs.notification_browser",
+        "pluginId": "cordova-plugin-dialogs",
+        "merges": [
+            "navigator.notification"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -254,7 +278,9 @@ module.exports.metadata =
     "com.rd11.remote-controls": "1.0.1",
     "phonegap-plugin-push": "1.8.4",
     "cordova-plugin-whitelist": "1.3.1",
-    "cordova-plugin-appversion": "1.0.0"
+    "cordova-plugin-appversion": "1.0.0",
+    "cordova-plugin-headercolor": "1.0",
+    "cordova-plugin-dialogs": "1.3.3"
 }
 // BOTTOM OF METADATA
 });

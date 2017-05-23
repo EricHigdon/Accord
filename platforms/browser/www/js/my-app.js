@@ -1,5 +1,5 @@
 var myApp,
-    url = 'http://accordapp.com/',
+    url = 'http://192.168.200.243:8000/',
     mediaPlayer,
     playTimer,
     auth_token = localStorage.getItem('auth_token'),
@@ -43,10 +43,11 @@ $(document).ready(function() {
                 'password': password
             },
             success: function(response) {
+                console.log('response', response.username, 'local', username);
                 auth_token = response.auth_token;
                 localStorage.setItem('auth_token', response.auth_token);
-                localStorage.setItem('username', response.username)
-                localStorage.setItem('user_id', response.pk)
+                localStorage.setItem('username', response.username);
+                localStorage.setItem('user_id', response.pk);
             },
             error: function(response) {
                 console.log(response);
@@ -112,7 +113,7 @@ function renderPages(data) {
    
     ImgCache.init(function () {
         console.log('ImgCache init: success!');
-        $('.img').not('.noCache').each(function() {
+        $('img').not('.noCache').each(function() {
             var image = $(this);
             ImgCache.isCached(image.attr('src'), function(path, success) {
               if (success) {

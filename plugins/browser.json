@@ -25,6 +25,12 @@
         },
         "cordova-plugin-appversion": {
             "PACKAGE_NAME": "com.erichigdon.accord"
+        },
+        "cordova-plugin-headercolor": {
+            "PACKAGE_NAME": "com.erichigdon.accord"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "com.erichigdon.accord"
         }
     },
     "dependent_plugins": {
