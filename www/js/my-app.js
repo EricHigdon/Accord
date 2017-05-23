@@ -26,11 +26,11 @@ $(document).ready(function() {
 function startSetup() {
     var username = localStorage.getItem('username');
     try {
-        device_id = device.uuid;
+        var device_id = device.uuid;
     }
     catch (e) {
         console.log(e);
-        device_id = false;
+        var device_id = false;
     }
     console.log(username, device_id);
     if (!username) {
@@ -46,7 +46,7 @@ function startSetup() {
     if (!auth_token) {
         
         password = guid();
-        console.log(username, device.uuid);
+        console.log(username, device_id);
         $.ajax({
             url: url + 'account/',
             method: 'PUT',
@@ -58,7 +58,7 @@ function startSetup() {
             success: function(response) {
                 console.log('response', response.username, 'local', username);
                 auth_token = response.auth_token;
-                localStorage.setItem('auth_token', response.auth_token);
+                localStorage.setItem('auth_token', auth_token);
                 localStorage.setItem('username', response.username);
                 localStorage.setItem('user_id', response.pk);
             },
@@ -74,12 +74,13 @@ function startSetup() {
     });
     
     if(device_id && username != device_id) {
+        username = device_id;
         $.ajax({
             url: url+'account/',
             method: 'POST',
             dataType: 'json',
             data: {
-                'username': device_id,
+                'username': username,
             },
             success: function(response) {
                 localStorage.setItem('username', response.username);
