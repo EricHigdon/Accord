@@ -593,7 +593,7 @@ function setupNotifications() {
     });
     
     push.on('notification', function(data) {
-        if(data.additionalData['content-available'] == 1 and data.additionalData.action) {
+        if(data.additionalData['content-available'] == 1 && data.additionalData.action) {
 		console.log(data);
 		if (data.additionalData.action == 'update') {
 		    localStorage.removeItem('cacheModified');
