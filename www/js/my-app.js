@@ -22,7 +22,8 @@ function guid() {
 $(document).ready(function() {
     var username = localStorage.getItem('username');
     var device_id = false;
-    while(!device_id) {
+    console.log('starting app');
+    while(device_id == false) {
         console.log('device_id not set');
         try {
             device_id = device.uuid;
