@@ -28,11 +28,14 @@ $(document).ready(function() {
         console.log(e);
         device_id = false;
     }
+    console.log(username, device_id);
     if (!username) {
         if (device_id) {
+            console.log('updating username to device id');
             username = device_id;
         }
         else {
+            console.log('creating username guid');
             username = guid();
         }
     }
