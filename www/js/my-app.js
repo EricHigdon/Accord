@@ -611,7 +611,7 @@ function setupNotifications() {
 			location.reload();
 		    }
 		}
-		elif(data.additionalData.action == 'change_page') {
+		else if(data.additionalData.action == 'change_page') {
 			mainView.router.loadPage(data.additionalData.url);
 		}
         }
