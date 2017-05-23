@@ -20,18 +20,32 @@ function guid() {
     s4() + '-' + s4() + s4() + s4();
 }
 $(document).ready(function() {
-    
+    var username = localStorage.getItem('username');
+    try {
+        device_id = device.uuid;
+    }
+    catch (e) {
+        console.log(e);
+        device_id = false;
+    }
+    if(device_id && username != device_id) {
+        $.ajax({
+            url: url+'account/',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                'username': device_id,
+            },
+            success: function(response) {
+                localStorage.setItem('username', response.username);
+            },
+            error: function(response) {
+                console.log(response);
+            },
+        });
+    }
     if (!auth_token) {
-        var username = localStorage.getItem('username');
-        if (!username) {
-            try {
-                username = device.uuid;
-            }
-            catch (e) {
-                console.log(e);
-                username = guid();
-            }
-        }
+        
         password = guid();
 
         $.ajax({
