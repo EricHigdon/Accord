@@ -28,6 +28,9 @@ $(document).ready(function() {
         console.log(e);
         device_id = false;
     }
+    if (!username) {
+        username = device_id;
+    }
     if (!auth_token) {
         
         password = guid();
