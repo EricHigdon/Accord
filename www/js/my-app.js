@@ -21,12 +21,13 @@ function guid() {
 }
 $(document).ready(function() {
     var username = localStorage.getItem('username');
-    try {
-        device_id = device.uuid;
-    }
-    catch (e) {
-        console.log(e);
-        device_id = false;
+    while(!device_id) {
+        try {
+            var device_id = device.uuid;
+        }
+        catch (e) {
+            console.log(e);
+        } 
     }
     console.log(username, device_id);
     if (!username) {
