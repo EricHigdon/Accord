@@ -3,6 +3,7 @@ var myApp,
     mediaPlayer,
     playTimer,
     auth_token = localStorage.getItem('auth_token'),
+    username = localStorage.getItem('username'),
     params,
     elapsedTime = 0,
     playingItem;
@@ -24,7 +25,6 @@ $(document).ready(function() {
 });
 
 function startSetup() {
-    var username = localStorage.getItem('username');
     try {
         var device_id = device.uuid;
     }
@@ -42,9 +42,7 @@ function startSetup() {
             username = guid();
         }
     }
-    console.log(username, device_id);
     if (!auth_token) {
-        
         password = guid();
         console.log(username, device_id);
         $.ajax({
