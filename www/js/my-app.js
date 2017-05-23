@@ -21,9 +21,11 @@ function guid() {
 }
 $(document).ready(function() {
     var username = localStorage.getItem('username');
+    var device_id = false;
     while(!device_id) {
         try {
-            var device_id = device.uuid;
+            device_id = device.uuid;
+            console.log('device_id set', device_id);
         }
         catch (e) {
             console.log(e);
