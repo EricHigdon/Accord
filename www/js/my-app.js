@@ -28,22 +28,6 @@ $(document).ready(function() {
         console.log(e);
         device_id = false;
     }
-    if(device_id && username != device_id) {
-        $.ajax({
-            url: url+'account/',
-            method: 'POST',
-            dataType: 'json',
-            data: {
-                'username': device_id,
-            },
-            success: function(response) {
-                localStorage.setItem('username', response.username);
-            },
-            error: function(response) {
-                console.log(response);
-            },
-        });
-    }
     if (!auth_token) {
         
         password = guid();
@@ -73,6 +57,23 @@ $(document).ready(function() {
             xhr.setRequestHeader('Authorization', 'Token '+auth_token);
         }
     });
+    
+    if(device_id && username != device_id) {
+        $.ajax({
+            url: url+'account/',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                'username': device_id,
+            },
+            success: function(response) {
+                localStorage.setItem('username', response.username);
+            },
+            error: function(response) {
+                console.log(response);
+            },
+        });
+    }
     
     // write log to console
     ImgCache.options.debug = true;
@@ -580,9 +581,9 @@ function setupNotifications() {
         if(data.additionalData['content-available'] == 1) {
             localStorage.removeItem('cacheModified');
             if(data.additionalData.foreground) {
-            push.finish(function() {
-                console.log("processing of push data is finished");
-            });
+                push.finish(function() {
+                    console.log("processing of push data is finished");
+                });
                 myApp.confirm(data.message, 'Update Available', function () {
                     navigator.splashscreen.show();
                 location.reload();
