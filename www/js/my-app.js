@@ -20,18 +20,17 @@ function guid() {
     s4() + '-' + s4() + s4() + s4();
 }
 $(document).ready(function() {
+    document.addEventListener("deviceready", startSetup, false);
+});
+
+function startSetup() {
     var username = localStorage.getItem('username');
-    var device_id = false;
-    console.log('starting app');
-    while(device_id == false) {
-        console.log('device_id not set');
-        try {
-            device_id = device.uuid;
-            console.log('device_id set', device_id);
-        }
-        catch (e) {
-            console.log(e);
-        } 
+    try {
+        device_id = device.uuid;
+    }
+    catch (e) {
+        console.log(e);
+        device_id = false;
     }
     console.log(username, device_id);
     if (!username) {
@@ -96,8 +95,8 @@ $(document).ready(function() {
     // increase allocated space on Chrome to 50MB, default was 10MB
     ImgCache.options.chromeQuota = 50*1024*1024;
     //load pages
-    document.addEventListener("deviceready", checkModified, false);
-});
+    checkModified();
+}
 function checkModified() {
     $.ajax({
         url: url+'modified/1/',
