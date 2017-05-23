@@ -32,7 +32,6 @@ function startSetup() {
         console.log(e);
         var device_id = false;
     }
-    console.log(username, device_id);
     if (!username) {
         if (device_id) {
             console.log('updating username to device id');
@@ -43,6 +42,7 @@ function startSetup() {
             username = guid();
         }
     }
+    console.log(username, device_id);
     if (!auth_token) {
         
         password = guid();
