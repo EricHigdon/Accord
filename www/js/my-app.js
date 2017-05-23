@@ -616,6 +616,7 @@ function setupNotifications() {
 				myApp.confirm(data.message, '', function () {
 					mainView.router.loadPage(data.additionalData.url);
 				});
+			}
 			else {
 				mainView.router.loadPage(data.additionalData.url);
 			}
