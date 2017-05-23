@@ -29,7 +29,12 @@ $(document).ready(function() {
         device_id = false;
     }
     if (!username) {
-        username = device_id;
+        if (device_id) {
+            username = device_id;
+        }
+        else {
+            username = guid();
+        }
     }
     if (!auth_token) {
         
