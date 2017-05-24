@@ -1,5 +1,6 @@
 var myApp,
     url = 'http://accordapp.com/',
+    church_id = 1,
     mediaPlayer,
     playTimer,
     auth_token = localStorage.getItem('auth_token'),
@@ -99,7 +100,7 @@ function startSetup() {
 }
 function checkModified() {
     $.ajax({
-        url: url+'modified/1/',
+        url: url+'modified/'+ church_id +'/',
         crossDomain: true,
         dataType: 'json',
         success: function(data) {
@@ -117,7 +118,7 @@ function checkModified() {
 
 function loadPages(modified) {
     $.ajax({
-        url: url+'api/1/',
+        url: url+'api/'+ church_id +'/',
         crossDomain: true,
         dataType: 'json',
         success: function(data) {
