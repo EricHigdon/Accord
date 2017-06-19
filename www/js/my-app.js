@@ -28,25 +28,22 @@ $(document).ready(function() {
 
 function startSetup() {
     try {
-        var device_id = device.uuid;
+        device_id = device.uuid;
     }
     catch (e) {
         console.log(e);
-        var device_id = false;
+        device_id = false;
     }
     if (!username) {
         if (device_id) {
-            console.log('updating username to device id');
             username = device_id;
         }
         else {
-            console.log('creating username guid');
             username = guid();
         }
     }
     if (!auth_token) {
         password = guid();
-        console.log(username, device_id);
         $.ajax({
             url: url + 'account/',
             method: 'PUT',
@@ -56,23 +53,55 @@ function startSetup() {
                 'password': password
             },
             success: function(response) {
-                console.log('response', response.username, 'local', username);
                 auth_token = response.auth_token;
                 localStorage.setItem('auth_token', auth_token);
                 localStorage.setItem('username', response.username);
                 localStorage.setItem('user_id', response.pk);
+                checkModified();
             },
             error: function(response) {
-                console.log(response);
+                console.log('Username exists', response);
+                $.ajax({
+                    url: url + 'account/',
+                    method: 'GET',
+                    dataType: 'json',
+                    data: {
+                        'username': username
+                    },
+                    success: function(response) {
+                        console.log('response', response[0].username, 'local', username);
+                        auth_token = response[0].auth_token;
+                        localStorage.setItem('auth_token', auth_token);
+                        localStorage.setItem('username', response[0].username);
+                        localStorage.setItem('user_id', response[0].pk);
+                        checkModified();
+                    },
+                    error: function(response) {
+                        console.log(response);
+                    }
+                });
             }
         });
     }
+	else	{
+		checkModified();
+	}
+    
+    
+    
+    // write log to console
+    ImgCache.options.debug = true;
+    // increase allocated space on Chrome to 50MB, default was 10MB
+    ImgCache.options.chromeQuota = 50*1024*1024;
+    //load pages
+}
+function checkModified() {
     $.ajaxSetup({
         beforeSend: function(xhr, settings) {
             xhr.setRequestHeader('Authorization', 'Token '+auth_token);
         }
     });
-    
+    console.log(device_id, username);
     if(device_id && username != device_id) {
         username = device_id;
         $.ajax({
@@ -90,15 +119,6 @@ function startSetup() {
             },
         });
     }
-    
-    // write log to console
-    ImgCache.options.debug = true;
-    // increase allocated space on Chrome to 50MB, default was 10MB
-    ImgCache.options.chromeQuota = 50*1024*1024;
-    //load pages
-    checkModified();
-}
-function checkModified() {
     $.ajax({
         url: url+'modified/'+ church_id +'/',
         crossDomain: true,
