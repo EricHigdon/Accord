@@ -240,7 +240,8 @@ function setup() {
     catch(e) {}
     // Initialize your app
     myApp = new Framework7({
-        animatePages: true
+        animatePages: true,
+	ajaxLinks: '.ajax'
     });
     // Export selectors engine
     var $$ = Dom7;
