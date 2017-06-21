@@ -151,7 +151,7 @@ function renderPages(data) {
     var pageData = data;
     $.each(pageData.pages, function(index){
         $('div.pages').append(this.content);
-        var link = $('<a href="#'+slugify(this.title)+'" class="no-animation">'+this.title+'</a>')
+        var link = $('<a href="#'+slugify(this.title)+'" class="no-animation ajax">'+this.title+'</a>')
         $('.toolbar-inner').append(link)
         link.click(function(){
             $('.active').removeClass('active');
