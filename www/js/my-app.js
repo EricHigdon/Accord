@@ -151,7 +151,7 @@ function renderPages(data) {
     var pageData = data;
     $.each(pageData.pages, function(index){
         $('div.pages').append(this.content);
-        var link = $('<a href="#'+slugify(this.title)+'" class="no-animation ajax">'+this.title+'</a>')
+        var link = $('<a href="#'+slugify(this.title)+'" class="no-animation">'+this.title+'</a>')
         $('.toolbar-inner').append(link)
         link.click(function(){
             $('.active').removeClass('active');
@@ -240,8 +240,7 @@ function setup() {
     catch(e) {}
     // Initialize your app
     myApp = new Framework7({
-        animatePages: true,
-	ajaxLinks: '.ajax'
+        animatePages: true
     });
     // Export selectors engine
     var $$ = Dom7;
