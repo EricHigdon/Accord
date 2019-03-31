@@ -150,7 +150,7 @@ function loadPages(modified) {
 function renderPages(data) {
     var pageData = data;
     $.each(pageData.pages, function(index){
-        $('div.pages').append(this.content);
+        $('div.view-main').append(this.content);
         var link = $('<a href="#'+slugify(this.title)+'" class="no-animation">'+this.title+'</a>')
         $('.toolbar-inner').append(link)
         link.click(function(){
