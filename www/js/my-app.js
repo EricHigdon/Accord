@@ -240,7 +240,7 @@ function setup() {
     catch(e) {}
     // Initialize your app
     myApp = new Framework7({
-        animatePages: true
+        animatePages: true,
     });
     // Export selectors engine
     var $$ = Dom7;
@@ -249,7 +249,7 @@ function setup() {
        xhr.setRequestHeader('Authorization', 'Token '+auth_token);
     });
     // Add view
-    mainView = myApp.addView('.view-main', {
+    mainView = myApp..views.create('.view-main', {
         domCache: true //enable inline pages
     });
     if (!localStorage.getItem('login_finished')) {
