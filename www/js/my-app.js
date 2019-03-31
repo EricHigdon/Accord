@@ -249,7 +249,7 @@ function setup() {
        xhr.setRequestHeader('Authorization', 'Token '+auth_token);
     });
     // Add view
-    mainView = myApp..views.create('.view-main', {
+    mainView = myApp.views.create('.view-main', {
         domCache: true //enable inline pages
     });
     if (!localStorage.getItem('login_finished')) {
