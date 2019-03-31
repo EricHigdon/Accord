@@ -399,15 +399,18 @@ function setup() {
 	    }
 	})();
     
-    function events(action) {
+    function controls_events(action) {
+        console.log('Received event', action);
         switch(action) {
             case 'music-controls-pause':
+                console.log('pausing from control center');
                 mediaPlayer.pause();
                 $('.playing').addClass('paused').removeClass('playing');
                 MusicControls.updateIsPlaying(false);
                 clearInterval(playTimer);
                 break;
             case 'music-controls-play':
+                console.log('playing from control center');
                 mediaPlayer.play();
                 $('.paused').addClass('playing').removeClass('paused');
                 MusicControls.updateIsPlaying(true);
@@ -416,6 +419,7 @@ function setup() {
                 }, 1000);
                 break;
             case 'music-controls-destroy':
+                console.log('destroying from control center');
                 destroy_media_player();
                 break;
             default:
@@ -460,7 +464,7 @@ function setup() {
         });
         
         // Register callback
-        MusicControls.subscribe(events);
+        MusicControls.subscribe(controls_events);
 
         // Start listening for events
         // The plugin will run the events function each time an event is fired
@@ -480,6 +484,7 @@ function setup() {
             }
         }, 100);
         playTimer = setInterval(function() {
+            console.log('Updating timer');
             start_play_timer();
         }, 1000);
     }
