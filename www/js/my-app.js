@@ -427,12 +427,10 @@ function setup() {
         mediaPlayer.getCurrentPosition(function(position){
             elapsedTime = position;
         });
-        params[5] = elapsedTime;
-        window.remoteControls.updateMetas(function(success){
-            //console.log(success);
-        }, function(fail){
-            //console.log(fail);
-        }, params);
+        MusicControls.updateElapsed({
+            elapsed: elapsedTime, // seconds
+            isPlaying: true
+        });
     }
     function create_music_controls() {
         var artist = "Fairfield West Baptist Church",
