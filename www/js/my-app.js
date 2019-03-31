@@ -400,8 +400,9 @@ function setup() {
 	})();
     
     function controls_events(action) {
-        console.log('Received event', action);
-        switch(action) {
+        var message = JSON.parse(action).message;
+        console.log('Received event', message);
+        switch(message) {
             case 'music-controls-pause':
                 console.log('pausing from control center');
                 mediaPlayer.pause();
@@ -431,6 +432,7 @@ function setup() {
         mediaPlayer.getCurrentPosition(function(position){
             elapsedTime = position;
         });
+        console.log('updating elapsed to', elapsedTime);
         MusicControls.updateElapsed({
             elapsed: elapsedTime, // seconds
             isPlaying: true
