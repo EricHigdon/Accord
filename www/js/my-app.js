@@ -423,13 +423,6 @@ function setup() {
         }
     }
 
-    // Register callback
-    MusicControls.subscribe(events);
-
-    // Start listening for events
-    // The plugin will run the events function each time an event is fired
-    MusicControls.listen();
-
     function start_play_timer() {
         mediaPlayer.getCurrentPosition(function(position){
             elapsedTime = position;
@@ -468,6 +461,13 @@ function setup() {
             ticker: 'Now playing ' + title
         });
         
+        // Register callback
+        MusicControls.subscribe(events);
+
+        // Start listening for events
+        // The plugin will run the events function each time an event is fired
+        MusicControls.listen();
+        
         params = [artist, title, album, image, duration, elapsedTime];
         var timerDur = setInterval(function() {
             counter = counter + 100;
@@ -494,28 +494,6 @@ function setup() {
         item.addClass('playing');
 
         create_music_controls();
-        
-        document.addEventListener('pause', create_music_controls, false);
-
-        document.addEventListener("remote-event", function(event) {
-            console.log(event);
-            switch (event.remoteEvent.subtype) {
-                case 'pause':
-                    mediaPlayer.pause();
-                    $('.playing').addClass('paused').removeClass('playing');
-                    clearInterval(playTimer);
-                    break;
-                case 'play':
-                    mediaPlayer.play();
-                    $('.paused').addClass('playing').removeClass('paused');
-                    playTimer = setInterval(function() {
-                        start_play_timer();
-                    }, 1000);
-                    break;
-                default:
-                    break;
-            }
-        })
     }
 
     function destroy_media_player(){
@@ -527,7 +505,6 @@ function setup() {
         MusicControls.destroy();
         mediaPlayer.stop();
         mediaPlayer.release();
-        document.removeEventListener('pause', create_music_controls, false);
     }
     
     $('.playSermon').click(function(e) {
