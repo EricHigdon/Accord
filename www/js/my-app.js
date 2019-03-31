@@ -401,17 +401,14 @@ function setup() {
     
     function controls_events(action) {
         var message = JSON.parse(action).message;
-        console.log('Received event', message);
         switch(message) {
             case 'music-controls-pause':
-                console.log('pausing from control center');
                 mediaPlayer.pause();
                 $('.playing').addClass('paused').removeClass('playing');
                 MusicControls.updateIsPlaying(false);
                 clearInterval(playTimer);
                 break;
             case 'music-controls-play':
-                console.log('playing from control center');
                 mediaPlayer.play();
                 $('.paused').addClass('playing').removeClass('paused');
                 MusicControls.updateIsPlaying(true);
@@ -420,7 +417,6 @@ function setup() {
                 }, 1000);
                 break;
             case 'music-controls-destroy':
-                console.log('destroying from control center');
                 destroy_media_player();
                 break;
             default:
@@ -432,7 +428,6 @@ function setup() {
         mediaPlayer.getCurrentPosition(function(position){
             elapsedTime = position;
         });
-        console.log('updating elapsed to', elapsedTime);
         MusicControls.updateElapsed({
             elapsed: elapsedTime, // seconds
             isPlaying: true
@@ -486,7 +481,6 @@ function setup() {
             }
         }, 100);
         playTimer = setInterval(function() {
-            console.log('Updating timer');
             start_play_timer();
         }, 1000);
     }
