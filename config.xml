@@ -80,7 +80,7 @@
       <splash src="www/res/screen/android/screen-xhdpi-portrait.png" density="xhdpi"/>
   </platform>
   <platform name="ios">
-      <splash src="www/res/screen/ios/splash.png" />
+      <splash src="www/res/screen/ios/Default@3x~universal~anyany.png" />
   </platform>
   
   <access origin="*"/>
