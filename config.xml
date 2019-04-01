@@ -87,6 +87,8 @@
       <splash src="www/res/screen/ios/screen-iphone-portrait-736h.png" width="1242" height="2208" />
       <splash src="www/res/screen/ios/screen-ipad-portrait.png" width="768" height="1024" />
       <splash src="www/res/screen/ios/screen-ipad-portrait-2x.png" width="1536" height="2048" />
+      <splash src="www/res/screen/ios/screen-ipad-portrait-2x.png" />
+      
   </platform>
   
   <access origin="*"/>
