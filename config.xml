@@ -3,6 +3,10 @@
   <description>Weekly bulletins from Fairfield West Baptist Church</description>
   <author href="http://accord.erichigdon.com.com" email="eric.s.higdon@gmail.com">Eric Higdon</author>
   <content src="index.html"/>
+    
+  <preference name='phonegap-version' value='cli-7.0.1' />
+  <engine name="ios" spec="latest" />
+    
   <preference name="permissions" value="none"/>
   <preference name="orientation" value="portrait"/>
   <preference name="target-device" value="universal"/>
