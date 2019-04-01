@@ -150,7 +150,7 @@ function loadPages(modified) {
 function renderPages(data) {
     var pageData = data;
     $.each(pageData.pages, function(index){
-        $('div.view-main').append(this.content);
+        $('div.pages').append(this.content);
         var link = $('<a href="#'+slugify(this.title)+'" class="no-animation">'+this.title+'</a>')
         $('.toolbar-inner').append(link)
         link.click(function(){
@@ -240,10 +240,7 @@ function setup() {
     catch(e) {}
     // Initialize your app
     myApp = new Framework7({
-        root: "#app",
-        id: "com.erichigdon.accord",
-        name: "Accord",
-        animatePages: true,
+        animatePages: true
     });
     // Export selectors engine
     var $$ = Dom7;
@@ -252,7 +249,7 @@ function setup() {
        xhr.setRequestHeader('Authorization', 'Token '+auth_token);
     });
     // Add view
-    mainView = myApp.views.create('.view-main', {
+    mainView = myApp.addView('.view-main', {
         domCache: true //enable inline pages
     });
     if (!localStorage.getItem('login_finished')) {
@@ -291,13 +288,12 @@ function setup() {
     });
     ga('set','checkProtocolTask',null);
     ga('set','checkStorageTask',null);
-    $$(document).on('page:init', function (page) {
-        console.log(page);
+    myApp.onPageInit('*', function (page) {
         ga('set', 'page', page.name);
         ga('send', 'pageview');
     });
     $$('body').on('beforeSubmit', '.ajax-submit', function(e) {
-        myApp.preloader.show();
+        myApp.showPreloader('Submitting');
     });
     $$('body').on('submit', '.ajax-submit', function(e) {
         // Required attribute HTML5 info http://stackoverflow.com/a/25010485 
@@ -324,14 +320,14 @@ function setup() {
       else {
           console.log(data);
       }
-      myApp.preloader.hide();
+      myApp.hidePreloader();
     });
     $$('body').on('submitError', '.ajax-submit', function (e) {
       var xhr = e.detail.xhr; // actual XHR object
       var data = e.detail.data; // Ajax response from action file
       // do something with response data
         myApp.alert('There was a problem submitting this form.', '');
-        myApp.preloader.hide();
+        myApp.hidePreloader();
     });
     $$('body').on('opened', '*', function() {
         var item = $$(this),
