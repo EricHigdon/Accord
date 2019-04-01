@@ -240,6 +240,9 @@ function setup() {
     catch(e) {}
     // Initialize your app
     myApp = new Framework7({
+        root: "#app",
+        id: "com.erichigdon.accord",
+        name: "Accord",
         animatePages: true,
     });
     // Export selectors engine
